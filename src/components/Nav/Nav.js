@@ -25,8 +25,8 @@ const Nav = props => (
           <Link className="nav-link" to="/home">
             Future Session
           </Link>
-          <Link className="nav-link" to="/new-session">
-            New Session
+          <Link className="nav-link" to="/add-new-class">
+            Add New Class
           </Link>
           <LogOutButton className="nav-link" />
         </>
