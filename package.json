@@ -1,5 +1,5 @@
 {
-  "name": "prime-solo-project",
+  "name": "minnePlan",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:5000",
@@ -37,6 +37,8 @@
     "start": "node server/server.js",
     "client": "react-scripts start",
     "server": "nodemon --watch server server/server.js",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
@@ -47,5 +49,10 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "heroku-run-build-script": true
+  "heroku-run-build-script": true,
+  "description": "This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
