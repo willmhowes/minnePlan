@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
-class NewSession extends Component {
+class AddNewClass extends Component {
   render(){
     return (
       <div>
@@ -16,4 +16,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect(mapReduxStateToProps)(withRouter(NewSession));
+export default connect(mapReduxStateToProps)(withRouter(AddNewClass));
