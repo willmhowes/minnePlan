@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {HashRouter as withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 class NewSession extends Component {
   render(){

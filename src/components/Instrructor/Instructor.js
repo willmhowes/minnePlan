@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {HashRouter as withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 class Instructor extends Component {
 
   addInstructor = (event) => {
-    this.props.history.push('/addnewinstructor')
+    console.log('hello');
+    //this.props.history.push('/addnewinstructor')
   }
 
   render(){

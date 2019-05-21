@@ -13,7 +13,7 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-import LoginPage from '../LoginPage/LoginPage';
+//import LoginPage from '../LoginPage/LoginPage';
 import FutureSession from '../FutureSession/FutureSession';
 import History from '../History/History'
 
@@ -35,15 +35,14 @@ class App extends Component {
         <div>
           <Nav />
           <Switch>
-            <Route
+            {/* <Route
               exact
               path="/"
               component={LoginPage}
-            />
+            /> */}
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
-            If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
-            Even though it seems like they are different pages, the user is always on localhost:3000/home */}
+            ProtectedRoute will show the 'Login / Register' page if the user is not logged in */}
             <ProtectedRoute
               exact
               path="/home"
@@ -69,6 +68,9 @@ class App extends Component {
               path="/instructor"
               component={Instructor}
             />
+            {/* This works the same as the other protected route,
+            except that if the user is logged in,
+            they will see the info page instead. */}
             <ProtectedRoute
               exact
               path="/addnewinstructor"
