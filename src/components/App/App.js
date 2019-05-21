@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   HashRouter as Router,
   Route,
-  //Redirect,
+  // Redirect,
   Switch,
 } from 'react-router-dom';
 
@@ -13,15 +13,14 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-//import LoginPage from '../LoginPage/LoginPage';
+// import LoginPage from '../LoginPage/LoginPage';
 import FutureSession from '../FutureSession/FutureSession';
-import History from '../History/History'
-
+import History from '../History/History';
 
 import './App.css';
 import CurrentSession from '../CurrentSession/CurrentSession';
 import AddNewClass from '../AddNewClass/AddNewClass';
-import Instructor from '../Instrructor/Instructor';
+import Instructor from '../Instructor/Instructor';
 import AddNewInstructor from '../AddNewInstructor/AddNewInstructor';
 // importing semanitc ui styling
 import 'semantic-ui-css/semantic.min.css';

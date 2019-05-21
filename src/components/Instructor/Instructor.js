@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class Instructor extends Component {
-
   addInstructor = (event) => {
     console.log('hello');
-    //this.props.history.push('/addnewinstructor')
+    console.log('event:', event);
+    // this.props.history.push('/addnewinstructor')
   }
 
-  render(){
+  render() {
     return (
       <div>
         <h1>Create Instructor Table!!!!</h1>
-        <button onClick={this.addInstructor}>Add New Instructor</button>
+        <button type="button" onClick={this.addInstructor}>Add New Instructor</button>
       </div>
     );
   }
 }
 
-const mapReduxStateToProps = (reduxState) => ({
+const mapReduxStateToProps = reduxState => ({
   reduxState,
 });
 

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class History extends Component {
-  render(){
+  render() {
     return (
       <div>
         <h1>Create History/Archived Table!!!!</h1>
@@ -12,7 +12,7 @@ class History extends Component {
   }
 }
 
-const mapReduxStateToProps = (reduxState) => ({
+const mapReduxStateToProps = reduxState => ({
   reduxState,
 });
 
