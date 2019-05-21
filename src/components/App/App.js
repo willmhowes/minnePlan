@@ -23,6 +23,8 @@ import CurrentSession from '../CurrentSession/CurrentSession';
 import NewSession from '../NewSession/NewSession';
 import Instructor from '../Instrructor/Instructor';
 import AddNewInstructor from '../AddNewInstructor/AddNewInstructor';
+// importing semanitc ui styling
+import 'semantic-ui-css/semantic.min.css';
 
 class App extends Component {
   componentDidMount() {
