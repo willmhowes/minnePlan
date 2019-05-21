@@ -20,7 +20,7 @@ import History from '../History/History'
 
 import './App.css';
 import CurrentSession from '../CurrentSession/CurrentSession';
-import NewSession from '../NewSession/NewSession';
+import AddNewClass from '../AddNewClass/AddNewClass';
 import Instructor from '../Instrructor/Instructor';
 import AddNewInstructor from '../AddNewInstructor/AddNewInstructor';
 // importing semanitc ui styling
@@ -62,8 +62,8 @@ class App extends Component {
             />
             <ProtectedRoute
               exact
-              path="/new-session"
-              component={NewSession}
+              path="/add-new-class"
+              component={AddNewClass}
             />
             <ProtectedRoute
               exact
