@@ -22,10 +22,10 @@ const Nav = props => (
           <Link className="nav-link" to="/current-session">
             Current Session
           </Link>
-          <Link className="nav-link" to="/future-session">
+          <Link className="nav-link" to="/home">
             Future Session
           </Link>
-          <Link className="nav-link" to="/newsession">
+          <Link className="nav-link" to="/new-session">
             New Session
           </Link>
           <LogOutButton className="nav-link" />

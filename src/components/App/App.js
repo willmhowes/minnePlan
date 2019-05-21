@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   HashRouter as Router,
   Route,
-  Redirect,
+  //Redirect,
   Switch,
 } from 'react-router-dom';
 
@@ -13,11 +13,16 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+import LoginPage from '../LoginPage/LoginPage';
+import FutureSession from '../FutureSession/FutureSession';
+import History from '../History/History'
+
 
 import './App.css';
+import CurrentSession from '../CurrentSession/CurrentSession';
+import NewSession from '../NewSession/NewSession';
+import Instructor from '../Instrructor/Instructor';
+import AddNewInstructor from '../AddNewInstructor/AddNewInstructor';
 
 class App extends Component {
   componentDidMount() {
@@ -30,14 +35,10 @@ class App extends Component {
         <div>
           <Nav />
           <Switch>
-            {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-            <Redirect exact from="/" to="/home" />
-            {/* Visiting localhost:3000/about will show the about page.
-            This is a route anyone can see, no login necessary */}
             <Route
               exact
-              path="/about"
-              component={AboutPage}
+              path="/"
+              component={LoginPage}
             />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
@@ -46,14 +47,32 @@ class App extends Component {
             <ProtectedRoute
               exact
               path="/home"
-              component={UserPage}
+              component={FutureSession}
             />
-            {/* This works the same as the other protected route, except that if the user is logged in,
-            they will see the info page instead. */}
             <ProtectedRoute
               exact
-              path="/info"
-              component={InfoPage}
+              path="/history"
+              component={History}
+            />
+            <ProtectedRoute
+              exact
+              path="/current-session"
+              component={CurrentSession}
+            />
+            <ProtectedRoute
+              exact
+              path="/new-session"
+              component={NewSession}
+            />
+            <ProtectedRoute
+              exact
+              path="/instructor"
+              component={Instructor}
+            />
+            <ProtectedRoute
+              exact
+              path="/addnewinstructor"
+              component={AddNewInstructor}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
