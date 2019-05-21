@@ -17,7 +17,8 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 
-import './App.css';
+// importing semanitc ui styling
+import 'semantic-ui-css/semantic.min.css';
 
 class App extends Component {
   componentDidMount() {
