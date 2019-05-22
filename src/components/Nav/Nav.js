@@ -12,7 +12,7 @@ class Nav extends Component {
 
   render() {
   const { activeItem } = this.state
-  
+
   return (
   <div className="nav">
     <Link to="/home">
@@ -28,6 +28,7 @@ class Nav extends Component {
           active={activeItem === 'instructor'}
           onClick={this.handleItemClick}
           to="/instructor"
+          className="nav-item"
         >
           View Instructors
         </Menu.Item>
@@ -37,6 +38,7 @@ class Nav extends Component {
           active={activeItem === 'history'}
           onClick={this.handleItemClick}
           to="/history"
+          className="nav-item"
         >
             History
         </Menu.Item>
@@ -46,6 +48,7 @@ class Nav extends Component {
           active={activeItem === 'current-session'}
           onClick={this.handleItemClick}
           to="/current-session"
+          className="nav-item"
         >
           Current Session
         </Menu.Item>
@@ -55,6 +58,7 @@ class Nav extends Component {
           active={activeItem === 'future-session'}
           onClick={this.handleItemClick}
           to="/home"
+          className="nav-item"
         >
           Future Session
         </Menu.Item>
@@ -63,6 +67,7 @@ class Nav extends Component {
           active={activeItem === 'add-new-class'}
           onClick={this.handleItemClick}
           to="/add-new-class"
+          className="nav-item"
         >
           Add New Class
         </Menu.Item>
@@ -70,6 +75,7 @@ class Nav extends Component {
           name='logout'
           active={activeItem === 'logout'}
           onClick={this.handleItemClick}
+          className="nav-item"
         >
           <LogOutButton className="nav-link" />
         </Menu.Item>
