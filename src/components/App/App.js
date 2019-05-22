@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   HashRouter as Router,
   Route,
-  // Redirect,
+  Redirect,
   Switch,
 } from 'react-router-dom';
 
@@ -19,7 +19,7 @@ import History from '../History/History';
 
 import './App.css';
 import CurrentSession from '../CurrentSession/CurrentSession';
-//import AddNewClass from '../AddNewClass/AddNewClass';
+// import AddNewClass from '../AddNewClass/AddNewClass';
 import Instructor from '../Instructor/Instructor';
 import AddNewInstructor from '../AddNewInstructor/AddNewInstructor';
 // importing semanitc ui styling
@@ -41,17 +41,18 @@ class App extends Component {
               path="/"
               component={LoginPage}
             /> */}
+            <Redirect exact from="/" to="/future-session" />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
             ProtectedRoute will show the 'Login / Register' page if the user is not logged in */}
             <ProtectedRoute
               exact
-              path="/home"
+              path="/future-session"
               component={FutureSession}
             />
             <ProtectedRoute
               exact
-              path="/history"
+              path="/session-history"
               component={History}
             />
             <ProtectedRoute
@@ -66,7 +67,7 @@ class App extends Component {
             /> */}
             <ProtectedRoute
               exact
-              path="/instructor"
+              path="/view-instructors"
               component={Instructor}
             />
             {/* This works the same as the other protected route,
@@ -74,7 +75,7 @@ class App extends Component {
             they will see the info page instead. */}
             <ProtectedRoute
               exact
-              path="/addnewinstructor"
+              path="/add-new-instructor"
               component={AddNewInstructor}
             />
             {/* If none of the other routes matched, we will show a 404. */}
