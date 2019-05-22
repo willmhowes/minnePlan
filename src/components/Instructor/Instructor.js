@@ -3,16 +3,13 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Icon, Table, Button } from 'semantic-ui-react'
 import './Instructor.css'
+import InstructorRow from './InstructorRow';
 
 class Instructor extends Component {
+
   addInstructor = () => {
     console.log('Add new instructor button clicked')
     this.props.history.push('/add-new-instructor')
-  }
-
-  editInstructor = () => {
-    console.log('Edit instructor button clicked')
-    //this.props.history.push('/add-new-instructor')
   }
 
   componentDidMount(){
@@ -33,17 +30,9 @@ class Instructor extends Component {
               <Table.HeaderCell>Phone Number</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
-
           <Table.Body>
             {this.props.reduxState.instructor.map(instructor =>
-              <Table.Row key={instructor.id}>
-                <Table.Cell>{instructor.instructor_name}</Table.Cell>
-                <Table.Cell>{instructor.instructor_email}</Table.Cell>
-                <Table.Cell>
-                  <span className="icon">{instructor.phone_number}</span>
-                  <Icon name="edit" onClick={this.editInstructor}></Icon>
-                </Table.Cell>
-              </Table.Row>
+              <InstructorRow instructor={instructor} />
               )}
           </Table.Body>
         </Table>
