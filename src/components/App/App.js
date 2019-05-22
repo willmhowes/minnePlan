@@ -17,11 +17,11 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import FutureSession from '../FutureSession/FutureSession';
 import History from '../History/History';
 
-import './App.css';
 import CurrentSession from '../CurrentSession/CurrentSession';
 // import AddNewClass from '../AddNewClass/AddNewClass';
 import Instructor from '../Instructor/Instructor';
 import AddNewInstructor from '../AddNewInstructor/AddNewInstructor';
+
 // importing semanitc ui styling
 import 'semantic-ui-css/semantic.min.css';
 
