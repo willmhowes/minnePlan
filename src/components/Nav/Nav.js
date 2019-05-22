@@ -43,6 +43,8 @@ class Nav extends Component {
       this.setState({ activeItem: value });
     } else if (value === 'add-new-class') {
       console.log('add-new-class button activated');
+      this.props.history.push('/add-new-class');
+      this.setState({ activeItem: value });
     } else if (value === 'logout') {
       this.props.dispatch({ type: 'LOGOUT' });
     }
