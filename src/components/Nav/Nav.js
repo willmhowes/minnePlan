@@ -45,54 +45,62 @@ class Nav extends Component {
           <h2 className="nav-title">MinnePlan</h2>
         </Link>
 
-        <div className="nav-right">
-          <Menu>
-            <Menu.Item
-              value="view-instructors"
-              onClick={this.handleItemClick}
-              active={activeItem === 'view-instructors'}
-            >
-              View Instructors
-            </Menu.Item>
-            <Menu.Item
-              value="session-history"
-              onClick={this.handleItemClick}
-              active={activeItem === 'session-history'}
-            >
-              History
-            </Menu.Item>
-            <Menu.Item
-              value="current-session"
-              onClick={this.handleItemClick}
-              active={activeItem === 'current-session'}
-            >
-              Current Session
-            </Menu.Item>
-            <Menu.Item
-              value="future-session"
-              onClick={this.handleItemClick}
-              active={activeItem === 'future-session'}
-            >
-              Future Session
-            </Menu.Item>
-            <Menu.Item
-              value="add-new-class"
-              onClick={this.handleItemClick}
-              active={activeItem === 'add-new-class'}
-            >
-              Add New Class
-            </Menu.Item>
-
-            <Menu.Menu position="right">
+        {this.props.user.id && (
+          <div className="nav-right">
+            <Menu>
               <Menu.Item
-                value="logout"
+                className="nav-item"
+                value="view-instructors"
                 onClick={this.handleItemClick}
+                active={activeItem === 'view-instructors'}
               >
-                Logout
+                View Instructors
               </Menu.Item>
-            </Menu.Menu>
-          </Menu>
-        </div>
+              <Menu.Item
+                className="nav-item"
+                value="session-history"
+                onClick={this.handleItemClick}
+                active={activeItem === 'session-history'}
+              >
+                History
+              </Menu.Item>
+              <Menu.Item
+                className="nav-item"
+                value="current-session"
+                onClick={this.handleItemClick}
+                active={activeItem === 'current-session'}
+              >
+                Current Session
+              </Menu.Item>
+              <Menu.Item
+                className="nav-item"
+                value="future-session"
+                onClick={this.handleItemClick}
+                active={activeItem === 'future-session'}
+              >
+                Future Session
+              </Menu.Item>
+              <Menu.Item
+                className="nav-item"
+                value="add-new-class"
+                onClick={this.handleItemClick}
+                active={activeItem === 'add-new-class'}
+              >
+                Add New Class
+              </Menu.Item>
+
+              <Menu.Menu position="right">
+                <Menu.Item
+                  className="nav-item"
+                  value="logout"
+                  onClick={this.handleItemClick}
+                >
+                  Logout
+                </Menu.Item>
+              </Menu.Menu>
+            </Menu>
+          </div>
+        )}
       </div>
     );
   }
