@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  Form, Segment, Header, Message,
+  Form,
+  Segment,
+  Header,
+  Message,
 } from 'semantic-ui-react';
 import './LoginPage.css';
 
