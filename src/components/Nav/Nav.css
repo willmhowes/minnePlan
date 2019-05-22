@@ -1,40 +1,6 @@
-.nav-title {
+.nav-header {
     font-size: 48px;
     font-weight: 700;
     text-align: center;
-    background-color: #BF2E1D;
-    color: black;
-}
-
-/* .nav {
-  overflow: hidden;
-  background-color: #00acb0;
-} */
-
-.nav-link {
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
-  /* these last two make the logout button in
-  the nav bar look like another link  */
-  border:none;
-  cursor: pointer;
-  outline:0;
-  background-color: #5161AC;
-}
-
-.nav-link:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-.nav-right {
-  background-color: #5161AC;
-  justify-content: space-evenly;
-}
-
-.ui.menu .item.nav-item {
-  flex: 1 0 auto;
-  background-color: #5161AC;
-  text-align: center;
-  font-size: 16px
+    color: #BF2E1D;
 }

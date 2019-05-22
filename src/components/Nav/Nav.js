@@ -42,12 +42,12 @@ class Nav extends Component {
     return (
       <div className="nav">
         <Link to="/future-session">
-          <h2 className="nav-title">MinnePlan</h2>
+          <h2 className="nav-header">MinnePlan</h2>
         </Link>
 
         {this.props.user.id && (
           <div className="nav-right">
-            <Menu>
+            <Menu fluid widths={6}>
               <Menu.Item
                 className="nav-item"
                 value="view-instructors"
@@ -88,16 +88,13 @@ class Nav extends Component {
               >
                 Add New Class
               </Menu.Item>
-
-              <Menu.Menu position="right">
-                <Menu.Item
-                  className="nav-item"
-                  value="logout"
-                  onClick={this.handleItemClick}
-                >
-                  Logout
-                </Menu.Item>
-              </Menu.Menu>
+              <Menu.Item
+                className="nav-item"
+                value="logout"
+                onClick={this.handleItemClick}
+              >
+                Logout
+              </Menu.Item>
             </Menu>
           </div>
         )}
