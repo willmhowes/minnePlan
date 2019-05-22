@@ -18,7 +18,7 @@ class Instructor extends Component {
       <div>
         <h1>Create Instructor Table!!!!</h1>
         <button type="button" onClick={this.addInstructor}>Add New Instructor</button>
-        <pre>{JSON.stringify(this.props.reduxState.instructorReducer)}</pre>
+        <pre>{JSON.stringify(this.props.reduxState.instructor)}</pre>
       </div>
     );
   }
