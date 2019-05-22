@@ -6,7 +6,11 @@ class Instructor extends Component {
   addInstructor = (event) => {
     console.log('hello');
     console.log('event:', event);
-    // this.props.history.push('/addnewinstructor')
+    this.props.history.push('/add-new-instructor')
+  }
+
+  componentDidMount(){
+    this.props.dispatch({type: 'GET_INSTRUCTORS'});
   }
 
   render() {
@@ -14,6 +18,7 @@ class Instructor extends Component {
       <div>
         <h1>Create Instructor Table!!!!</h1>
         <button type="button" onClick={this.addInstructor}>Add New Instructor</button>
+        <pre>{JSON.stringify(this.props.reduxState.instructorReducer)}</pre>
       </div>
     );
   }
