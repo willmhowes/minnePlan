@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Icon, Table, Button } from 'semantic-ui-react'
+import { Table, Button } from 'semantic-ui-react'
 import './Instructor.css'
 import InstructorRow from './InstructorRow';
 
@@ -32,7 +32,7 @@ class Instructor extends Component {
           </Table.Header>
           <Table.Body>
             {this.props.reduxState.instructor.map(instructor =>
-              <InstructorRow instructor={instructor} />
+              <InstructorRow instructor={instructor} key={instructor.id}/>
               )}
           </Table.Body>
         </Table>
