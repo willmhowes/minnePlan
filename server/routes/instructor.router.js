@@ -13,4 +13,17 @@ router.get('/', (req, res) => {
   })
 });
 
+router.post('/', (req, res) => {
+  console.log(req.body);
+  const queryText = `INSERT INTO "instructors" ("instructor_name", "instructor_email", "phone_number")
+  VALUES ($1, $2, $3);`;
+  const queryValues = [req.body.instructor_name, req.body.instructor_email, req.body.phone_number];
+  pool.query(queryText, queryValues)
+    .then(() => { res.sendStatus(201); })
+    .catch((err) => {
+      console.log('Error adding new instructor', err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
