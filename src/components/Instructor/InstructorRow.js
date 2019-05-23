@@ -28,6 +28,7 @@ class Instructor extends Component {
     console.log(this.state.instructor);
     this.setState({
       instructor: {
+        // eslint-disable-next-line react/no-access-state-in-setstate
         ...this.state.instructor,
         [name]: event.target.value,
       },
