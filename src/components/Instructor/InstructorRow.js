@@ -24,21 +24,23 @@ class Instructor extends Component {
   }
 
   handleChange = name => (event) => {
-    // console.log(event.target.value, name);
-    // console.log(this.state);
+    console.log(event.target.value, name);
+    console.log(this.state.instructor);
     this.setState({
-      ...this.state,
-      [name]: event.target.value,
+      instructor: {
+        ...this.state.instructor,
+        [name]: event.target.value,
+      },
     });
   };
 
   updateInstructor = () => {
-    console.log('Updating instructor', this.state);
+    console.log('Updating instructor', this.state.instructor);
     const afterUpdate = this.state.edit;
     this.setState({
       edit: !afterUpdate,
     });
-    const action = { type: 'UPDATE_INSTRUCTOR', payload: this.state };
+    const action = { type: 'UPDATE_INSTRUCTOR', payload: this.state.instructor };
     this.props.dispatch(action);
   }
 
