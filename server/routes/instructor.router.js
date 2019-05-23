@@ -7,9 +7,9 @@ router.get('/', (req, res) => {
   console.log('getting instructors');
   const instructorQuery = 'SELECT "id", "instructor_name", "instructor_email", "phone_number" FROM "instructors"';
   pool.query(instructorQuery)
-    .then((result) => { res.send(result.rows); })
+    .then((response) => { res.send(response.rows); })
     .catch((error) => {
-      console.log('error getting instructors');
+      console.log('error getting instructors', error);
       res.sendStatus(500);
     });
 });
@@ -23,6 +23,17 @@ router.post('/', (req, res) => {
     .then(() => { res.sendStatus(201); })
     .catch((err) => {
       console.log('Error adding new instructor', err);
+      res.sendStatus(500);
+    });
+});
+
+router.get('/:id', (req, res) => {
+  console.log(req.params.id);
+  const queryText = 'SELECT "id", "instructor_name", "instructor_email", "phone_number" FROM "instructors" WHERE id = $1';
+  pool.query(queryText, [req.params.id])
+    .then((response) => { res.send(response.rows); })
+    .catch((err) => {
+      console.log('Error completing SELECT instructor', err);
       res.sendStatus(500);
     });
 });

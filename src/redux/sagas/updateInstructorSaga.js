@@ -6,7 +6,7 @@ function* updateInstructorSaga(action) {
   const id = action.payload.id;
   try {
   // Attempt to get brand
-    const response = yield axios.put(`/api/instructor${id}`, action.payload);
+    const response = yield axios.put(`/api/instructor/${id}`, action.payload);
     console.log(response);
     const getAction = { type: 'GET_INSTRUCTORS', payload: id };
     console.log(getAction);
