@@ -18,4 +18,19 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/classcount', (req, res) => {
+  console.log('getting class count');
+  const countQuery = `SELECT COUNT("class_name"), "instructors"."instructor_name" FROM "instructors"
+                        JOIN "classes" ON "classes"."instructor_ref" = "instructors"."id"
+                        JOIN "sessions" ON "classes"."session_ref" = "sessions"."id"
+                        WHERE "instructor_ref" = 2 AND "is_being_planned" = TRUE
+                        GROUP BY "instructor_name";`;
+  pool.query(countQuery)
+    .then((response) => { res.send(response.rows); })
+    .catch((error) => {
+      console.log('error getting instructors schedule', error);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;

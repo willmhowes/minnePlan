@@ -3,9 +3,16 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Table, Icon } from 'semantic-ui-react';
 
+const moment = require('moment');
+
 class Instructor extends Component {
+  state = {
+    approvedCount: 0,
+  };
+
   componentDidMount() {
     this.props.dispatch({ type: 'GET_INSTRUCTOR_SCHEDULE' });
+    this.props.dispatch({ type: 'GET_CLASS_COUNT' });
   }
 
   render() {
@@ -15,21 +22,24 @@ class Instructor extends Component {
         <Table size="large">
           <Table.Header>
             <Table.Row>
+              <Table.HeaderCell></Table.HeaderCell>
               <Table.HeaderCell>Classes</Table.HeaderCell>
+              <Table.HeaderCell></Table.HeaderCell>
+              <Table.HeaderCell></Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
             {this.props.reduxState.instructorSchedule
               .map(schedule => (
-                <Table.Row>
+                <Table.Row key={schedule.id}>
                   <Table.Cell>
                     {schedule.class_name}
                     <br />
                     Start Date:
-                    {schedule.start_date}
+                    {moment(schedule.start_date).subtract(10, 'days').calendar()}
                     <br />
                     End Date:
-                    {schedule.end_date}
+                    {moment(schedule.end_date).subtract(10, 'days').calendar()}
                   </Table.Cell>
                   <Table.Cell>
                     {schedule.day_of_week}
@@ -58,6 +68,20 @@ class Instructor extends Component {
                 </Table.Row>
               ))}
           </Table.Body>
+          <Table.Footer>
+            <Table.Row>
+              <Table.HeaderCell>
+                Total Classes:
+                {this.props.reduxState.classCount.map(count => count.count)}
+              </Table.HeaderCell>
+              <Table.HeaderCell>
+                Approved:
+                {this.state.approvedCount}
+              </Table.HeaderCell>
+              <Table.HeaderCell></Table.HeaderCell>
+              <Table.HeaderCell></Table.HeaderCell>
+            </Table.Row>
+          </Table.Footer>
         </Table>
       </div>
     );
