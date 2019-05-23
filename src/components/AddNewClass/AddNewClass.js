@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import './AddNewClass.css';
 import {
-  Button, Form, TextArea, Input, Select,
+  Button, Form, TextArea, Input,
 } from 'semantic-ui-react';
 import {
   DateInput,
@@ -30,12 +30,21 @@ class AddNewClass extends Component {
         <Form className="NewClass">
           <Form.Group widths="equal">
             <Form.Field control={Input} label="Class Name" />
-            <Form.Field control={Input} label="Session" />
+            <Form.Field control={Input} label="Season" />
+            <Form.Field control={Input} label="Year" />
           </Form.Group>
           <Form.Group widths="equal">
             <Form.Field control={Input} label="Instructor Email" />
             <Form.Field control={Input} label="Instructor Name" />
-            <Form.Field control={Select} label="Day Of Week" />
+          </Form.Group>
+          <Form.Group grouped>
+            <label id="dayOfWeek">Day of Week</label>
+            <Form.Field label="Monday" control="input" type="checkbox" />
+            <Form.Field label="Tuesday" control="input" type="checkbox" />
+            <Form.Field label="Wednesday" control="input" type="checkbox" />
+            <Form.Field label="Thursday" control="input" type="checkbox" />
+            <Form.Field label="Friday" control="input" type="checkbox" />
+            <Form.Field label="Saturday" control="input" type="checkbox" />
           </Form.Group>
           <Form.Group widths="inline">
             <DateInput
