@@ -1,19 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { Table, Button } from 'semantic-ui-react';
+import './Instructor.css';
+import InstructorRow from './InstructorRow';
 
 class Instructor extends Component {
-  addInstructor = (event) => {
-    console.log('hello');
-    console.log('event:', event);
-    // this.props.history.push('/addnewinstructor')
+  componentDidMount() {
+    this.props.dispatch({ type: 'GET_INSTRUCTORS' });
+  }
+
+  addInstructor = () => {
+    console.log('Add new instructor button clicked');
+    this.props.history.push('/add-new-instructor');
   }
 
   render() {
     return (
       <div>
-        <h1>Create Instructor Table!!!!</h1>
-        <button type="button" onClick={this.addInstructor}>Add New Instructor</button>
+        <h1>All Instructors</h1>
+        <Button onClick={this.addInstructor}>Add New Instructor</Button>
+        {/* <pre>{JSON.stringify(this.props.reduxState.instructor)}</pre> */}
+        <Table celled>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Instructor Name</Table.HeaderCell>
+              <Table.HeaderCell>Email</Table.HeaderCell>
+              <Table.HeaderCell>Phone Number</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {this.props.reduxState.instructor
+              .map(instructor => <InstructorRow instructor={instructor} key={instructor.id} />)}
+          </Table.Body>
+        </Table>
       </div>
     );
   }
