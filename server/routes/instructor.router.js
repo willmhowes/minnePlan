@@ -38,4 +38,22 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.put('/:id', (req, res) => {
+  console.log(req.body);
+  const id = req.body.id;
+  const name = req.body.instructor_name;
+  const email = req.body.instructor_email;
+  const phoneNum = req.body.phone_number;
+  const queryText = 'UPDATE "instructors" SET "instructor_name" = $1, "instructor_email" = $2, "phone_number" = $3 WHERE "id" = $4;';
+  pool.query(queryText, [name, email, phoneNum, id])
+    .then((result) => {
+      res.sendStatus(200);
+      console.log('back from database', result);
+    })
+    .catch((err) => {
+      console.log('Error completing SELECT shoe', err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
