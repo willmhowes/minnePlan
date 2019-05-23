@@ -9,8 +9,20 @@ class Nav extends Component {
     activeItem: null,
   }
 
+  componentDidMount = () => {
+    this.setActiveItemFromUrl();
+  }
+
+  // Determine page being viewed and set active item in Navbar accordingly
+  setActiveItemFromUrl = () => {
+    const pathSplit = window.location.hash.split('/');
+    console.log(pathSplit);
+    this.setState({ activeItem: pathSplit[1] });
+  }
+
+  // Upon click of a menu item, sends user to the desired page
+  // Then, updates activeItem in the menu accordingly
   handleItemClick = (event) => {
-    console.log('in handleItemClick');
     const value = event.target.getAttribute('value');
 
     if (value === 'view-instructors') {
@@ -31,72 +43,72 @@ class Nav extends Component {
       this.setState({ activeItem: value });
     } else if (value === 'add-new-class') {
       console.log('add-new-class button activated');
+      this.props.history.push('/add-new-class');
+      this.setState({ activeItem: value });
     } else if (value === 'logout') {
       this.props.dispatch({ type: 'LOGOUT' });
     }
   };
 
+  /* Sets the activeItem in the navbar as future-session
+  because the header links to the future-session page */
+  handleHeaderClick = () => {
+    this.setState({ activeItem: 'future-session' });
+  }
+
   render() {
     const { activeItem } = this.state;
 
     return (
-      <div className="nav">
-        <Link to="/future-session">
+      <div>
+        <Link to="/future-session" onClick={this.handleHeaderClick}>
           <h2 className="nav-header">MinnePlan</h2>
         </Link>
 
         {this.props.user.id && (
-          <div className="nav-right">
-            <Menu fluid widths={6}>
-              <Menu.Item
-                className="nav-item"
-                value="view-instructors"
-                onClick={this.handleItemClick}
-                active={activeItem === 'view-instructors'}
-              >
-                View Instructors
-              </Menu.Item>
-              <Menu.Item
-                className="nav-item"
-                value="session-history"
-                onClick={this.handleItemClick}
-                active={activeItem === 'session-history'}
-              >
-                History
-              </Menu.Item>
-              <Menu.Item
-                className="nav-item"
-                value="current-session"
-                onClick={this.handleItemClick}
-                active={activeItem === 'current-session'}
-              >
-                Current Session
-              </Menu.Item>
-              <Menu.Item
-                className="nav-item"
-                value="future-session"
-                onClick={this.handleItemClick}
-                active={activeItem === 'future-session'}
-              >
-                Future Session
-              </Menu.Item>
-              <Menu.Item
-                className="nav-item"
-                value="add-new-class"
-                onClick={this.handleItemClick}
-                active={activeItem === 'add-new-class'}
-              >
-                Add New Class
-              </Menu.Item>
-              <Menu.Item
-                className="nav-item"
-                value="logout"
-                onClick={this.handleItemClick}
-              >
-                Logout
-              </Menu.Item>
-            </Menu>
-          </div>
+        <Menu fluid widths={6}>
+          <Menu.Item
+            value="view-instructors"
+            onClick={this.handleItemClick}
+            active={activeItem === 'view-instructors'}
+          >
+            View Instructors
+          </Menu.Item>
+          <Menu.Item
+            value="session-history"
+            onClick={this.handleItemClick}
+            active={activeItem === 'session-history'}
+          >
+            History
+          </Menu.Item>
+          <Menu.Item
+            value="current-session"
+            onClick={this.handleItemClick}
+            active={activeItem === 'current-session'}
+          >
+            Current Session
+          </Menu.Item>
+          <Menu.Item
+            value="future-session"
+            onClick={this.handleItemClick}
+            active={activeItem === 'future-session'}
+          >
+            Future Session
+          </Menu.Item>
+          <Menu.Item
+            value="add-new-class"
+            onClick={this.handleItemClick}
+            active={activeItem === 'add-new-class'}
+          >
+            Add New Class
+          </Menu.Item>
+          <Menu.Item
+            value="logout"
+            onClick={this.handleItemClick}
+          >
+            Logout
+          </Menu.Item>
+        </Menu>
         )}
       </div>
     );
