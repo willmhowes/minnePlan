@@ -19,17 +19,23 @@ router.post('/add-new-class', async (req, res, next) => {
   const studentCost = req.body.student_cost;
   const instructorPay = req.body.instructor_pay;
   const description = req.body.description;
+  const instructorName = req.body.instructor_name;
+  const instructorEmail = req.body.instructor_email;
 
   const queryText = 'INSERT INTO "sessions" (season, year, ) VALUES ($1, $2) RETURNING id';
-  const queryText2 = 'INSERT INTO "classes" (session_ref, class_name, day_of_week, start_date, end_date, start_time, end_time, student_cost, instructor_pay, description) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)';
-
+  const queryText2 = 'SELECT FROM "instructors" ( instructor_name, instructor_email ) VALUES ($1, $2) RETURNING id';
+  const queryText3 = 'INSERT INTO "classes" (session_ref, instructor_ref, class_name, day_of_week, start_date, end_date, start_time, end_time, student_cost, instructor_pay, description) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)';
   try {
     await client.query('BEGIN');
-    const result = await client.query(queryText, [season, year]);
-    const id = result.rows[0].id;
-    console.log(id);
+    const sessionsResult = await client.query(queryText, [season, year]);
+    const sessionsid = sessionsResult.rows[0].id;
+    console.log(sessionsid);
 
-    const classes = await client.query(queryText2, [id, className, day, startDate, endDate, startTime, endTime, studentCost, instructorPay, description]);
+    const instructorsResult = await client.query(queryText2, [instructorName, instructorEmail]);
+    const instructorsid = instructorsResult.rows[0].id;
+    console.log(instructorsid);
+
+    const classes = await client.query(queryText3, [sessionsid, instructorsid, className, day, startDate, endDate, startTime, endTime, studentCost, instructorPay, description]);
     await client.query('COMMIT');
   } catch (error) {
     await client.query('ROLLBACK');
