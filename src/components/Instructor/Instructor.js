@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Table, Button } from 'semantic-ui-react'
-import './Instructor.css'
+import { Table, Button } from 'semantic-ui-react';
+import './Instructor.css';
 import InstructorRow from './InstructorRow';
 
 class Instructor extends Component {
-
-  addInstructor = () => {
-    console.log('Add new instructor button clicked')
-    this.props.history.push('/add-new-instructor')
+  componentDidMount() {
+    this.props.dispatch({ type: 'GET_INSTRUCTORS' });
   }
 
-  componentDidMount(){
-    this.props.dispatch({type: 'GET_INSTRUCTORS'});
+  addInstructor = () => {
+    console.log('Add new instructor button clicked');
+    this.props.history.push('/add-new-instructor');
   }
 
   render() {
@@ -31,9 +30,8 @@ class Instructor extends Component {
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            {this.props.reduxState.instructor.map(instructor =>
-              <InstructorRow instructor={instructor} key={instructor.id}/>
-              )}
+            {this.props.reduxState.instructor
+              .map(instructor => <InstructorRow instructor={instructor} key={instructor.id} />)}
           </Table.Body>
         </Table>
       </div>

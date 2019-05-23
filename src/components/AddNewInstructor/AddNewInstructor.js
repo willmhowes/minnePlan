@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react';
 
 class AddNewInstructor extends Component {
-
   state= {
     instructor_name: '',
     instructor_email: '',
-    phone_number: ''
+    phone_number: '',
   }
 
-  handleChange = name => event => {
-    //console.log(event.target.value, name);
+  handleChange = name => (event) => {
+    // console.log(event.target.value, name);
     // console.log(this.state);
     this.setState({
       [name]: event.target.value,
@@ -22,11 +21,10 @@ class AddNewInstructor extends Component {
   addInstructor = (event) => {
     event.preventDefault();
     console.log('adding instructor', this.state);
-    let action = {type: 'ADD_INSTRUCTOR', payload: this.state};
+    const action = { type: 'ADD_INSTRUCTOR', payload: this.state };
     console.log(action);
     this.props.dispatch(action);
   }
-
 
   render() {
     return (
@@ -35,17 +33,17 @@ class AddNewInstructor extends Component {
         <Form>
           <Form.Field>
             <label>Instructor's Name</label>
-            <input placeholder="Instructor's Name" onChange={this.handleChange('instructor_name')}/>
+            <input placeholder="Instructor's Name" onChange={this.handleChange('instructor_name')} />
           </Form.Field>
           <Form.Field>
             <label>Phone Number</label>
-            <input placeholder='Phone number' onChange={this.handleChange('phone_number')}/>
-           </Form.Field>
-           <Form.Field>
+            <input placeholder="Phone number" onChange={this.handleChange('phone_number')} />
+          </Form.Field>
+          <Form.Field>
             <label>Email Address</label>
-            <input placeholder='Email Address' onChange={this.handleChange('instructor_email')}/>
-           </Form.Field>
-          <Button type='submit' onClick={this.addInstructor}>Submit</Button>
+            <input placeholder="Email Address" onChange={this.handleChange('instructor_email')} />
+          </Form.Field>
+          <Button type="submit" onClick={this.addInstructor}>Submit</Button>
         </Form>
       </div>
     );
