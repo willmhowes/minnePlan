@@ -15,10 +15,21 @@ class Instructor extends Component {
     this.props.dispatch({ type: 'GET_CLASS_COUNT' });
   }
 
+  checkedClass =() => {
+    // console.log('checked clicked');
+    const count = this.state.approvedCount;
+    const newCount = count + 1;
+    // console.log('adding approved count', newCount);
+    this.setState({
+      approvedCount: newCount,
+    });
+  }
+
   render() {
     return (
       <div>
-        <pre>{JSON.stringify(this.props.reduxState.instructorSchedule)}</pre>
+        <h1>{this.props.reduxState.classCount.map(count => count.instructor_name)}</h1>
+        <pre>{JSON.stringify(this.state)}</pre>
         <Table size="large">
           <Table.Header>
             <Table.Row>
@@ -62,7 +73,7 @@ class Instructor extends Component {
                     {schedule.building}
                   </Table.Cell>
                   <Table.Cell>
-                    <Icon name="checkmark" size="large" />
+                    <Icon name="checkmark" size="large" onClick={this.checkedClass} />
                     <Icon name="close" size="large" />
                   </Table.Cell>
                 </Table.Row>
