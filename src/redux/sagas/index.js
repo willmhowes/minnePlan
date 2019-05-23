@@ -5,6 +5,7 @@ import userSaga from './userSaga';
 import instructor from './instructorSaga';
 import addInstructor from './addInstructorSaga';
 import updateInstructor from './updateInstructorSaga';
+import instructorSchedule from './instructorScheduleSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -21,5 +22,6 @@ export default function* rootSaga() {
     instructor(),
     addInstructor(),
     updateInstructor(),
+    instructorSchedule(),
   ]);
 }
