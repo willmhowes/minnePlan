@@ -1,7 +1,34 @@
 const express = require('express');
-// const pool = require('../modules/pool');
+const pool = require('../modules/pool');
 
 const router = express.Router();
+
+router.post('/', (req, res) => {
+  console.log(req.body);
+  const newClass = req.body;
+  const queryText = `'INSERT INTO "classes"(session_ref, instructor_ref, class_name, day_of_week, start_date,
+                      end_date, start_time, end_time, student_cost, instructor_pay, description)
+                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)';`;
+  const queryValues = [
+    newClass.session_ref,
+    newClass.instructor_ref,
+    newClass.class_name,
+    newClass.day_of_week,
+    newClass.start_date,
+    newClass.end_date,
+    newClass.start_time,
+    newClass.end_time,
+    newClass.student_cost,
+    newClass.instructor_pay,
+    newClass.description,
+  ];
+  pool.query(queryText, queryValues)
+    .then(() => { res.sendStatus(201); })
+    .catch((err) => {
+      console.log('Error adding new class', err);
+      res.sendStatus(500);
+    });
+});
 
 // POST route to add a new class
 // router.post('/add-new-class', async (req, res, next) => {

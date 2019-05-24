@@ -10,7 +10,7 @@ import {
   TimeInput,
 } from 'semantic-ui-calendar-react';
 // import moment from 'moment';
-import 'moment/locale/ru';
+import 'moment/locale/es-us';
 
 class AddNewClass extends Component {
   state = {
@@ -34,18 +34,19 @@ class AddNewClass extends Component {
   }
 
   handleChange = (event, { name, value }) => {
-    if (Object.prototype.hasOwnProperty.call(this.state, 'name')) {
-      this.setState({ [name]: value });
-    }
+    // if (this.state.hasOwnProperty(name)) {
+    //   this.setState({ [name]: value });
+    // }
+    this.setState({ [name]: value });
   }
 
-  handleNewSession = (event, { value, name }) => {
-    // console.log(value, name);
-    // console.log(this.state);
-    this.setState({
-      [name]: value,
-    });
-  }
+  // handleNewSession = (event, { value, name }) => {
+  //   // console.log(value, name);
+  //   // console.log(this.state);
+  //   this.setState({
+  //     [name]: value,
+  //   });
+  // }
 
   handleNewChange = name => (event) => {
     // console.log(event.target.value, name);
@@ -70,10 +71,17 @@ class AddNewClass extends Component {
     });
   }
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('in handleSubmit');
+    // POST new class to DB
+    this.props.dispatch({ type: 'ADD_CLASS', payload: this.state });
+  }
+
   render() {
     return (
       <div className="AddNewClass-Segment_div">
-        {/* <pre>{JSON.stringify(this.state.instructorEmail)}</pre> */}
+        <pre>{JSON.stringify(this.state)}</pre>
         <Header as="h1" attached="top">Add New Class</Header>
         <Segment attached>
           <Form className="NewClass">
@@ -90,7 +98,7 @@ class AddNewClass extends Component {
                   text: session.season + session.year,
                   value: session.id,
                 }))}
-                onChange={this.handleNewSession}
+                onChange={this.handleChange}
               />
             </Form.Group>
             {/* TODO: Fix goofy label on dropdown */}
@@ -123,32 +131,40 @@ class AddNewClass extends Component {
             </Form.Group>
             <Form.Group>
               <DateInput
-                name="Start Date"
+                name="startDate"
                 placeholder="Start Date"
                 value={this.state.startDate}
                 iconPosition="left"
                 onChange={this.handleChange}
+                label="Start Date"
+                dateFormat="L"
               />
               <DateInput
-                name="End Date"
+                name="endDate"
                 placeholder="End Date"
                 value={this.state.endDate}
                 iconPosition="left"
                 onChange={this.handleChange}
+                label="End Date"
+                dateFormat="L"
               />
               <TimeInput
-                name="Start Time"
+                name="startTime"
                 placeholder="Start Time"
                 value={this.state.startTime}
                 iconPosition="left"
                 onChange={this.handleChange}
+                label="Start Time"
+                timeFormat="AMPM"
               />
               <TimeInput
-                name="End Time"
+                name="endTime"
                 placeholder="End Time"
                 value={this.state.endTime}
                 iconPosition="left"
                 onChange={this.handleChange}
+                label="End Time"
+                timeFormat="AMPM"
               />
             </Form.Group>
             <Form.Group>
@@ -158,7 +174,7 @@ class AddNewClass extends Component {
             <Form.Group>
               <Form.TextArea label="Course Description" onChange={this.handleNewChange('description')} />
             </Form.Group>
-            <Form.Button>Create</Form.Button>
+            <Form.Button className="createButton" type="submit">Create</Form.Button>
           </Form>
         </Segment>
       </div>
