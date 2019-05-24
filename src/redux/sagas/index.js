@@ -5,6 +5,8 @@ import userSaga from './userSaga';
 import instructor from './instructorSaga';
 import addInstructor from './addInstructorSaga';
 import updateInstructor from './updateInstructorSaga';
+import instructorSchedule from './instructorScheduleSaga';
+import classCount from './classCountSaga'
 import session from './sessionSaga';
 import getInstructor from './getInstructorSaga';
 
@@ -23,6 +25,8 @@ export default function* rootSaga() {
     instructor(),
     addInstructor(),
     updateInstructor(),
+    instructorSchedule(),
+    classCount(),
     session(),
     getInstructor(),
   ]);
