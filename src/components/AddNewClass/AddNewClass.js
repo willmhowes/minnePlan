@@ -57,13 +57,14 @@ class AddNewClass extends Component {
 
   handleInstructor = (event, { value }) => {
     this.setState({
-      instructorRef: value,
+      instructorRef: this.props.reduxState.instructor[value].id,
+      instructorEmail: this.props.reduxState.instructor[value].instructor_email,
     });
-    this.props.dispatch({ type: 'GET_INSTRUCTOR', payload: value });
+    // this.props.dispatch({ type: 'GET_INSTRUCTOR', payload: value });
   }
 
   handleDay = (event) => {
-    const currentDay = this.state.day;
+    const { day: currentDay } = this.state;
     this.setState({
       day: currentDay + event.target.value,
     });
@@ -72,7 +73,7 @@ class AddNewClass extends Component {
   render() {
     return (
       <div>
-        <pre>{JSON.stringify(this.state.instructorEmail)}</pre>
+        {/* <pre>{JSON.stringify(this.state.instructorEmail)}</pre> */}
         <Form className="NewClass">
           <Form.Group widths="inline">
             <Form.Field control={Input} label="Class Name" onChange={this.handleNewChange('className')} />
@@ -95,10 +96,10 @@ class AddNewClass extends Component {
               search
               selection
               options={this.props.reduxState.instructor
-                .map(instructor => ({
+                .map((instructor, index) => ({
                   key: instructor.id,
                   text: instructor.instructor_name,
-                  value: instructor.id,
+                  value: index,
                   defaultValue: instructor.instructor_email,
                 }))}
               widths="inline"

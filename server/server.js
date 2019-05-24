@@ -11,11 +11,8 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const addClassRouter = require('./routes/addClass.router');
 const instructorRouter = require('./routes/instructor.router');
-<<<<<<< HEAD
 const instructorScheduleRouter = require('./routes/instructorSchedule.router');
-=======
 const sessionRouter = require('./routes/session.router');
->>>>>>> f258a428eb5d1c3a39015f54139259433fbc4633
 
 // Body parser middleware
 app.use(bodyParser.json());
