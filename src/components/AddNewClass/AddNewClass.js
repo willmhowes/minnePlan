@@ -10,7 +10,7 @@ import {
   TimeInput,
 } from 'semantic-ui-calendar-react';
 // import moment from 'moment';
-import 'moment/locale/ru';
+// import 'moment/locale/eu-us';
 
 class AddNewClass extends Component {
   state = {
@@ -34,9 +34,7 @@ class AddNewClass extends Component {
   }
 
   handleChange = (event, { name, value }) => {
-    if (Object.prototype.hasOwnProperty.call(this.state, 'name')) {
-      this.setState({ [name]: value });
-    }
+    this.setState({ [name]: value });
   }
 
   handleNewSession = (event, { value, name }) => {
@@ -73,7 +71,7 @@ class AddNewClass extends Component {
   render() {
     return (
       <div className="AddNewClass-Segment_div">
-        {/* <pre>{JSON.stringify(this.state.instructorEmail)}</pre> */}
+        <pre>{JSON.stringify(this.state)}</pre>
         <Header as="h1" attached="top">Add New Class</Header>
         <Segment attached>
           <Form className="NewClass">
@@ -123,28 +121,28 @@ class AddNewClass extends Component {
             </Form.Group>
             <Form.Group>
               <DateInput
-                name="Start Date"
+                name="startDate"
                 placeholder="Start Date"
                 value={this.state.startDate}
                 iconPosition="left"
                 onChange={this.handleChange}
               />
               <DateInput
-                name="End Date"
+                name="endDate"
                 placeholder="End Date"
                 value={this.state.endDate}
                 iconPosition="left"
                 onChange={this.handleChange}
               />
               <TimeInput
-                name="Start Time"
+                name="startTime"
                 placeholder="Start Time"
                 value={this.state.startTime}
                 iconPosition="left"
                 onChange={this.handleChange}
               />
               <TimeInput
-                name="End Time"
+                name="endTime"
                 placeholder="End Time"
                 value={this.state.endTime}
                 iconPosition="left"
