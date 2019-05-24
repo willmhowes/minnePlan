@@ -34,9 +34,6 @@ class AddNewClass extends Component {
   }
 
   handleChange = (event, { name, value }) => {
-    // if (this.state.hasOwnProperty(name)) {
-    //   this.setState({ [name]: value });
-    // }
     this.setState({ [name]: value });
   }
 
@@ -81,10 +78,10 @@ class AddNewClass extends Component {
   render() {
     return (
       <div className="AddNewClass-Segment_div">
-        <pre>{JSON.stringify(this.state)}</pre>
+        {/* <pre>{JSON.stringify(this.state)}</pre> */}
         <Header as="h1" attached="top">Add New Class</Header>
         <Segment attached>
-          <Form className="NewClass">
+          <Form className="NewClass" onSubmit={this.handleSubmit}>
             <Form.Group>
               <Form.Input
                 label="Class Name"
@@ -174,7 +171,7 @@ class AddNewClass extends Component {
             <Form.Group>
               <Form.TextArea label="Course Description" onChange={this.handleNewChange('description')} />
             </Form.Group>
-            <Form.Button className="createButton" type="submit">Create</Form.Button>
+            <Form.Button type="submit">Create</Form.Button>
           </Form>
         </Segment>
       </div>
