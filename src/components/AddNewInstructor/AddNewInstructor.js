@@ -31,18 +31,9 @@ class AddNewInstructor extends Component {
       <div>
         <h1>Add New Instructor Form Goes Here!!!!</h1>
         <Form>
-          <Form.Field>
-            <label>Instructor's Name</label>
-            <input placeholder="Instructor's Name" onChange={this.handleChange('instructor_name')} />
-          </Form.Field>
-          <Form.Field>
-            <label>Phone Number</label>
-            <input placeholder="Phone number" onChange={this.handleChange('phone_number')} />
-          </Form.Field>
-          <Form.Field>
-            <label>Email Address</label>
-            <input placeholder="Email Address" onChange={this.handleChange('instructor_email')} />
-          </Form.Field>
+          <Form.Input label="Instructor's Name" placeholder="Instructor's Name" onChange={this.handleChange('instructor_name')} />
+          <Form.Input label="Phone Number" placeholder="Phone number" onChange={this.handleChange('phone_number')} />
+          <Form.Input label="Email Address" placeholder="Email Address" onChange={this.handleChange('instructor_email')} />
           <Button type="submit" onClick={this.addInstructor}>Submit</Button>
         </Form>
       </div>

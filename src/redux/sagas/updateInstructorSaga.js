@@ -11,8 +11,7 @@ function* updateInstructorSaga(action) {
     const getAction = { type: 'GET_INSTRUCTORS', payload: id };
     console.log(getAction);
     yield put(getAction);
-  }
-  catch (error) {
+  } catch (error) {
     console.log('Could not update instructor', error);
   }
 }
