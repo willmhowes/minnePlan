@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import './AddNewClass.css';
 import {
-  Button, Form, TextArea, Input, Select, Segment, Header,
+  Form, Segment, Header,
 } from 'semantic-ui-react';
 import {
   DateInput,
@@ -57,9 +57,10 @@ class AddNewClass extends Component {
 
   handleInstructor = (event, { value }) => {
     this.setState({
-      instructorRef: value,
+      instructorRef: this.props.reduxState.instructor[value].id,
+      instructorEmail: this.props.reduxState.instructor[value].instructor_email,
     });
-    this.props.dispatch({ type: 'GET_INSTRUCTOR', payload: value });
+    // this.props.dispatch({ type: 'GET_INSTRUCTOR', payload: value });
   }
 
   handleDay = (event) => {
@@ -76,10 +77,12 @@ class AddNewClass extends Component {
         <Header as="h1" attached="top">Add New Class</Header>
         <Segment attached>
           <Form className="NewClass">
-            <Form.Group widths="inline">
-              <Form.Field control={Input} label="Class Name" onChange={this.handleNewChange('className')} />
-              <Form.Field
-                control={Select}
+            <Form.Group>
+              <Form.Input
+                label="Class Name"
+                onChange={this.handleNewChange('className')}
+              />
+              <Form.Select
                 label="Session"
                 name="session"
                 options={this.props.reduxState.session.map(session => ({
@@ -90,7 +93,8 @@ class AddNewClass extends Component {
                 onChange={this.handleNewSession}
               />
             </Form.Group>
-            <Form.Group widths="inline">
+            {/* TODO: Fix goofy label on dropdown */}
+            <Form.Group>
               <Form.Dropdown
                 placeholder="Select Instructor"
                 fluid
@@ -104,21 +108,20 @@ class AddNewClass extends Component {
                     value: instructor.id,
                     defaultValue: instructor.instructor_email,
                   }))}
-                widths="inline"
                 onChange={this.handleInstructor}
               />
-              <Form.Field control={Input} label="Instructor Email" defaultValue={this.state.instructorEmail} onChange={this.handleNewChange('instructorEmail')} />
+              <Form.Input label="Instructor Email" defaultValue={this.state.instructorEmail} onChange={this.handleNewChange('instructorEmail')} />
             </Form.Group>
-            <Form.Group grouped>
-              <h2>Day of Week</h2>
-              <Form.Field label="Monday" control="input" type="checkbox" value="Monday" onClick={this.handleDay} />
-              <Form.Field label="Tuesday" control="input" type="checkbox" value="Tuesday" onClick={this.handleDay} />
-              <Form.Field label="Wednesday" control="input" type="checkbox" value="Wednesday" onClick={this.handleDay} />
-              <Form.Field label="Thursday" control="input" type="checkbox" value="Thursday" onClick={this.handleDay} />
-              <Form.Field label="Friday" control="input" type="checkbox" value="Friday" onClick={this.handleDay} />
-              <Form.Field label="Saturday" control="input" type="checkbox" value="Saturday" onClick={this.handleDay} />
+            <Header as="h5">Day Of Week</Header>
+            <Form.Group>
+              <Form.Input label="Monday" type="checkbox" value="Monday" onClick={this.handleDay} />
+              <Form.Input label="Tuesday" type="checkbox" value="Tuesday" onClick={this.handleDay} />
+              <Form.Input label="Wednesday" type="checkbox" value="Wednesday" onClick={this.handleDay} />
+              <Form.Input label="Thursday" type="checkbox" value="Thursday" onClick={this.handleDay} />
+              <Form.Input label="Friday" type="checkbox" value="Friday" onClick={this.handleDay} />
+              <Form.Input label="Saturday" type="checkbox" value="Saturday" onClick={this.handleDay} />
             </Form.Group>
-            <Form.Group widths="inline">
+            <Form.Group>
               <DateInput
                 name="Start Date"
                 placeholder="Start Date"
@@ -148,14 +151,14 @@ class AddNewClass extends Component {
                 onChange={this.handleChange}
               />
             </Form.Group>
-            <Form.Group widths="inline">
-              <Form.Field control={Input} label="Class Cost" onChange={this.handleNewChange('studentCost')} />
-              <Form.Field control={Input} label="Instructor Salary" onChange={this.handleNewChange('instructorPay')} />
+            <Form.Group>
+              <Form.Input label="Class Cost" onChange={this.handleNewChange('studentCost')} />
+              <Form.Input label="Instructor Salary" onChange={this.handleNewChange('instructorPay')} />
             </Form.Group>
-            <Form.Group widths="inline">
-              <Form.Field control={TextArea} label="Course Description" onChange={this.handleNewChange('description')} />
+            <Form.Group>
+              <Form.TextArea label="Course Description" onChange={this.handleNewChange('description')} />
             </Form.Group>
-            <Form.Field control={Button}>Create</Form.Field>
+            <Form.Button>Create</Form.Button>
           </Form>
         </Segment>
       </div>

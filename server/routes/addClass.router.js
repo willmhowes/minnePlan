@@ -1,7 +1,7 @@
-// const express = require('express');
+const express = require('express');
 // const pool = require('../modules/pool');
 
-// const router = express.Router();
+const router = express.Router();
 
 // POST route to add a new class
 // router.post('/add-new-class', async (req, res, next) => {
@@ -62,4 +62,4 @@
 //   }
 // });
 
-// module.exports = router;
+module.exports = router;
