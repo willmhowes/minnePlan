@@ -11,27 +11,30 @@ class InstructorScheduleRow extends Component {
     classStatus: '',
     checked: false,
     classBackground: '',
+    id: '',
   };
 
-  checkedClass =() => {
+  checkedClass =(idValue) => {
     this.setState({
       classStatus: 'Approved',
       checked: true,
       classBackground: 'green',
+      id: idValue,
     });
   }
 
-  declinedClass = () => {
+  declinedClass = (idValue) => {
     swal('Please tell us why you cannot instruct this class:', {
       content: 'input',
     })
       .then((value) => {
         swal(`Your reason is: ${value}`);
-        this.props.dispatch({ type: 'DECLINE_CLASS', payload: value });
+        this.props.dispatch({ type: 'REVIEWED_CLASS', payload: [value, this.state.id] });
         this.setState({
           classStatus: 'Denied',
           checked: true,
           classBackground: 'red',
+          id: idValue,
         });
       });
   }
@@ -76,8 +79,8 @@ class InstructorScheduleRow extends Component {
           )
           : (
             <Table.Cell>
-              <Button size="large" icon={{ color: 'green', name: 'checkmark' }} onClick={this.checkedClass} />
-              <Button size="large" icon={{ color: 'red', name: 'close' }} onClick={this.declinedClass} />
+              <Button size="large" icon={{ color: 'green', name: 'checkmark' }} onClick={this.checkedClass(this.props.schedule.id)} />
+              <Button size="large" icon={{ color: 'red', name: 'close' }} onClick={this.declinedClass(this.props.schedule.id)} />
             </Table.Cell>
           )
         }
