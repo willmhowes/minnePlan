@@ -73,7 +73,7 @@ class AddNewClass extends Component {
   render() {
     return (
       <div className="AddNewClass-Segment_div">
-        <pre>{JSON.stringify(this.state.instructorEmail)}</pre>
+        {/* <pre>{JSON.stringify(this.state.instructorEmail)}</pre> */}
         <Header as="h1" attached="top">Add New Class</Header>
         <Segment attached>
           <Form className="NewClass">
@@ -102,10 +102,10 @@ class AddNewClass extends Component {
                 selection
                 label="Select Instructor"
                 options={this.props.reduxState.instructor
-                  .map(instructor => ({
+                  .map((instructor, index) => ({
                     key: instructor.id,
                     text: instructor.instructor_name,
-                    value: instructor.id,
+                    value: index,
                     defaultValue: instructor.instructor_email,
                   }))}
                 onChange={this.handleInstructor}
