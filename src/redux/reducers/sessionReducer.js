@@ -1,11 +1,11 @@
-const setInstructorReducer = (state = [], action) => {
+const sessionReducer = (state = [], action) => {
   // console.log(action.type);
   switch (action.type) {
-    case 'SET_INSTRUCTORS':
+    case 'SET_SESSIONS':
       return action.payload;
     default:
       return state;
   }
 };
 
-export default setInstructorReducer;
+export default sessionReducer;

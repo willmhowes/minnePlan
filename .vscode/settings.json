@@ -3,4 +3,6 @@
    "files.insertFinalNewline": true,
    "files.trimFinalNewlines": true,
    "editor.tabSize": 2,
+   "eslint.autoFixOnSave": true
 }
+

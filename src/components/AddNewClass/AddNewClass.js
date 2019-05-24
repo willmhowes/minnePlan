@@ -3,20 +3,35 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import './AddNewClass.css';
 import {
-  Button, Form, TextArea, Input, Select,
+  Button, Form, TextArea, Input, Select, Dropdown,
 } from 'semantic-ui-react';
 import {
   DateInput,
   TimeInput,
 } from 'semantic-ui-calendar-react';
+// import moment from 'moment';
+import 'moment/locale/ru';
 
 class AddNewClass extends Component {
   state = {
+    session: '',
+    className: '',
+    day: '',
     startDate: '',
     endDate: '',
     startTime: '',
     endTime: '',
+    studentCost: '',
+    instructorPay: '',
+    description: '',
+    instructorRef: '',
+    instructorEmail: '',
   };
+
+  componentDidMount() {
+    this.props.dispatch({ type: 'GET_SESSIONS' });
+    this.props.dispatch({ type: 'GET_INSTRUCTORS' });
+  }
 
   handleChange = (event, { name, value }) => {
     if (Object.prototype.hasOwnProperty.call(this.state, 'name')) {
@@ -24,18 +39,81 @@ class AddNewClass extends Component {
     }
   }
 
+  handleNewSession = (event, { value, name }) => {
+    // console.log(value, name);
+    // console.log(this.state);
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  handleNewChange = name => (event) => {
+    // console.log(event.target.value, name);
+    // console.log(this.state);
+    this.setState({
+      [name]: event.target.value,
+    });
+  };
+
+  handleInstructor = (event, { value }) => {
+    this.setState({
+      instructorRef: value,
+    });
+    this.props.dispatch({ type: 'GET_INSTRUCTOR', payload: value });
+  }
+
+  handleDay = (event) => {
+    const currentDay = this.state.day;
+    this.setState({
+      day: currentDay + event.target.value,
+    });
+  }
+
   render() {
     return (
       <div>
+        <pre>{JSON.stringify(this.state.instructorEmail)}</pre>
         <Form className="NewClass">
-          <Form.Group widths="equal">
-            <Form.Field control={Input} label="Class Name" />
-            <Form.Field control={Input} label="Session" />
+          <Form.Group widths="inline">
+            <Form.Field control={Input} label="Class Name" onChange={this.handleNewChange('className')} />
+            <Form.Field
+              control={Select}
+              label="Session"
+              name="session"
+              options={this.props.reduxState.session.map(session => ({
+                key: session.id,
+                text: session.season + session.year,
+                value: session.id,
+              }))}
+              onChange={this.handleNewSession}
+            />
           </Form.Group>
-          <Form.Group widths="equal">
-            <Form.Field control={Input} label="Instructor Email" />
-            <Form.Field control={Input} label="Instructor Name" />
-            <Form.Field control={Select} label="Day Of Week" />
+          <Form.Group widths="inline">
+            <Dropdown
+              placeholder="Select Instructor"
+              fluid
+              search
+              selection
+              options={this.props.reduxState.instructor
+                .map(instructor => ({
+                  key: instructor.id,
+                  text: instructor.instructor_name,
+                  value: instructor.id,
+                  defaultValue: instructor.instructor_email,
+                }))}
+              widths="inline"
+              onChange={this.handleInstructor}
+            />
+            <Form.Field control={Input} label="Instructor Email" defaultValue={this.state.instructorEmail} onChange={this.handleNewChange('instructorEmail')} />
+          </Form.Group>
+          <Form.Group grouped>
+            <label id="dayOfWeek">Day of Week</label>
+            <Form.Field label="Monday" control="input" type="checkbox" value="Monday" onClick={this.handleDay} />
+            <Form.Field label="Tuesday" control="input" type="checkbox" value="Tuesday" onClick={this.handleDay} />
+            <Form.Field label="Wednesday" control="input" type="checkbox" value="Wednesday" onClick={this.handleDay} />
+            <Form.Field label="Thursday" control="input" type="checkbox" value="Thursday" onClick={this.handleDay} />
+            <Form.Field label="Friday" control="input" type="checkbox" value="Friday" onClick={this.handleDay} />
+            <Form.Field label="Saturday" control="input" type="checkbox" value="Saturday" onClick={this.handleDay} />
           </Form.Group>
           <Form.Group widths="inline">
             <DateInput
@@ -68,10 +146,12 @@ class AddNewClass extends Component {
             />
           </Form.Group>
           <Form.Group widths="inline">
-            <Form.Field control={Input} label="Class Cost" />
-            <Form.Field control={Input} label="Instructor Salary" />
+            <Form.Field control={Input} label="Class Cost" onChange={this.handleNewChange('studentCost')} />
+            <Form.Field control={Input} label="Instructor Salary" onChange={this.handleNewChange('instructorPay')} />
           </Form.Group>
-          <Form.Field control={TextArea} label="Course Description" />
+          <Form.Group widths="inline">
+            <Form.Field control={TextArea} label="Course Description" onChange={this.handleNewChange('description')} />
+          </Form.Group>
           <Form.Field control={Button}>Create</Form.Field>
         </Form>
       </div>
