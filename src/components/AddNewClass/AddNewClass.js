@@ -74,11 +74,8 @@ class AddNewClass extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     console.log('in handleSubmit');
-    // TODO! POST new disc to DB
+    // POST new class to DB
     this.props.dispatch({ type: 'ADD_CLASS', payload: this.state });
-    this.setState({
-
-    });
   }
 
   render() {

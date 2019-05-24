@@ -3,28 +3,6 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  console.log('getting instructors');
-  const instructorQuery = 'SELECT "id", "instructor_name", "instructor_email" FROM "instructors"';
-  pool.query(instructorQuery)
-    .then((response) => { res.send(response.rows); })
-    .catch((error) => {
-      console.log('error getting instructors', error);
-      res.sendStatus(500);
-    });
-});
-
-router.get('/', (req, res) => {
-  console.log('getting sessions');
-  const sessionQuery = 'SELECT "id", "season", "year" FROM "sessions"';
-  pool.query(sessionQuery)
-    .then((response) => { res.send(response.rows); })
-    .catch((error) => {
-      console.log('error getting sessions', error);
-      res.sendStatus(500);
-    });
-});
-
 router.post('/', (req, res) => {
   console.log(req.body);
   const newClass = req.body;
