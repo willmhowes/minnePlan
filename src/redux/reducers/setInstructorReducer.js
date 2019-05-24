@@ -1,7 +1,7 @@
 const setInstructorReducer = (state = [], action) => {
   // console.log(action.type);
   switch (action.type) {
-    case 'SET_INSTRUCTORS':
+    case 'SET_INSTRUCTOR':
       return action.payload;
     default:
       return state;

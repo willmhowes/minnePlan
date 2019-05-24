@@ -5,6 +5,8 @@ import user from './userReducer';
 import instructor from './instructorReducer';
 import instructorSchedule from './instructorScheduleReducer';
 import classCount from './classCountReducer';
+import session from './sessionReducer';
+import setInstructor from './setInstructorReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +21,8 @@ const rootReducer = combineReducers({
   instructor,
   instructorSchedule,
   classCount,
+  session,
+  setInstructor,
 });
 
 export default rootReducer;

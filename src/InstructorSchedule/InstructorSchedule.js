@@ -29,7 +29,7 @@ class Instructor extends Component {
     return (
       <div>
         <h1>{this.props.reduxState.classCount.map(count => count.instructor_name)}</h1>
-        <pre>{JSON.stringify(this.state)}</pre>
+        {/* <pre>{JSON.stringify(this.state)}</pre> */}
         <Table size="large">
           <Table.Header>
             <Table.Row>
