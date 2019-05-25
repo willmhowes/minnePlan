@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
                           "end_time", "instructor_pay", "classroom_number", "building", "instructor_name", "session_status" FROM "classes"
                         JOIN "instructors" ON "classes"."instructor_ref" = "instructors"."id"
                         JOIN "sessions" ON "classes"."session_ref" = "sessions"."id"
+                        WHERE "instructor_ref" = 2 AND "session_status" = 'planning'`;
                         WHERE "instructor_ref" = 2 AND "session_status" = 'planning';`;
   pool.query(scheduleQuery)
     .then((response) => { res.send(response.rows); })

@@ -5,7 +5,7 @@ function* addInstructorSaga(action) {
   console.log('Hit the collection', action);
   try {
     // Attempt to get collection
-    const response = yield axios.post('/api/instructor', action.payload);
+    const response = yield axios.post('/api/classes', action.payload);
     console.log(response);
   } catch (error) {
     console.log('Couldn\'t add instructor', error);
