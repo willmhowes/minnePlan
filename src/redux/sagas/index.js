@@ -9,6 +9,7 @@ import instructorSchedule from './instructorScheduleSaga';
 import classCount from './classCountSaga';
 import session from './setSessionSaga';
 import getInstructor from './getInstructorSaga';
+import reviewedClass from './reviewedClassSaga';
 import addClass from './addClassSaga';
 import getClassFuture from './getClassFutureSaga';
 
@@ -31,6 +32,7 @@ export default function* rootSaga() {
     classCount(),
     session(),
     getInstructor(),
+    reviewedClass(),
     addClass(),
     getClassFuture(),
   ]);

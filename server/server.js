@@ -9,7 +9,7 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
-const addClassRouter = require('./routes/addClass.router');
+const addClassRouter = require('./routes/class.router');
 const instructorRouter = require('./routes/instructor.router');
 const instructorScheduleRouter = require('./routes/instructorSchedule.router');
 const sessionRouter = require('./routes/session.router');
@@ -27,7 +27,7 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
-app.use('/api/add-new-class', addClassRouter);
+app.use('/api/classes', addClassRouter);
 app.use('/api/instructor', instructorRouter);
 app.use('/instructorSchedule', instructorScheduleRouter);
 app.use('/api/session', sessionRouter);

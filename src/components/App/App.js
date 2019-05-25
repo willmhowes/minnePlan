@@ -21,7 +21,7 @@ import CurrentSession from '../CurrentSession/CurrentSession';
 import AddNewClass from '../AddNewClass/AddNewClass';
 import Instructor from '../Instructor/Instructor';
 import AddNewInstructor from '../AddNewInstructor/AddNewInstructor';
-import InstructorSchedule from '../../InstructorSchedule/InstructorSchedule';
+import InstructorSchedule from '../InstructorSchedule/InstructorSchedule';
 
 // importing semanitc ui styling
 import 'semantic-ui-css/semantic.min.css';
