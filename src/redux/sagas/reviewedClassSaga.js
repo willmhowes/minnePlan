@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { takeLatest, put } from 'redux-saga/effects';
+import { takeLatest } from 'redux-saga/effects';
 
 function* reviewedClassSaga(action) {
   console.log('Hit the reviewed class saga', action.payload);
   // const id = action.payload.id;
   try {
   // Attempt to get brand
-    const response = yield axios.put('/instructorSchedule');
+    const response = yield axios.put('/instructorSchedule', action.payload);
     console.log(response);
     // TODO-- SEND GET CURRENT SESSION
     // const getAction = { type: 'GET_INSTRUCTORS', payload: id };
