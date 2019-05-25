@@ -10,6 +10,8 @@ import classCount from './classCountSaga';
 import session from './sessionSaga';
 import getInstructor from './getInstructorSaga';
 import reviewedClass from './reviewedClassSaga';
+import addClass from './addClassSaga';
+
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -31,5 +33,6 @@ export default function* rootSaga() {
     session(),
     getInstructor(),
     reviewedClass(),
+    addClass(),
   ]);
 }
