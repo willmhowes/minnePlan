@@ -2,14 +2,15 @@ import { all } from 'redux-saga/effects';
 import loginSaga from './loginSaga';
 import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
-import instructor from './instructorSaga';
+import instructor from './setInstructorSaga';
 import addInstructor from './addInstructorSaga';
 import updateInstructor from './updateInstructorSaga';
 import instructorSchedule from './instructorScheduleSaga';
 import classCount from './classCountSaga';
-import session from './sessionSaga';
+import session from './setSessionSaga';
 import getInstructor from './getInstructorSaga';
 import addClass from './addClassSaga';
+import getClassFuture from './getClassFutureSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -31,5 +32,6 @@ export default function* rootSaga() {
     session(),
     getInstructor(),
     addClass(),
+    getClassFuture(),
   ]);
 }

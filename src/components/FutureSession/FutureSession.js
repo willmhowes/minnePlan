@@ -7,7 +7,11 @@ import {
 import FutureSessionTableRow from '../FutureSessionTableRow/FutureSessionTableRow';
 import './FutureSession.css';
 
-const pretendData = [1, 2, 3];
+const pretendData = [1, 2];
+
+// componentDidMount() {
+//   this.props.dispatch({ type: 'ADD_CLASS' });
+// }
 
 class FutureSession extends Component {
   render() {
