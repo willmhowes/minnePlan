@@ -91,7 +91,7 @@ class AddNewClass extends Component {
                 name="session"
                 options={this.props.reduxState.session.map(session => ({
                   key: session.id,
-                  text: session.season + session.year,
+                  text: session.season + session.years,
                   value: session.id,
                 }))}
                 onChange={this.handleChange}
