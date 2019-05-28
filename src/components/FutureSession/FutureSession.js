@@ -67,7 +67,7 @@ class FutureSession extends Component {
             </Table.Header>
 
             <Table.Body>
-              {this.props.reduxState.setClassReducer
+              {this.props.reduxState.futureSetClassReducer
                 .map(classes => <FutureSessionTableRow classes={classes} key={classes.id} />)}
             </Table.Body>
           </Table>

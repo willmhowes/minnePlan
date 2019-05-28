@@ -13,6 +13,7 @@ import reviewedClass from './reviewedClassSaga';
 import addClass from './addClassSaga';
 import getClassFuture from './getClassFutureSaga';
 import updateclassRow from './updateClassRowSaga';
+import currentSession from './currentSessionSaga';
 import year from './yearSaga';
 import season from './seasonSaga';
 import archived from './archivedSaga';
@@ -40,6 +41,7 @@ export default function* rootSaga() {
     addClass(),
     getClassFuture(),
     updateclassRow(),
+    currentSession(),
     year(),
     season(),
     archived(),
