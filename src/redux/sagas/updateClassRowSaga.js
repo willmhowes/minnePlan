@@ -8,7 +8,7 @@ function* updateclassRowSaga(action) {
     // Attempt to get classRow
     const response = yield axios.put(`/api/classes/${id}`, action.payload);
     console.log(response);
-    const getAction = { type: 'GET_CLASSES', payload: id };
+    const getAction = { type: 'GET_CLASSES' };
     console.log(getAction);
     yield put(getAction);
   } catch (error) {
@@ -17,7 +17,7 @@ function* updateclassRowSaga(action) {
 }
 
 function* updateclassRow() {
-  yield takeLatest('UPDATE_CLASSROW', updateclassRowSaga);
+  yield takeLatest('UPDATE_CLASS_ROW', updateclassRowSaga);
 }
 
 export default updateclassRow;
