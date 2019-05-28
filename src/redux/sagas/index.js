@@ -12,6 +12,8 @@ import getInstructor from './getInstructorSaga';
 import reviewedClass from './reviewedClassSaga';
 import addClass from './addClassSaga';
 import getClassFuture from './getClassFutureSaga';
+import classes from './setClassSaga';
+import updateclassRow from './updateClassRowSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -35,5 +37,6 @@ export default function* rootSaga() {
     reviewedClass(),
     addClass(),
     getClassFuture(),
+    updateclassRow(),
   ]);
 }

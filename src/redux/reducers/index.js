@@ -5,9 +5,9 @@ import user from './userReducer';
 import instructor from './instructorReducer';
 import instructorSchedule from './instructorScheduleReducer';
 import classCount from './classCountReducer';
-import session from './sessionReducer';
+import session from './futureSessionReducer';
 import setInstructor from './setInstructorReducer';
-import setClassReducer from './setClassReducer';
+import setClassReducer from './futureSetClassReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
