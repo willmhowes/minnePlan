@@ -1,11 +1,16 @@
 const express = require('express');
 const pool = require('../modules/pool');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  console.log('getting instructors');
-  const instructorQuery = 'SELECT "id", "instructor_name", "instructor_email", "phone_number" FROM "instructors"';
+// Handles Ajax request for user information if user is authenticated
+router.get('/', rejectUnauthenticated, (req, res) => {
+  // Send back user object from the session (previously queried from the database)
+  console.log('getting archived classes');
+  const instructorQuery = `SELECT "classes"."id", "class_name", "description", "day_of_week", "materials_cost", "building" FROM "classes"
+                          JOIN "sessions" ON "classes"."session_ref" = "sessions"."id"
+                          WHERE "sessions"."session_status" = 'archived';`;
   pool.query(instructorQuery)
     .then((response) => { res.send(response.rows); })
     .catch((error) => {

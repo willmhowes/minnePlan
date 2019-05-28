@@ -1,11 +1,12 @@
 const express = require('express');
 const pool = require('../modules/pool');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
   console.log('getting instructors');
-  const instructorQuery = 'SELECT "id", "instructor_name", "instructor_email", "phone_number" FROM "instructors"';
+  const instructorQuery = 'SELECT "id", "instructor_name", "instructor_email", "phone_number" FROM "instructors" ORDER BY "instructor_name";';
   pool.query(instructorQuery)
     .then((response) => { res.send(response.rows); })
     .catch((error) => {
@@ -14,7 +15,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   console.log(req.body);
   const queryText = `INSERT INTO "instructors" ("instructor_name", "instructor_email", "phone_number")
   VALUES ($1, $2, $3);`;
@@ -27,7 +28,7 @@ router.post('/', (req, res) => {
     });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
   console.log(req.params.id);
   const queryText = 'SELECT "id", "instructor_name", "instructor_email", "phone_number" FROM "instructors" WHERE id = $1';
   pool.query(queryText, [req.params.id])
@@ -41,8 +42,8 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.put('/:id', (req, res) => {
-  console.log(req.body);
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+  console.log('hit update instructor information', req.body);
   const id = req.body.id;
   const name = req.body.instructor_name;
   const email = req.body.instructor_email;
