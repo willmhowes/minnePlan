@@ -16,12 +16,12 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 // import LoginPage from '../LoginPage/LoginPage';
 import FutureSession from '../FutureSession/FutureSession';
 import History from '../History/History';
-
 import CurrentSession from '../CurrentSession/CurrentSession';
 import AddNewClass from '../AddNewClass/AddNewClass';
 import Instructor from '../Instructor/Instructor';
 import AddNewInstructor from '../AddNewInstructor/AddNewInstructor';
 import InstructorSchedule from '../InstructorSchedule/InstructorSchedule';
+import ArchivedSessions from '../ArchivedSessions/ArchivedSessions';
 
 // importing semanitc ui styling
 import 'semantic-ui-css/semantic.min.css';
@@ -55,6 +55,11 @@ class App extends Component {
               exact
               path="/session-history"
               component={History}
+            />
+            <ProtectedRoute
+              exact
+              path="/archived-session-history"
+              component={ArchivedSessions}
             />
             <ProtectedRoute
               exact
