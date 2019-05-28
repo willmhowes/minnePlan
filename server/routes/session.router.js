@@ -8,7 +8,7 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
   console.log('getting sessions');
-  const sessionQuery = 'SELECT * FROM "sessions"';
+  const sessionQuery = 'SELECT "sessions"."id", "seasons"."season", "years"."years" FROM "sessions" JOIN "seasons" ON "sessions"."season" = "seasons"."id" JOIN "years" ON "sessions"."year" = "years"."id";';
   pool.query(sessionQuery)
     .then((response) => { res.send(response.rows); })
     .catch((error) => {
