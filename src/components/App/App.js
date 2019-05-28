@@ -22,6 +22,7 @@ import AddNewClass from '../AddNewClass/AddNewClass';
 import Instructor from '../Instructor/Instructor';
 import AddNewInstructor from '../AddNewInstructor/AddNewInstructor';
 import InstructorSchedule from '../../InstructorSchedule/InstructorSchedule';
+import InstructorLogin from '../InstructorLogin/InstructorLogin';
 
 // importing semanitc ui styling
 import 'semantic-ui-css/semantic.min.css';
@@ -36,6 +37,11 @@ class App extends Component {
       <Router>
         <div>
           <Nav />
+          <Route
+            exact
+            path="/instructor_login"
+            component={InstructorLogin}
+          />
           <Switch>
             {/* <Route
               exact

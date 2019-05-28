@@ -5,7 +5,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const sessionMiddleware = require('./modules/session-middleware');
 
-const passport = require('./strategies/user.strategy');
+const passport = require('./strategies/instructor.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
