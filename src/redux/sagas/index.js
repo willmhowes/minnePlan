@@ -2,15 +2,17 @@ import { all } from 'redux-saga/effects';
 import loginSaga from './loginSaga';
 import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
-import instructor from './instructorSaga';
+import instructor from './setInstructorSaga';
 import addInstructor from './addInstructorSaga';
 import updateInstructor from './updateInstructorSaga';
 import instructorSchedule from './instructorScheduleSaga';
 import classCount from './classCountSaga';
-import session from './sessionSaga';
+import session from './setSessionSaga';
 import getInstructor from './getInstructorSaga';
 import reviewedClass from './reviewedClassSaga';
 import addClass from './addClassSaga';
+import getClassFuture from './getClassFutureSaga';
+import updateclassRow from './updateClassRowSaga';
 import year from './yearSaga';
 import season from './seasonSaga';
 import archived from './archivedSaga';
@@ -36,6 +38,8 @@ export default function* rootSaga() {
     getInstructor(),
     reviewedClass(),
     addClass(),
+    getClassFuture(),
+    updateclassRow(),
     year(),
     season(),
     archived(),

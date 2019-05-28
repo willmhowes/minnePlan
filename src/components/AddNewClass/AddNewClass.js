@@ -25,6 +25,7 @@ class AddNewClass extends Component {
     description: '',
     instructorRef: '',
     instructorEmail: '',
+    numInstances: '',
   };
 
   componentDidMount() {
@@ -95,6 +96,10 @@ class AddNewClass extends Component {
                   value: session.id,
                 }))}
                 onChange={this.handleChange}
+              />
+              <Form.Input
+                label="Number of Instances"
+                onChange={this.handleNewChange('numInstances')}
               />
             </Form.Group>
             {/* TODO: Fix goofy label on dropdown */}
