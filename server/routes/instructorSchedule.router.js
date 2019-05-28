@@ -9,7 +9,11 @@ router.get('/', (req, res) => {
                           "end_time", "instructor_pay", "classroom_number", "building", "instructor_name", "session_status" FROM "classes"
                         JOIN "instructors" ON "classes"."instructor_ref" = "instructors"."id"
                         JOIN "sessions" ON "classes"."session_ref" = "sessions"."id"
+<<<<<<< HEAD
                         WHERE "instructor_ref" = 2 AND "session_status" = 'planning'`;
+=======
+                        WHERE "instructor_ref" = 3 AND "session_status" = 'planning';`;
+>>>>>>> 578ffb47358a7833201b63b6f9598b35b34f7d9d
   pool.query(scheduleQuery)
     .then((response) => { res.send(response.rows); })
     .catch((error) => {
@@ -23,7 +27,7 @@ router.get('/classcount', (req, res) => {
   const countQuery = `SELECT COUNT("class_name"), "instructors"."instructor_name" FROM "instructors"
                         JOIN "classes" ON "classes"."instructor_ref" = "instructors"."id"
                         JOIN "sessions" ON "classes"."session_ref" = "sessions"."id"
-                        WHERE "instructor_ref" = 2 AND "session_status" = 'planning'
+                        WHERE "instructor_ref" = 3 AND "session_status" = 'planning'
                         GROUP BY "instructor_name";`;
   pool.query(countQuery)
     .then((response) => { res.send(response.rows); })

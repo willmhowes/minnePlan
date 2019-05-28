@@ -60,7 +60,7 @@ CREATE TABLE "classes" (
   "description" varchar(60),
   "start_date" date,
   "end_date" date,
-  "day_of_week" int,
+  "day_of_week" varchar,
   "start_time" time,
   "end_time" time,
   "num_of_sessions" int,
