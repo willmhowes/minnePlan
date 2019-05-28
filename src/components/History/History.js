@@ -20,17 +20,17 @@ class History extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('in handleSubmit');
+    console.log('in geting session', this.state);
     // GET archived session data
     this.props.dispatch({ type: 'GET_ARCHIVED', payload: this.state });
-    this.history.push('/archived-session-history');
+    this.props.history.push('/archived-session-history');
   }
 
   render() {
     return (
       <Segment attached>
         {/* <pre>{JSON.stringify(this.state)}</pre> */}
-        <Form className="FindSession" onSubmit={this.handleSubmit}>
+        <Form className="FindSession" onClick={this.handleSubmit}>
           <Form.Group>
             <Form.Select
               label="Season"
@@ -53,7 +53,7 @@ class History extends Component {
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Form.Button type="submit">Find Session</Form.Button>
+          <Form.Button type="click">Find Session</Form.Button>
         </Form>
       </Segment>
     );

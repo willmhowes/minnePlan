@@ -10,6 +10,7 @@ import setInstructor from './setInstructorReducer';
 import setClassReducer from './setClassReducer';
 import year from './yearReducer';
 import season from './seasonReducer';
+import archived from './archivedReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   setClassReducer,
   year,
   season,
+  archived,
 });
 
 export default rootReducer;

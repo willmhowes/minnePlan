@@ -5,9 +5,9 @@ function* archivedSaga(action) {
   console.log('Hit the get archived saga', action);
   try {
     // Attempt to get brand
-    const response = yield axios.get('/api/classes/history');
-    console.log(response);
-    const setArchived = { type: 'SET_ARCHVED', payload: response };
+    const response = yield axios.get(`/api/classes/history/${action.payload.season}/${action.payload.year}`);
+    console.log(response.data);
+    const setArchived = { type: 'SET_ARCHIVED', payload: response.data };
     console.log(setArchived);
     yield put(setArchived);
   } catch (error) {
@@ -16,7 +16,7 @@ function* archivedSaga(action) {
 }
 
 function* archived() {
-  yield takeLatest('GET_ARCHVED', archivedSaga);
+  yield takeLatest('GET_ARCHIVED', archivedSaga);
 }
 
 export default archived;

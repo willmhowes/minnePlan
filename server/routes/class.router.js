@@ -31,11 +31,11 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.get('/history', rejectUnauthenticated, (req, res) => {
-  console.log('getting archived classes');
+router.get('/history/:season/:year', rejectUnauthenticated, (req, res) => {
+  console.log('getting archived classes', req.params);
   const instructorQuery = `SELECT "classes"."id", "class_name", "description", "day_of_week", "materials_cost", "building" FROM "classes"
                           JOIN "sessions" ON "classes"."session_ref" = "sessions"."id"
-                          WHERE "sessions"."session_status" = 'archived';`;
+                          WHERE "sessions"."season" = ${req.params.season} AND "sessions"."year" = ${req.params.year};`;
   pool.query(instructorQuery)
     .then((response) => { res.send(response.rows); })
     .catch((error) => {

@@ -12,7 +12,8 @@ import getInstructor from './getInstructorSaga';
 import reviewedClass from './reviewedClassSaga';
 import addClass from './addClassSaga';
 import year from './yearSaga';
-import season from './seasonSaga'
+import season from './seasonSaga';
+import archived from './archivedSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -37,5 +38,6 @@ export default function* rootSaga() {
     addClass(),
     year(),
     season(),
+    archived(),
   ]);
 }
