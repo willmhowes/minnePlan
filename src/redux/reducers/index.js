@@ -7,7 +7,8 @@ import instructorSchedule from './instructorScheduleReducer';
 import classCount from './classCountReducer';
 import session from './futureSessionReducer';
 import setInstructor from './setInstructorReducer';
-import setClassReducer from './futureSetClassReducer';
+import futureSetClassReducer from './futureSetClassReducer';
+import currentSessionReducer from './currentSessionReducer';
 import year from './yearReducer';
 import season from './seasonReducer';
 import archived from './archivedReducer';
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
   classCount,
   session,
   setInstructor,
-  setClassReducer,
+  futureSetClassReducer,
+  currentSessionReducer,
   year,
   season,
   archived,

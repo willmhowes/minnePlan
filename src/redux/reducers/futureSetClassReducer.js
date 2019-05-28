@@ -1,4 +1,4 @@
-const setClassReducer = (state = [], action) => {
+const futureSetClassReducer = (state = [], action) => {
   // console.log(action.type);
   switch (action.type) {
     case 'SET_CLASSES':
@@ -8,4 +8,4 @@ const setClassReducer = (state = [], action) => {
   }
 };
 
-export default setClassReducer;
+export default futureSetClassReducer;
