@@ -8,6 +8,8 @@ import classCount from './classCountReducer';
 import session from './sessionReducer';
 import setInstructor from './setInstructorReducer';
 import setClassReducer from './setClassReducer';
+import year from './yearReducer';
+import season from './seasonReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -25,6 +27,8 @@ const rootReducer = combineReducers({
   session,
   setInstructor,
   setClassReducer,
+  year,
+  season,
 });
 
 export default rootReducer;
