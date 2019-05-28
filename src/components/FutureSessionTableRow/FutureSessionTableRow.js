@@ -98,12 +98,12 @@ class FutureSessionTableRow extends Component {
               </Table.Cell>
               <Table.Cell>
                 <Form.Field>
-                  <input placeholder="Time of Day" defaultValue={this.props.classes.start_time} onChange={this.handleChange('start_time')} />
+                  <input placeholder="Start Time" defaultValue={this.props.classes.start_time} onChange={this.handleChange('start_time')} />
                 </Form.Field>
               </Table.Cell>
               <Table.Cell>
                 <Form.Field>
-                  <input placeholder="Number of Instances" defaultValue={this.props.classes.numInstances} onChange={this.handleChange('numInstances')} />
+                  <input placeholder="End Time" defaultValue={this.props.classes.numInstances} onChange={this.handleChange('numInstances')} />
                 </Form.Field>
               </Table.Cell>
               <Table.Cell>
@@ -139,7 +139,8 @@ class FutureSessionTableRow extends Component {
               <Table.Cell>{this.props.classes.end_date}</Table.Cell>
               <Table.Cell>{this.props.classes.day_of_week}</Table.Cell>
               <Table.Cell>{this.props.classes.start_time}</Table.Cell>
-              <Table.Cell>{this.props.classes.numInstances}</Table.Cell>
+              <Table.Cell>{this.props.classes.end_time}</Table.Cell>
+              <Table.Cell>{this.props.classes.num_of_sessions}</Table.Cell>
               <Table.Cell>{this.props.classes.student_cost}</Table.Cell>
               <Table.Cell>{this.props.classes.instructor_pay}</Table.Cell>
               <Table.Cell>{this.props.classes.description}</Table.Cell>
