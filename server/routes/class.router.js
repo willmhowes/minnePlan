@@ -33,7 +33,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 router.get('/history/:season/:year', rejectUnauthenticated, (req, res) => {
   console.log('getting archived classes', req.params);
-  const instructorQuery = `SELECT "classes"."id", "class_name", "description", "day_of_week", "materials_cost", "building" FROM "classes"
+  const instructorQuery = `SELECT "classes"."id", "class_name", "description", "day_of_week", "materials_cost", "building", "instructor_name", "instructor_pay", "student_cost" FROM "classes"
+                          JOIN "instructors" ON "classes"."instructor_ref" = "instructors"."id"
                           JOIN "sessions" ON "classes"."session_ref" = "sessions"."id"
                           WHERE "sessions"."season" = ${req.params.season} AND "sessions"."year" = ${req.params.year};`;
   pool.query(instructorQuery)
