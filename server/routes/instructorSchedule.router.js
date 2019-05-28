@@ -6,10 +6,10 @@ const router = express.Router();
 router.get('/', (req, res) => {
   console.log('getting instructors schedule');
   const scheduleQuery = `SELECT "classes"."id", "class_name", "start_date", "end_date", "day_of_week","start_time",
-                          "end_time", "instructor_pay", "classroom_number", "building", "instructor_name", "is_being_planned" FROM "classes"
+                          "end_time", "instructor_pay", "classroom_number", "building", "instructor_name", "session_status" FROM "classes"
                         JOIN "instructors" ON "classes"."instructor_ref" = "instructors"."id"
                         JOIN "sessions" ON "classes"."session_ref" = "sessions"."id"
-                        WHERE "instructor_ref" = 2 AND "is_being_planned" = TRUE;`;
+                        WHERE "instructor_ref" = 3 AND "session_status" = 'planning';`;
   pool.query(scheduleQuery)
     .then((response) => { res.send(response.rows); })
     .catch((error) => {
@@ -23,7 +23,7 @@ router.get('/classcount', (req, res) => {
   const countQuery = `SELECT COUNT("class_name"), "instructors"."instructor_name" FROM "instructors"
                         JOIN "classes" ON "classes"."instructor_ref" = "instructors"."id"
                         JOIN "sessions" ON "classes"."session_ref" = "sessions"."id"
-                        WHERE "instructor_ref" = 2 AND "is_being_planned" = TRUE
+                        WHERE "instructor_ref" = 3 AND "session_status" = 'planning'
                         GROUP BY "instructor_name";`;
   pool.query(countQuery)
     .then((response) => { res.send(response.rows); })
