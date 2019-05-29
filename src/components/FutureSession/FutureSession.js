@@ -57,6 +57,8 @@ class FutureSession extends Component {
                 <Table.HeaderCell>Day of the Week</Table.HeaderCell>
                 <Table.HeaderCell>Start Time</Table.HeaderCell>
                 <Table.HeaderCell>End Time</Table.HeaderCell>
+                <Table.HeaderCell>Building</Table.HeaderCell>
+                <Table.HeaderCell>Classroom</Table.HeaderCell>
                 <Table.HeaderCell>Num. of instances</Table.HeaderCell>
                 <Table.HeaderCell>Course Rate</Table.HeaderCell>
                 <Table.HeaderCell>Instructor Rate</Table.HeaderCell>
