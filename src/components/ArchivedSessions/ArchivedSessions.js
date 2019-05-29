@@ -1,17 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Table } from 'semantic-ui-react';
+import { Table, Checkbox, Button } from 'semantic-ui-react';
 
 class ArchivedSessions extends Component {
+  state = {
+    idArray: [],
+  };
+
+  handleSelect = (event, { value }) => {
+    console.log('in checkbox handler', value);
+    this.setState({
+      idArray: [...this.state.idArray, value],
+    });
+  }
+
+  handleClick = () => {
+    this.props.dispatch({ type: 'COPY_CLASS', payload: this.state.idArray });
+  }
+
   render() {
     return (
       <div>
-        <h1>Create History/Archived Table!!!!</h1>
-        <pre>{JSON.stringify(this.props.reduxState.archived)}</pre>
+        <br />
+        <Button onClick={this.handleClick}>Add to Future Session</Button>
+        {/* <pre>{JSON.stringify(this.props.reduxState.archived)}</pre> */}
+        <br />
         <Table celled>
           <Table.Header>
             <Table.Row>
+              <Table.HeaderCell>Select</Table.HeaderCell>
               <Table.HeaderCell>Class Name</Table.HeaderCell>
               <Table.HeaderCell>Description</Table.HeaderCell>
               <Table.HeaderCell>Day of The Week</Table.HeaderCell>
@@ -24,7 +42,10 @@ class ArchivedSessions extends Component {
           </Table.Header>
           <Table.Body>
             {this.props.reduxState.archived.map(classroom => (
-              <Table.Row>
+              <Table.Row key={classroom.id}>
+                <Table.Cell>
+                  <Checkbox onClick={this.handleSelect} value={classroom.id} />
+                </Table.Cell>
                 <Table.Cell>{classroom.class_name}</Table.Cell>
                 <Table.Cell>{classroom.description}</Table.Cell>
                 <Table.Cell>{classroom.day_of_week}</Table.Cell>
