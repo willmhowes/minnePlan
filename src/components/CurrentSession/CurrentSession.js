@@ -31,7 +31,7 @@ class CurrentSession extends Component {
     return (
       <div className="CurrentSession-table-container">
         <br />
-        <pre>{JSON.stringify(this.state)}</pre>
+        {/* <pre>{JSON.stringify(this.state)}</pre> */}
         <Table celled>
           <Table.Header>
             <Table.Row>
