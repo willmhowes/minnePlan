@@ -7,9 +7,11 @@ import {
 import CurrentSessionTableRow from '../CurrentSessionTableRow/CurrentSessionTableRow';
 import './CurrentSession.css';
 
-const pretendData = [1, 2, 3];
-
 class CurrentSession extends Component {
+  componentDidMount() {
+    this.props.dispatch({ type: 'GET_CURRENT_SESSIONS' });
+  }
+
   render() {
     return (
       <div className="CurrentSession-table-container">
@@ -24,37 +26,21 @@ class CurrentSession extends Component {
               <Table.HeaderCell>Start Date</Table.HeaderCell>
               <Table.HeaderCell>End Date</Table.HeaderCell>
               <Table.HeaderCell>Day of the Week</Table.HeaderCell>
-              <Table.HeaderCell>Time of Day</Table.HeaderCell>
+              <Table.HeaderCell>Start Time</Table.HeaderCell>
+              <Table.HeaderCell>End Time</Table.HeaderCell>
               <Table.HeaderCell>Num. of instances</Table.HeaderCell>
               <Table.HeaderCell>Course Rate</Table.HeaderCell>
-              <Table.HeaderCell>Course Status</Table.HeaderCell>
+              <Table.HeaderCell>Instructor Rate</Table.HeaderCell>
               <Table.HeaderCell>Course Description</Table.HeaderCell>
+              <Table.HeaderCell>Course Status</Table.HeaderCell>
               <Table.HeaderCell>Edit Course</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
           <Table.Body>
-            {pretendData.map(() => <CurrentSessionTableRow />)}
+            {this.props.reduxState.currentSessionReducer
+              .map(classes => <CurrentSessionTableRow classes={classes} key={classes.id} />)}
           </Table.Body>
-
-          <Table.Footer>
-            <Table.Row>
-              <Table.HeaderCell colSpan="13">
-                <Menu floated="right" pagination>
-                  <Menu.Item as="a" icon>
-                    <Icon name="chevron left" />
-                  </Menu.Item>
-                  <Menu.Item as="a">1</Menu.Item>
-                  <Menu.Item as="a">2</Menu.Item>
-                  <Menu.Item as="a">3</Menu.Item>
-                  <Menu.Item as="a">4</Menu.Item>
-                  <Menu.Item as="a" icon>
-                    <Icon name="chevron right" />
-                  </Menu.Item>
-                </Menu>
-              </Table.HeaderCell>
-            </Table.Row>
-          </Table.Footer>
         </Table>
       </div>
     );
