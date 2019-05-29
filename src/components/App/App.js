@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Route,
   Redirect,
   Switch,
@@ -23,6 +23,7 @@ import Instructor from '../Instructor/Instructor';
 import AddNewInstructor from '../AddNewInstructor/AddNewInstructor';
 import InstructorSchedule from '../../InstructorSchedule/InstructorSchedule';
 import InstructorLogin from '../InstructorLogin/InstructorLogin';
+import InstructorParse from '../InstructorParse/InstructorParse';
 
 // importing semanitc ui styling
 import 'semantic-ui-css/semantic.min.css';
@@ -37,11 +38,6 @@ class App extends Component {
       <Router>
         <div>
           <Nav />
-          <Route
-            exact
-            path="/instructor_login"
-            component={InstructorLogin}
-          />
           <Switch>
             {/* <Route
               exact
@@ -89,6 +85,16 @@ class App extends Component {
               exact
               path="/add-new-instructor"
               component={AddNewInstructor}
+            />
+            <Route
+              exact
+              path="/instructor_login"
+              component={InstructorLogin}
+            />
+            <Route
+              exact
+              path="/instructor_parse"
+              component={InstructorParse}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

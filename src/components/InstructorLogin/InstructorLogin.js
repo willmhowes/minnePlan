@@ -8,9 +8,9 @@ const { AUTH0_CLIENT_ID, AUTH0_DOMAIN, AUTH0_CALLBACK_URL } = process.env;
 const webAuth = new auth0.WebAuth({
   clientID: AUTH0_CLIENT_ID || 'V54yGoqSS6zr4Gi38q4xh1Fw1kZhNQvQ',
   domain: AUTH0_DOMAIN || 'dev-o06mn1qr.auth0.com',
-  redirectUri: AUTH0_CALLBACK_URL || 'http://localhost:3000/#/instructor_login',
-  responseType: 'code',
-  scope: 'openid profile',
+  redirectUri: AUTH0_CALLBACK_URL || 'http://localhost:5000/api/instructor/login/callback',
+  responseType: 'token id_token',
+  scope: 'openid email profile',
 });
 
 class InstructorLogin extends Component {

@@ -13,6 +13,7 @@ const addClassRouter = require('./routes/addClass.router');
 const instructorRouter = require('./routes/instructor.router');
 const instructorScheduleRouter = require('./routes/instructorSchedule.router');
 const sessionRouter = require('./routes/session.router');
+const instructorAuth = require('./routes/instructorAuth.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -31,6 +32,7 @@ app.use('/api/add-new-class', addClassRouter);
 app.use('/api/instructor', instructorRouter);
 app.use('/instructorSchedule', instructorScheduleRouter);
 app.use('/api/session', sessionRouter);
+app.use('/api/instructor/login/', instructorAuth);
 
 // Serve static files
 app.use(express.static('build'));

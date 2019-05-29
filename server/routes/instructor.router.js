@@ -1,5 +1,4 @@
 const express = require('express');
-const auth0Strategy = require('../strategies/instructor.strategy');
 const pool = require('../modules/pool');
 
 const router = express.Router();
@@ -59,13 +58,5 @@ router.put('/:id', (req, res) => {
       res.sendStatus(500);
     });
 });
-
-router.get('/callback', auth0Strategy.authenticate('auth0'),
-  (req, res) => {
-    console.log('req.session -- ', req.session);
-    console.log('req.session.returnTo -- ', req.session.returnTo);
-    console.log('req.user -- ', req.user);
-    res.redirect('/instructor_login');
-  });
 
 module.exports = router;
