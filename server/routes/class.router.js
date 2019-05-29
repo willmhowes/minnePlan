@@ -36,7 +36,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 router.get('/future', (req, res) => {
   console.log('getting classes');
-  const classesQuery = `SELECT  "classes"."id", "class_name", "start_date", "end_date", "day_of_week","start_time", "end_time", "instructor_pay", "num_of_sessions", "student_cost", "description", "instructor_name", "instructor_email", "building", "classroom_number" FROM "classes"
+  const classesQuery = `SELECT  "classes"."id", "class_name", "start_date", "end_date", "day_of_week","start_time", "end_time", "instructor_pay", "num_of_sessions", "student_cost", "description", "instructor_name", "instructor_email", "building", "classroom_number", "preparation_status" FROM "classes"
                         JOIN "instructors" ON "classes"."instructor_ref" = "instructors"."id"
                         JOIN "sessions" ON "classes"."session_ref" = "sessions"."id"
                         WHERE "sessions"."session_status" = 'planning'`;
@@ -101,11 +101,14 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   const weekDay = req.body.classRow.day_of_week;
   const classCost = req.body.classRow.student_cost;
   const instructorPay = req.body.classRow.instructor_pay;
-  const startTime = req.body.classRow.time_of_day;
+  const startTime = req.body.classRow.start_time;
+  const endTime = req.body.classRow.end_time;
+  const status = req.body.classRow.preparation_status;
+  const description = req.body.classRow.description;
   // Not able to update instructor currently
-  const queryText = 'UPDATE "classes" SET "class_name" = $1, "start_date" = $2, "end_date" = $3, "day_of_week" = $4, "start_time" = $5, "student_cost" = $6, "instructor_pay" = $7 WHERE "id" = $8;';
+  const queryText = 'UPDATE "classes" SET "class_name" = $1, "start_date" = $2, "end_date" = $3, "day_of_week" = $4, "start_time" = $5, "student_cost" = $6, "instructor_pay" = $7, "end_time" = $8, "preparation_status" = $9, "description" = $10 WHERE "id" = $11;';
   pool.query(queryText,
-    [className, startDate, endDate, weekDay, startTime, classCost, instructorPay, id])
+    [className, startDate, endDate, weekDay, startTime, classCost, instructorPay, endTime, status, description, id])
     .then((result) => {
       res.sendStatus(200);
       console.log('back from database', result);
