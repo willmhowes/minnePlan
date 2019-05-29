@@ -28,6 +28,7 @@ class CurrentSessionTableRow extends Component {
         <Table.Cell>{this.props.classes.student_cost}</Table.Cell>
         <Table.Cell>{this.props.classes.instructor_pay}</Table.Cell>
         <Table.Cell>{this.props.classes.description}</Table.Cell>
+        <Table.Cell>Course Status</Table.Cell>
         <Table.Cell>
           <Button><Icon name="edit" /></Button>
         </Table.Cell>
