@@ -55,7 +55,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
       console.log('back from database', result);
     })
     .catch((err) => {
-      console.log('Error completing SELECT shoe', err);
+      console.log('Error updating instructor', err);
       res.sendStatus(500);
     });
 });

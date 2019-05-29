@@ -74,4 +74,44 @@ router.get('/history/:season/:year', rejectUnauthenticated, (req, res) => {
     });
 });
 
+router.get('/:id', rejectUnauthenticated, (req, res) => {
+  console.log(req.params.id);
+  const queryText = 'SELECT * FROM "classes" WHERE id = $1';
+  pool.query(queryText, [req.params.id])
+    .then((response) => {
+      console.log(response.rows);
+      res.send(response.rows);
+    })
+    .catch((err) => {
+      console.log('Error completing SELECT instructor', err);
+      res.sendStatus(500);
+    });
+});
+
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+  console.log('hit update class information', req.body.classRow);
+  const id = req.body.classRow.id;
+  // const name = req.body.instructor_name;
+  // const email = req.body.instructor_email;
+  const className = req.body.classRow.class_name;
+  const startDate = req.body.classRow.start_date;
+  const endDate = req.body.classRow.end_date;
+  const weekDay = req.body.classRow.day_of_week;
+  const classCost = req.body.classRow.student_cost;
+  const instructorPay = req.body.classRow.instructor_pay;
+  const startTime = req.body.classRow.time_of_day;
+  // Not able to update instructor currently
+  const queryText = 'UPDATE "classes" SET "class_name" = $1, "start_date" = $2, "end_date" = $3, "day_of_week" = $4, "start_time" = $5, "student_cost" = $6, "instructor_pay" = $7 WHERE "id" = $8;';
+  pool.query(queryText,
+    [className, startDate, endDate, weekDay, startTime, classCost, instructorPay, id])
+    .then((result) => {
+      res.sendStatus(200);
+      console.log('back from database', result);
+    })
+    .catch((err) => {
+      console.log('Error updating class', err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
