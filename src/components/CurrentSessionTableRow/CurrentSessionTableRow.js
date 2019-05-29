@@ -16,17 +16,18 @@ class CurrentSessionTableRow extends Component {
         <Table.Cell>
           <Checkbox onClick={this.handleSelect} />
         </Table.Cell>
-        <Table.Cell>Cell1</Table.Cell>
-        <Table.Cell>Cell2</Table.Cell>
-        <Table.Cell>Cell3</Table.Cell>
-        <Table.Cell>Cell4</Table.Cell>
-        <Table.Cell>Cell5</Table.Cell>
-        <Table.Cell>Cell6</Table.Cell>
-        <Table.Cell>Cell7</Table.Cell>
-        <Table.Cell>Cell8</Table.Cell>
-        <Table.Cell>Cell9</Table.Cell>
-        <Table.Cell>Cell10</Table.Cell>
-        <Table.Cell>Cell11</Table.Cell>
+        <Table.Cell>{this.props.classes.instructor_name}</Table.Cell>
+        <Table.Cell>{this.props.classes.instructor_email}</Table.Cell>
+        <Table.Cell>{this.props.classes.class_name}</Table.Cell>
+        <Table.Cell>{this.props.classes.start_date}</Table.Cell>
+        <Table.Cell>{this.props.classes.end_date}</Table.Cell>
+        <Table.Cell>{this.props.classes.day_of_week}</Table.Cell>
+        <Table.Cell>{this.props.classes.start_time}</Table.Cell>
+        <Table.Cell>{this.props.classes.end_time}</Table.Cell>
+        <Table.Cell>{this.props.classes.num_of_sessions}</Table.Cell>
+        <Table.Cell>{this.props.classes.student_cost}</Table.Cell>
+        <Table.Cell>{this.props.classes.instructor_pay}</Table.Cell>
+        <Table.Cell>{this.props.classes.description}</Table.Cell>
         <Table.Cell>
           <Button><Icon name="edit" /></Button>
         </Table.Cell>
