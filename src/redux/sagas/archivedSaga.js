@@ -4,7 +4,7 @@ import { takeLatest, put } from 'redux-saga/effects';
 function* archivedSaga(action) {
   console.log('Hit the get archived saga', action);
   try {
-    // Attempt to get brand
+    // Attempt to get classes
     const response = yield axios.get(`/api/classes/history/${action.payload.season}/${action.payload.year}`);
     console.log(response.data);
     const setArchived = { type: 'SET_ARCHIVED', payload: response.data };

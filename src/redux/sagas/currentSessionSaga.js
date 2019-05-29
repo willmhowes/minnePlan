@@ -5,7 +5,7 @@ function* currentSessionSaga(action) {
   console.log('Hit session GET request', action);
   try {
     // Attempt to get current sessions
-    const response = yield axios.get('/api/class/current');
+    const response = yield axios.get('/api/classes/current');
     console.log(response);
     const newAction = { type: 'SET_CURRENT_SESSIONS', payload: response.data };
     console.log(newAction);

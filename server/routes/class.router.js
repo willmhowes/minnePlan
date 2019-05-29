@@ -8,8 +8,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   console.log(req.body);
   const newClass = req.body;
   const queryText = `INSERT INTO "classes"(session_ref, instructor_ref, class_name, day_of_week, start_date,
-                      end_date, start_time, end_time, student_cost, instructor_pay, description, num_of_sessions)
-                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12);`;
+                      end_date, start_time, end_time, student_cost, instructor_pay, description, num_of_sessions, building, classroom_number)
+                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14);`;
   const queryValues = [
     newClass.session,
     newClass.instructorRef,
@@ -23,6 +23,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     newClass.instructorPay,
     newClass.description,
     newClass.numInstances,
+    newClass.building,
+    newClass.classroom,
   ];
   pool.query(queryText, queryValues)
     .then(() => { res.sendStatus(201); })
