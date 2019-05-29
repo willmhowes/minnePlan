@@ -6,15 +6,11 @@ import {
 } from 'semantic-ui-react';
 
 class CurrentSessionTableRow extends Component {
-  handleSelect = () => {
-    console.log('in checkbox handler');
-  }
-
   render() {
     return (
       <Table.Row>
         <Table.Cell>
-          <Checkbox onClick={this.handleSelect} />
+          <Checkbox onClick={this.props.select} value={this.props.classes.id} />
         </Table.Cell>
         <Table.Cell>{this.props.classes.instructor_name}</Table.Cell>
         <Table.Cell>{this.props.classes.instructor_email}</Table.Cell>

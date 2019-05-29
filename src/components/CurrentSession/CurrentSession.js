@@ -2,20 +2,36 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {
-  Table, Menu, Icon,
+  Table, Button,
 } from 'semantic-ui-react';
 import CurrentSessionTableRow from '../CurrentSessionTableRow/CurrentSessionTableRow';
 import './CurrentSession.css';
 
 class CurrentSession extends Component {
+  state = {
+    idArray: [],
+  };
+
   componentDidMount() {
     this.props.dispatch({ type: 'GET_CURRENT_SESSIONS' });
+  }
+
+  handleSelect = (event, { value }) => {
+    console.log('in checkbox handler', value);
+    this.setState({
+      idArray: [...this.state.idArray, value],
+    });
+  }
+
+  handleClick = () => {
+    this.props.dispatch({ type: 'COPY_CLASS', payload: this.state.idArray });
   }
 
   render() {
     return (
       <div className="CurrentSession-table-container">
         <br />
+        <pre>{JSON.stringify(this.state)}</pre>
         <Table celled>
           <Table.Header>
             <Table.Row>
@@ -39,9 +55,16 @@ class CurrentSession extends Component {
 
           <Table.Body>
             {this.props.reduxState.currentSessionReducer
-              .map(classes => <CurrentSessionTableRow classes={classes} key={classes.id} />)}
+              .map(classes => (
+                <CurrentSessionTableRow
+                  classes={classes}
+                  key={classes.id}
+                  select={this.handleSelect}
+                />
+              ))}
           </Table.Body>
         </Table>
+        <Button onClick={this.handleClick}>Add to Future Session</Button>
       </div>
     );
   }
