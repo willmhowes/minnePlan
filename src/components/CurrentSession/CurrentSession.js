@@ -31,6 +31,8 @@ class CurrentSession extends Component {
     return (
       <div className="CurrentSession-table-container">
         <br />
+        <Button onClick={this.handleClick}>Add to Future Session</Button>
+        <br />
         {/* <pre>{JSON.stringify(this.state)}</pre> */}
         <Table celled>
           <Table.Header>
@@ -64,7 +66,6 @@ class CurrentSession extends Component {
               ))}
           </Table.Body>
         </Table>
-        <Button onClick={this.handleClick}>Add to Future Session</Button>
       </div>
     );
   }
