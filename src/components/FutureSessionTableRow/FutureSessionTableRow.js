@@ -18,6 +18,8 @@ class FutureSessionTableRow extends Component {
       end_date: this.props.classes.end_date,
       day_of_week: this.props.classes.day_of_week,
       time_of_day: this.props.classes.start_time,
+      building: this.props.classes.building,
+      classroom: this.props.classes.classroom_number,
       num_of_instances: this.props.classes.numInstances,
       student_cost: this.props.classes.student_cost,
       instructor_pay: this.props.classes.instructor_pay,
@@ -72,6 +74,8 @@ class FutureSessionTableRow extends Component {
           <Table.Cell>{this.props.classes.day_of_week}</Table.Cell>
           <Table.Cell>{this.props.classes.start_time}</Table.Cell>
           <Table.Cell>{this.props.classes.end_time}</Table.Cell>
+          <Table.Cell>{this.props.classes.building}</Table.Cell>
+          <Table.Cell>{this.props.classes.classroom_number}</Table.Cell>
           <Table.Cell>{this.props.classes.num_of_sessions}</Table.Cell>
           <Table.Cell>{this.props.classes.student_cost}</Table.Cell>
           <Table.Cell>{this.props.classes.instructor_pay}</Table.Cell>
