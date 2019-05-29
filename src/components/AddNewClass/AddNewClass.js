@@ -26,6 +26,8 @@ class AddNewClass extends Component {
     instructorRef: '',
     instructorEmail: '',
     numInstances: '',
+    classroom: '',
+    building: '',
   };
 
   componentDidMount() {
@@ -101,6 +103,10 @@ class AddNewClass extends Component {
                 label="Number of Instances"
                 onChange={this.handleNewChange('numInstances')}
               />
+            </Form.Group>
+            <Form.Group>
+              <Form.Input label="Building" onChange={this.handleNewChange('building')} />
+              <Form.Input label="Classroom" onChange={this.handleNewChange('classroom')} />
             </Form.Group>
             {/* TODO: Fix goofy label on dropdown */}
             <Form.Group>
