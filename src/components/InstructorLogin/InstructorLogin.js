@@ -10,7 +10,7 @@ const webAuth = new auth0.WebAuth({
   domain: AUTH0_DOMAIN || 'dev-o06mn1qr.auth0.com',
   redirectUri: AUTH0_CALLBACK_URL || 'http://localhost:5000/api/instructor/login/callback',
   responseType: 'token id_token',
-  scope: 'openid email profile',
+  scope: 'openid email',
 });
 
 class InstructorLogin extends Component {
