@@ -9,8 +9,10 @@ function* deleteclassSaga(action) {
     const response = yield axios.delete(`/api/classes/${id}`);
     console.log(response);
     const getAction = { type: 'GET_CLASSES' };
-    console.log(getAction);
+    const getCurrent = { type: 'GET_CURRENT_SESSIONS' };
+    console.log(getAction, getCurrent);
     yield put(getAction);
+    yield put(getCurrent);
   } catch (error) {
     console.log('Could not delete class', error);
   }
