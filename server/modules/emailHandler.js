@@ -12,7 +12,7 @@ function sendEmail(email, res) {
   });
 
   const mailOptions = {
-    from: 'a.allendabney@gmail.com', // sender address
+    from: 'noreplymplscommed@gmail.com', // sender address
     to: email, // list of receivers
     subject: 'IT WORKS!', // Subject line
     html: `<p>${email}, hello friend</p>`, // plain text body
