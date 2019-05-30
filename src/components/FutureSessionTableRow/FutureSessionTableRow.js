@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {
-  Table, Checkbox, Icon, Modal, Button, Form,
+  Table, Checkbox, Icon, Modal, Button, Form, Select,
 } from 'semantic-ui-react';
 // import swal from 'sweetalert';
+
+const moment = require('moment');
 
 class FutureSessionTableRow extends Component {
   state = {
@@ -17,14 +19,15 @@ class FutureSessionTableRow extends Component {
       start_date: this.props.classes.start_date,
       end_date: this.props.classes.end_date,
       day_of_week: this.props.classes.day_of_week,
-      time_of_day: this.props.classes.start_time,
+      start_time: this.props.classes.start_time,
+      end_time: this.props.classes.end_time,
       building: this.props.classes.building,
       classroom: this.props.classes.classroom_number,
       num_of_instances: this.props.classes.numInstances,
       student_cost: this.props.classes.student_cost,
       instructor_pay: this.props.classes.instructor_pay,
       description: this.props.classes.description,
-      course_status: this.props.classes.phone_number,
+      course_status: this.props.classes.preparation_status,
     },
   }
 
@@ -49,6 +52,22 @@ class FutureSessionTableRow extends Component {
     });
   };
 
+  bgColor = (status) => {
+    if (status === 'pending response') {
+      return 'yellow';
+    } if (status === 'needs permit') {
+      return 'blue';
+    } if (status === 'needs review') {
+      return 'orange';
+    } if (status === 'ready to transfer') {
+      return 'green';
+    } if (status === 'no instructor') {
+      return 'red';
+    } if (status === 'transfered to eleyo') {
+      return 'grey';
+    } return 'white';
+  }
+
   updateclassRow = () => {
     console.log('Updating classRow', this.state.classRow);
     const afterUpdate = this.state.edit;
@@ -71,8 +90,8 @@ class FutureSessionTableRow extends Component {
           <Table.Cell>{this.props.classes.instructor_name}</Table.Cell>
           <Table.Cell>{this.props.classes.instructor_email}</Table.Cell>
           <Table.Cell>{this.props.classes.class_name}</Table.Cell>
-          <Table.Cell>{this.props.classes.start_date}</Table.Cell>
-          <Table.Cell>{this.props.classes.end_date}</Table.Cell>
+          <Table.Cell>{moment(this.props.classes.start_date).calendar()}</Table.Cell>
+          <Table.Cell>{moment(this.props.classes.end_date).calendar()}</Table.Cell>
           <Table.Cell>{this.props.classes.day_of_week}</Table.Cell>
           <Table.Cell>{this.props.classes.start_time}</Table.Cell>
           <Table.Cell>{this.props.classes.end_time}</Table.Cell>
@@ -82,7 +101,7 @@ class FutureSessionTableRow extends Component {
           <Table.Cell>{this.props.classes.student_cost}</Table.Cell>
           <Table.Cell>{this.props.classes.instructor_pay}</Table.Cell>
           <Table.Cell>{this.props.classes.description}</Table.Cell>
-          <Table.Cell>Course Status</Table.Cell>
+          <Table.Cell>{this.props.classes.preparation_status}</Table.Cell>
           <Table.Cell><Icon name="edit" onClick={this.show(true)} /></Table.Cell>
         </Table.Row>
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
@@ -118,14 +137,12 @@ class FutureSessionTableRow extends Component {
                     onChange={this.handleChange('start_date')}
                     placeholder="Start Date"
                     defaultValue={this.props.classes.start_date}
-                    dateFormat="L"
                   />
                   <Form.Input
                     label="End Date"
                     onChange={this.handleChange('end_date')}
                     placeholder="End Date"
                     defaultValue={this.props.classes.end_date}
-                    dateFormat="L"
                   />
                 </Form.Group>
                 <Form.Group>
@@ -162,6 +179,14 @@ class FutureSessionTableRow extends Component {
                     onChange={this.handleChange('instructor_pay')}
                     placeholder="Instructor Pay"
                     defaultValue={this.props.classes.instructor_pay}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Input
+                    label="Course Status"
+                    onChange={this.handleChange('preparation_status')}
+                    placeholder="Course Status"
+                    defaultValue={this.props.classes.preparation_status}
                   />
                 </Form.Group>
                 <Form.Group>

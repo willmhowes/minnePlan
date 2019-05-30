@@ -37,25 +37,25 @@ class FutureSession extends Component {
           <h3 className="colorLegend">Color Legend</h3>
           <ul className="legendList">
             <li>
-              White - Default
+              White - No Status
             </li>
             <li>
-              Yellow - Pending
+              Yellow - pending response
             </li>
             <li>
-              Blue - Needs permit
+              Blue - needs permit
             </li>
             <li>
-              Orange - Needs Review
+              Orange - needs review
             </li>
             <li>
-              Green - Ready to Transfer
+              Green - ready to transfer
             </li>
             <li>
-              Red - No Instructor
+              Red - no instructor
             </li>
             <li>
-              Grey - Transfered to Eleyo
+              Grey - transfered to eleyo
             </li>
           </ul>
         </div>
