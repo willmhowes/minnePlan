@@ -2,9 +2,9 @@ import axios from 'axios';
 import { takeLatest } from 'redux-saga/effects';
 
 function* addInstructorSaga(action) {
-  console.log('Hit the collection', action);
+  console.log('Hit the addInstructorSaga', action);
   try {
-    // Attempt to get collection
+    // Attempt to get instructor
     const response = yield axios.post('/api/instructor', action.payload);
     console.log(response);
   } catch (error) {

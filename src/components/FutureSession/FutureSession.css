@@ -1,4 +1,26 @@
 .FutureSession-table-container {
   width: 90%;
-  margin: auto;
+  margin-right: auto;
+  table-layout: fixed;
+}
+
+.legendList {
+  border: 1px solid black;
+  width: 17%;
+  margin-right: auto;
+  list-style-type: none;
+  padding-left: 10px;
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+.colorLegend {
+  margin-left: 50px;
+  padding-top: 5px;
+  width: 10%;
+  margin-bottom: 5px;
+}
+
+.page-container {
+  width: 100%;
 }

@@ -2,60 +2,102 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {
-  Table, Menu, Icon,
+  Table, Button,
 } from 'semantic-ui-react';
 import FutureSessionTableRow from '../FutureSessionTableRow/FutureSessionTableRow';
 import './FutureSession.css';
 
-const pretendData = [1, 2, 3];
-
 class FutureSession extends Component {
+  state = {
+    email: [],
+  }
+
+  componentDidMount() {
+    this.props.dispatch({ type: 'GET_CLASSES' });
+    this.props.dispatch({ type: 'GET_INSTRUCTORS' });
+  }
+
+  handleSelect = (event, { value }) => {
+    console.log('in checkbox handler', value);
+    this.setState({
+      email: [...this.state.email, value],
+    });
+  }
+
+  sendEmailClick = () => {
+    console.log('email button clicked');
+    this.props.dispatch({ type: 'SEND_EMAIL', payload: this.state.email });
+  }
+
   render() {
     return (
-      <div className="FutureSession-table-container">
-        <br />
-        <Table celled>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Select</Table.HeaderCell>
-              <Table.HeaderCell>Instructor Name</Table.HeaderCell>
-              <Table.HeaderCell>Instructor Email</Table.HeaderCell>
-              <Table.HeaderCell>Course Name</Table.HeaderCell>
-              <Table.HeaderCell>Start Date</Table.HeaderCell>
-              <Table.HeaderCell>End Date</Table.HeaderCell>
-              <Table.HeaderCell>Day of the Week</Table.HeaderCell>
-              <Table.HeaderCell>Time of Day</Table.HeaderCell>
-              <Table.HeaderCell>Num. of instances</Table.HeaderCell>
-              <Table.HeaderCell>Course Rate</Table.HeaderCell>
-              <Table.HeaderCell>Course Status</Table.HeaderCell>
-              <Table.HeaderCell>Course Description</Table.HeaderCell>
-              <Table.HeaderCell>Edit Course</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
+      <div className="page-container">
+        {/* <pre>{JSON.stringify(this.props.reduxState.setClassReducer)}</pre> */}
+        <div className="legend">
+          <h3 className="colorLegend">Color Legend</h3>
+          <ul className="legendList">
+            <li>
+              White - No Status
+            </li>
+            <li>
+              Yellow - pending response
+            </li>
+            <li>
+              Blue - needs permit
+            </li>
+            <li>
+              Orange - needs review
+            </li>
+            <li>
+              Green - ready to transfer
+            </li>
+            <li>
+              Red - no instructor
+            </li>
+            <li>
+              Grey - transfered to eleyo
+            </li>
+          </ul>
+        </div>
+        <Button onClick={this.sendEmailClick}>Email Instructors</Button>
+        <div className="FutureSession-table-container">
+          <br />
+          <Table celled>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell>Select</Table.HeaderCell>
+                <Table.HeaderCell>Instructor Name</Table.HeaderCell>
+                <Table.HeaderCell>Instructor Email</Table.HeaderCell>
+                <Table.HeaderCell>Course Name</Table.HeaderCell>
+                <Table.HeaderCell>Start Date</Table.HeaderCell>
+                <Table.HeaderCell>End Date</Table.HeaderCell>
+                <Table.HeaderCell>Day of the Week</Table.HeaderCell>
+                <Table.HeaderCell>Start Time</Table.HeaderCell>
+                <Table.HeaderCell>End Time</Table.HeaderCell>
+                <Table.HeaderCell>Building</Table.HeaderCell>
+                <Table.HeaderCell>Classroom</Table.HeaderCell>
+                <Table.HeaderCell>Num. of instances</Table.HeaderCell>
+                <Table.HeaderCell>Course Rate</Table.HeaderCell>
+                <Table.HeaderCell>Instructor Rate</Table.HeaderCell>
+                <Table.HeaderCell>Course Description</Table.HeaderCell>
+                <Table.HeaderCell>Course Status</Table.HeaderCell>
+                <Table.HeaderCell>Edit Course</Table.HeaderCell>
+                <Table.HeaderCell>Delete Course</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
 
-          <Table.Body>
-            {pretendData.map(() => <FutureSessionTableRow />)}
-          </Table.Body>
-
-          <Table.Footer>
-            <Table.Row>
-              <Table.HeaderCell colSpan="13">
-                <Menu floated="right" pagination>
-                  <Menu.Item as="a" icon>
-                    <Icon name="chevron left" />
-                  </Menu.Item>
-                  <Menu.Item as="a">1</Menu.Item>
-                  <Menu.Item as="a">2</Menu.Item>
-                  <Menu.Item as="a">3</Menu.Item>
-                  <Menu.Item as="a">4</Menu.Item>
-                  <Menu.Item as="a" icon>
-                    <Icon name="chevron right" />
-                  </Menu.Item>
-                </Menu>
-              </Table.HeaderCell>
-            </Table.Row>
-          </Table.Footer>
-        </Table>
+            <Table.Body>
+              {this.props.reduxState.futureSetClassReducer
+                .map(classes => (
+                  <FutureSessionTableRow
+                    classes={classes}
+                    key={classes.id}
+                    select={this.handleSelect}
+                  />
+                ))}
+            </Table.Body>
+          </Table>
+        </div>
       </div>
     );
   }

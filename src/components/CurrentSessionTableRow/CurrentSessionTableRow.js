@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {
-  Table, Checkbox, Icon, Modal, Button, Form,
+  Table, Checkbox, Icon, Button, Form, Modal,
 } from 'semantic-ui-react';
-// import swal from 'sweetalert';
 
 const moment = require('moment');
 
-class FutureSessionTableRow extends Component {
+class CurrentSessionTableRow extends Component {
   state = {
     classRow: {
       deleteOpen: false,
@@ -66,22 +65,6 @@ class FutureSessionTableRow extends Component {
     });
   };
 
-  bgColor = (status) => {
-    if (status === 'pending response') {
-      return 'yellow';
-    } if (status === 'needs permit') {
-      return 'blue';
-    } if (status === 'needs review') {
-      return 'orange';
-    } if (status === 'ready to transfer') {
-      return 'green';
-    } if (status === 'no instructor') {
-      return 'red';
-    } if (status === 'transfered to eleyo') {
-      return 'grey';
-    } return 'white';
-  }
-
   updateclassRow = () => {
     console.log('Updating classRow', this.state.classRow);
     const afterUpdate = this.state.edit;
@@ -99,7 +82,7 @@ class FutureSessionTableRow extends Component {
       <>
         <Table.Row>
           <Table.Cell>
-            <Checkbox onClick={this.props.select} value={this.props.classes.instructor_email} />
+            <Checkbox onClick={this.props.select} value={this.props.classes.id} />
           </Table.Cell>
           <Table.Cell>{this.props.classes.instructor_name}</Table.Cell>
           <Table.Cell>{this.props.classes.instructor_email}</Table.Cell>
@@ -109,13 +92,11 @@ class FutureSessionTableRow extends Component {
           <Table.Cell>{this.props.classes.day_of_week}</Table.Cell>
           <Table.Cell>{this.props.classes.start_time}</Table.Cell>
           <Table.Cell>{this.props.classes.end_time}</Table.Cell>
-          <Table.Cell>{this.props.classes.building}</Table.Cell>
-          <Table.Cell>{this.props.classes.classroom_number}</Table.Cell>
           <Table.Cell>{this.props.classes.num_of_sessions}</Table.Cell>
           <Table.Cell>{this.props.classes.student_cost}</Table.Cell>
           <Table.Cell>{this.props.classes.instructor_pay}</Table.Cell>
           <Table.Cell>{this.props.classes.description}</Table.Cell>
-          <Table.Cell>{this.props.classes.preparation_status}</Table.Cell>
+          <Table.Cell>Course Status</Table.Cell>
           <Table.Cell><Button><Icon name="edit" onClick={this.show(true)} /></Button></Table.Cell>
           <Table.Cell><Button><Icon name="trash" onClick={this.showDelete(true)} /></Button></Table.Cell>
         </Table.Row>
@@ -230,18 +211,18 @@ class FutureSessionTableRow extends Component {
           <Modal.Content image>
             <Modal.Description>
               <p>
-                Are you sure you want to delete
+            Are you sure you want to delete
                 {' '}
                 {this.props.classes.class_name}
                 {' '}
-                on
+            on
                 {this.props.classes.day_of_week}
               </p>
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
             <Button color="black" onClick={this.close}>
-              Do not delete class
+          Do not delete class
             </Button>
             <Button
               positive
@@ -261,4 +242,4 @@ const mapReduxStateToProps = reduxState => ({
   reduxState,
 });
 
-export default connect(mapReduxStateToProps)(withRouter(FutureSessionTableRow));
+export default connect(mapReduxStateToProps)(withRouter(CurrentSessionTableRow));
