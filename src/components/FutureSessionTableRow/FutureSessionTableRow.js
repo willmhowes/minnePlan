@@ -34,10 +34,23 @@ class FutureSessionTableRow extends Component {
 
   show = dimmer => () => this.setState({ dimmer, editOpen: true });
 
-  close = () => {
+  showDelete = dimmer => () => this.setState({ dimmer, deleteOpen: true });
+
+  closeEdit = () => {
     this.setState({ editOpen: false });
     const action = { type: 'UPDATE_CLASS_ROW', payload: this.state.classRow };
     console.log(action);
+    this.props.dispatch(action);
+  }
+
+  close = () => {
+    this.setState({ deleteOpen: false });
+  }
+
+  closeDelete = () => {
+    this.setState({ deleteOpen: false });
+    const action = { type: 'DELETE_CLASS', payload: this.state.classRow.id };
+    console.log('deleting class', action);
     this.props.dispatch(action);
   }
 
@@ -104,7 +117,7 @@ class FutureSessionTableRow extends Component {
           <Table.Cell>{this.props.classes.description}</Table.Cell>
           <Table.Cell>{this.props.classes.preparation_status}</Table.Cell>
           <Table.Cell><Button><Icon name="edit" onClick={this.show(true)} /></Button></Table.Cell>
-          <Table.Cell><Button><Icon name="trash" onClick={this.show(true)} /></Button></Table.Cell>
+          <Table.Cell><Button><Icon name="trash" onClick={this.showDelete(true)} /></Button></Table.Cell>
         </Table.Row>
         <Modal dimmer={dimmer} open={editOpen} onClose={this.close}>
           <Modal.Header>Edit Class</Modal.Header>
@@ -208,7 +221,34 @@ class FutureSessionTableRow extends Component {
               icon="checkmark"
               labelPosition="right"
               content="Update"
-              onClick={this.close}
+              onClick={this.closeEdit}
+            />
+          </Modal.Actions>
+        </Modal>
+        <Modal dimmer={dimmer} open={deleteOpen} onClose={this.close}>
+          <Modal.Header>Delete Class</Modal.Header>
+          <Modal.Content image>
+            <Modal.Description>
+              <p>
+                Are you sure you want to delete
+                {' '}
+                {this.props.classes.class_name}
+                {' '}
+                on
+                {this.props.classes.day_of_week}
+              </p>
+            </Modal.Description>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button color="black" onClick={this.close}>
+              Do not delete class
+            </Button>
+            <Button
+              positive
+              icon="checkmark"
+              labelPosition="right"
+              content="Delete class"
+              onClick={this.closeDelete}
             />
           </Modal.Actions>
         </Modal>

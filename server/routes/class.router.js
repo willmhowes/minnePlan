@@ -85,7 +85,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
       res.send(response.rows);
     })
     .catch((err) => {
-      console.log('Error completing SELECT instructor', err);
+      console.log('Error completing SELECT class', err);
       res.sendStatus(500);
     });
 });
@@ -161,6 +161,17 @@ router.post('/copy', rejectUnauthenticated, async (req, res) => {
     }
   }));
   client.release();
+});
+
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+  console.log('deleting class', req.params);
+  const queryText = `DELETE FROM "classes" WHERE "id" = ${req.params.id};`;
+  pool.query(queryText)
+    .then(() => { res.sendStatus(200); })
+    .catch((err) => {
+      console.log('Error deleting class', err);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;
