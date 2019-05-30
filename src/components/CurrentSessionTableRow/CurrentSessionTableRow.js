@@ -42,6 +42,17 @@ class CurrentSessionTableRow extends Component {
     this.props.dispatch(action);
   }
 
+  close = () => {
+    this.setState({ deleteOpen: false });
+  }
+
+  closeDelete = () => {
+    this.setState({ deleteOpen: false });
+    const action = { type: 'DELETE_CLASS', payload: this.state.classRow.id };
+    console.log('deleting class', action);
+    this.props.dispatch(action);
+  }
+
   handleChange = name => (event) => {
     console.log(event.target.value, name);
     // console.log(this.state.classRow);
@@ -53,22 +64,6 @@ class CurrentSessionTableRow extends Component {
       },
     });
   };
-
-  // bgColor = (status) => {
-  //   if (status === 'pending response') {
-  //     return 'yellow';
-  //   } if (status === 'needs permit') {
-  //     return 'blue';
-  //   } if (status === 'needs review') {
-  //     return 'orange';
-  //   } if (status === 'ready to transfer') {
-  //     return 'green';
-  //   } if (status === 'no instructor') {
-  //     return 'red';
-  //   } if (status === 'transfered to eleyo') {
-  //     return 'grey';
-  //   } return 'white';
-  // }
 
   updateclassRow = () => {
     console.log('Updating classRow', this.state.classRow);
@@ -113,7 +108,6 @@ class CurrentSessionTableRow extends Component {
           <Table.Cell>{this.props.classes.student_cost}</Table.Cell>
           <Table.Cell>{this.props.classes.instructor_pay}</Table.Cell>
           <Table.Cell>{this.props.classes.description}</Table.Cell>
-          <Table.Cell>{this.props.classes.preparation_status}</Table.Cell>
           <Table.Cell><Button><Icon name="edit" onClick={this.show(true)} /></Button></Table.Cell>
           <Table.Cell><Button><Icon name="trash" onClick={this.showDelete(true)} /></Button></Table.Cell>
         </Table.Row>
@@ -196,12 +190,6 @@ class CurrentSessionTableRow extends Component {
                   />
                 </Form.Group>
                 <Form.Group>
-                  <Form.Input
-                    label="Course Status"
-                    onChange={this.handleChange('preparation_status')}
-                    placeholder="Course Status"
-                    defaultValue={this.props.classes.preparation_status}
-                  />
                   <Form.Input
                     label="Building"
                     onChange={this.handleChange('building')}

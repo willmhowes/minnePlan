@@ -58,7 +58,6 @@ class CurrentSession extends Component {
               <Table.HeaderCell>Course Rate</Table.HeaderCell>
               <Table.HeaderCell>Instructor Rate</Table.HeaderCell>
               <Table.HeaderCell>Course Description</Table.HeaderCell>
-              <Table.HeaderCell>Course Status</Table.HeaderCell>
               <Table.HeaderCell>Edit Course</Table.HeaderCell>
               <Table.HeaderCell>Delete Course</Table.HeaderCell>
             </Table.Row>
