@@ -43,4 +43,24 @@ router.get('/season', rejectUnauthenticated, (req, res) => {
     });
 });
 
+router.put('/', rejectUnauthenticated, async (req, res) => {
+  const client = await pool.connect();
+  console.log('creating a new session', req.body);
+  const updateCurrentSession = 'UPDATE "sessions" SET "session_status" = \'archived\' WHERE "session_status" = \'current\';';
+  const updateFutureSession = 'UPDATE "sessions" SET "session_status" = \'current\' WHERE "session_status" = \'planning\';';
+  const newSession = 'INSERT INTO "sessions" ("coordinator_ref", "season", "year", "session_status") VALUES (1, $1, $2, \'planning\');';
+  try {
+    await client.query('BEGIN');
+    const updateCurrent = await client.query(updateCurrentSession);
+    const updateFuture = await client.query(updateFutureSession);
+    const createNew = await client.query(newSession, [req.body.season, req.body.year]);
+    await client.query('COMMIT');
+  } catch (error) {
+    await client.query('ROLLBACK');
+    console.log('error creating new session', error);
+  } finally {
+    client.release();
+  }
+});
+
 module.exports = router;
