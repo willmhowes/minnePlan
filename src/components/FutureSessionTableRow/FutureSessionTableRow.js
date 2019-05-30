@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {
-  Table, Checkbox, Icon, Modal, Button, Form, Select,
+  Table, Checkbox, Icon, Modal, Button, Form,
 } from 'semantic-ui-react';
 // import swal from 'sweetalert';
 
@@ -11,7 +11,8 @@ const moment = require('moment');
 class FutureSessionTableRow extends Component {
   state = {
     classRow: {
-      open: false,
+      deleteOpen: false,
+      editOpen: false,
       id: this.props.classes.id,
       instructor_name: this.props.classes.instructor_name,
       instructor_email: this.props.classes.instructor_email,
@@ -31,10 +32,10 @@ class FutureSessionTableRow extends Component {
     },
   }
 
-  show = dimmer => () => this.setState({ dimmer, open: true });
+  show = dimmer => () => this.setState({ dimmer, editOpen: true });
 
   close = () => {
-    this.setState({ open: false });
+    this.setState({ editOpen: false });
     const action = { type: 'UPDATE_CLASS_ROW', payload: this.state.classRow };
     console.log(action);
     this.props.dispatch(action);
@@ -79,7 +80,7 @@ class FutureSessionTableRow extends Component {
   }
 
   render() {
-    const { open, dimmer } = this.state;
+    const { deleteOpen, editOpen, dimmer } = this.state;
 
     return (
       <>
@@ -102,9 +103,10 @@ class FutureSessionTableRow extends Component {
           <Table.Cell>{this.props.classes.instructor_pay}</Table.Cell>
           <Table.Cell>{this.props.classes.description}</Table.Cell>
           <Table.Cell>{this.props.classes.preparation_status}</Table.Cell>
-          <Table.Cell><Icon name="edit" onClick={this.show(true)} /></Table.Cell>
+          <Table.Cell><Button><Icon name="edit" onClick={this.show(true)} /></Button></Table.Cell>
+          <Table.Cell><Button><Icon name="trash" onClick={this.show(true)} /></Button></Table.Cell>
         </Table.Row>
-        <Modal dimmer={dimmer} open={open} onClose={this.close}>
+        <Modal dimmer={dimmer} open={editOpen} onClose={this.close}>
           <Modal.Header>Edit Class</Modal.Header>
           <Modal.Content>
             <Modal.Description>
