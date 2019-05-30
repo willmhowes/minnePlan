@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {
-  Table, Button,
+  Table, Button, Modal, Form,
 } from 'semantic-ui-react';
 import FutureSessionTableRow from '../FutureSessionTableRow/FutureSessionTableRow';
 import './FutureSession.css';
@@ -10,11 +10,18 @@ import './FutureSession.css';
 class FutureSession extends Component {
   state = {
     email: [],
+    open: false,
+    session: {
+      season: 0,
+      year: 0,
+    },
   }
 
   componentDidMount() {
     this.props.dispatch({ type: 'GET_CLASSES' });
     this.props.dispatch({ type: 'GET_INSTRUCTORS' });
+    this.props.dispatch({ type: 'GET_SEASONS' });
+    this.props.dispatch({ type: 'GET_YEARS' });
   }
 
   handleSelect = (event, { value }) => {
@@ -29,10 +36,25 @@ class FutureSession extends Component {
     this.props.dispatch({ type: 'SEND_EMAIL', payload: this.state.email });
   }
 
+  show = () => this.setState({ open: true });
+
+  close = () => {
+    this.setState({ open: false });
+    const action = { type: 'NEW_SESSION', payload: this.state.session };
+    console.log(action);
+    this.props.dispatch(action);
+  }
+
+  handleChange = (event, { name, value }) => {
+    this.setState({ session: { ...this.state.session, [name]: value } });
+  }
+
   render() {
+    const { open, dimmer } = this.state;
+
     return (
       <div className="page-container">
-        {/* <pre>{JSON.stringify(this.props.reduxState.setClassReducer)}</pre> */}
+        <pre>{JSON.stringify(this.state)}</pre>
         <div className="legend">
           <h3 className="colorLegend">Color Legend</h3>
           <ul className="legendList">
@@ -60,6 +82,7 @@ class FutureSession extends Component {
           </ul>
         </div>
         <Button onClick={this.sendEmailClick}>Email Instructors</Button>
+        <Button onClick={this.show}>Start New Session</Button>
         <div className="FutureSession-table-container">
           <br />
           <Table celled>
@@ -97,6 +120,45 @@ class FutureSession extends Component {
                 ))}
             </Table.Body>
           </Table>
+          <Modal dimmer={dimmer} open={open} onClose={this.close}>
+            <Modal.Header>Start a New Session</Modal.Header>
+            <Modal.Content image>
+              <Modal.Description>
+                <p>
+                Please select new sessions season and year:
+                </p>
+              </Modal.Description>
+              <Form className="FindSession" onClick={this.handleSubmit}>
+                <Form.Group>
+                  <Form.Select
+                    label="Season"
+                    name="season"
+                    options={this.props.reduxState.season.map(season => ({
+                      key: season.id,
+                      text: season.season,
+                      value: season.id,
+                    }))}
+                    onChange={this.handleChange}
+                  />
+                  <Form.Select
+                    label="Year"
+                    name="year"
+                    options={this.props.reduxState.year.map(year => ({
+                      key: year.id,
+                      text: year.years,
+                      value: year.id,
+                    }))}
+                    onChange={this.handleChange}
+                  />
+                </Form.Group>
+              </Form>
+            </Modal.Content>
+            <Modal.Actions>
+              <Button color="black" onClick={this.close}>
+              Add new session
+              </Button>
+            </Modal.Actions>
+          </Modal>
         </div>
       </div>
     );
