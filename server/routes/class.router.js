@@ -85,7 +85,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
       res.send(response.rows);
     })
     .catch((err) => {
-      console.log('Error completing SELECT instructor', err);
+      console.log('Error completing SELECT class', err);
       res.sendStatus(500);
     });
 });
@@ -105,10 +105,26 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   const endTime = req.body.classRow.end_time;
   const status = req.body.classRow.preparation_status;
   const description = req.body.classRow.description;
+  const building = req.body.classRow.building;
+  const classroom = req.body.classRow.classroom;
   // Not able to update instructor currently
-  const queryText = 'UPDATE "classes" SET "class_name" = $1, "start_date" = $2, "end_date" = $3, "day_of_week" = $4, "start_time" = $5, "student_cost" = $6, "instructor_pay" = $7, "end_time" = $8, "preparation_status" = $9, "description" = $10 WHERE "id" = $11;';
+  const queryText = 'UPDATE "classes" SET "class_name" = $1, "start_date" = $2, "end_date" = $3, "day_of_week" = $4, "start_time" = $5, "student_cost" = $6, "instructor_pay" = $7, "end_time" = $8, "preparation_status" = $9, "description" = $10, "building" = $11, "classroom_number" = $12 WHERE "id" = $13;';
   pool.query(queryText,
-    [className, startDate, endDate, weekDay, startTime, classCost, instructorPay, endTime, status, description, id])
+    [
+      className,
+      startDate,
+      endDate,
+      weekDay,
+      startTime,
+      classCost,
+      instructorPay,
+      endTime,
+      status,
+      description,
+      building,
+      classroom,
+      id,
+    ])
     .then((result) => {
       res.sendStatus(200);
       console.log('back from database', result);
@@ -149,6 +165,17 @@ router.post('/copy', rejectUnauthenticated, async (req, res) => {
     }
   }));
   client.release();
+});
+
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+  console.log('deleting class', req.params);
+  const queryText = `DELETE FROM "classes" WHERE "id" = ${req.params.id};`;
+  pool.query(queryText)
+    .then(() => { res.sendStatus(200); })
+    .catch((err) => {
+      console.log('Error deleting class', err);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;

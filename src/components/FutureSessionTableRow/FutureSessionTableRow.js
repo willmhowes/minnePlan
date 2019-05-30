@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {
-  Table, Checkbox, Icon, Modal, Button, Form, Select,
+  Table, Checkbox, Icon, Modal, Button, Form,
 } from 'semantic-ui-react';
 // import swal from 'sweetalert';
 
@@ -11,7 +11,8 @@ const moment = require('moment');
 class FutureSessionTableRow extends Component {
   state = {
     classRow: {
-      open: false,
+      deleteOpen: false,
+      editOpen: false,
       id: this.props.classes.id,
       instructor_name: this.props.classes.instructor_name,
       instructor_email: this.props.classes.instructor_email,
@@ -31,12 +32,25 @@ class FutureSessionTableRow extends Component {
     },
   }
 
-  show = dimmer => () => this.setState({ dimmer, open: true });
+  show = dimmer => () => this.setState({ dimmer, editOpen: true });
 
-  close = () => {
-    this.setState({ open: false });
+  showDelete = dimmer => () => this.setState({ dimmer, deleteOpen: true });
+
+  closeEdit = () => {
+    this.setState({ editOpen: false });
     const action = { type: 'UPDATE_CLASS_ROW', payload: this.state.classRow };
     console.log(action);
+    this.props.dispatch(action);
+  }
+
+  close = () => {
+    this.setState({ deleteOpen: false });
+  }
+
+  closeDelete = () => {
+    this.setState({ deleteOpen: false });
+    const action = { type: 'DELETE_CLASS', payload: this.state.classRow.id };
+    console.log('deleting class', action);
     this.props.dispatch(action);
   }
 
@@ -74,12 +88,12 @@ class FutureSessionTableRow extends Component {
     this.setState({
       edit: !afterUpdate,
     });
-    const action = { type: 'UPDATE_CLASSROW', payload: this.state.classRow };
+    const action = { type: 'UPDATE_CLASSROW', payload: this.state };
     this.props.dispatch(action);
   }
 
   render() {
-    const { open, dimmer } = this.state;
+    const { deleteOpen, editOpen, dimmer } = this.state;
 
     return (
       <>
@@ -90,8 +104,8 @@ class FutureSessionTableRow extends Component {
           <Table.Cell>{this.props.classes.instructor_name}</Table.Cell>
           <Table.Cell>{this.props.classes.instructor_email}</Table.Cell>
           <Table.Cell>{this.props.classes.class_name}</Table.Cell>
-          <Table.Cell>{moment(this.props.classes.start_date).calendar()}</Table.Cell>
-          <Table.Cell>{moment(this.props.classes.end_date).calendar()}</Table.Cell>
+          <Table.Cell>{moment(this.props.classes.start_date).format('MM/DD/YYYY')}</Table.Cell>
+          <Table.Cell>{moment(this.props.classes.end_date).format('MM/DD/YYYY')}</Table.Cell>
           <Table.Cell>{this.props.classes.day_of_week}</Table.Cell>
           <Table.Cell>{this.props.classes.start_time}</Table.Cell>
           <Table.Cell>{this.props.classes.end_time}</Table.Cell>
@@ -102,9 +116,10 @@ class FutureSessionTableRow extends Component {
           <Table.Cell>{this.props.classes.instructor_pay}</Table.Cell>
           <Table.Cell>{this.props.classes.description}</Table.Cell>
           <Table.Cell>{this.props.classes.preparation_status}</Table.Cell>
-          <Table.Cell><Icon name="edit" onClick={this.show(true)} /></Table.Cell>
+          <Table.Cell><Button><Icon name="edit" onClick={this.show(true)} /></Button></Table.Cell>
+          <Table.Cell><Button><Icon name="trash" onClick={this.showDelete(true)} /></Button></Table.Cell>
         </Table.Row>
-        <Modal dimmer={dimmer} open={open} onClose={this.close}>
+        <Modal dimmer={dimmer} open={editOpen} onClose={this.close}>
           <Modal.Header>Edit Class</Modal.Header>
           <Modal.Content>
             <Modal.Description>
@@ -206,7 +221,34 @@ class FutureSessionTableRow extends Component {
               icon="checkmark"
               labelPosition="right"
               content="Update"
-              onClick={this.close}
+              onClick={this.closeEdit}
+            />
+          </Modal.Actions>
+        </Modal>
+        <Modal dimmer={dimmer} open={deleteOpen} onClose={this.close}>
+          <Modal.Header>Delete Class</Modal.Header>
+          <Modal.Content image>
+            <Modal.Description>
+              <p>
+                Are you sure you want to delete
+                {' '}
+                {this.props.classes.class_name}
+                {' '}
+                on
+                {this.props.classes.day_of_week}
+              </p>
+            </Modal.Description>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button color="black" onClick={this.close}>
+              Do not delete class
+            </Button>
+            <Button
+              positive
+              icon="checkmark"
+              labelPosition="right"
+              content="Delete class"
+              onClick={this.closeDelete}
             />
           </Modal.Actions>
         </Modal>

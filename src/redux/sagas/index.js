@@ -19,6 +19,7 @@ import season from './seasonSaga';
 import archived from './archivedSaga';
 import copyClass from './copyClassSaga';
 import sendEmail from './sendEmailSaga';
+import deleteclass from './deleteClassSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -49,5 +50,6 @@ export default function* rootSaga() {
     archived(),
     copyClass(),
     sendEmail(),
+    deleteclass(),
   ]);
 }

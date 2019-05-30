@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {
-  Table, Checkbox, Icon, Button, Modal, Form,
+  Table, Checkbox, Icon, Button, Form, Modal,
 } from 'semantic-ui-react';
 
 const moment = require('moment');
@@ -10,7 +10,8 @@ const moment = require('moment');
 class CurrentSessionTableRow extends Component {
   state = {
     classRow: {
-      open: false,
+      deleteOpen: false,
+      editOpen: false,
       id: this.props.classes.id,
       instructor_name: this.props.classes.instructor_name,
       instructor_email: this.props.classes.instructor_email,
@@ -30,18 +31,20 @@ class CurrentSessionTableRow extends Component {
     },
   }
 
-  show = dimmer => () => this.setState({ dimmer, open: true });
+  show = dimmer => () => this.setState({ dimmer, editOpen: true });
 
-  close = () => {
-    this.setState({ open: false });
-    const action = { type: 'UPDATE_CLASS_ROW', payload: this.state.classRow };
-    console.log(action);
+  showDelete = dimmer => () => this.setState({ dimmer, deleteOpen: true });
+
+  closeEdit = () => {
+    this.setState({ editOpen: false });
+    const action = { type: 'UPDATE_CLASS_ROW', payload: this.state };
+    // console.log(action);
     this.props.dispatch(action);
   }
 
   handleChange = name => (event) => {
     console.log(event.target.value, name);
-    console.log(this.state.classRow);
+    // console.log(this.state.classRow);
     this.setState({
       classRow: {
         // eslint-disable-next-line react/no-access-state-in-setstate
@@ -78,13 +81,13 @@ class CurrentSessionTableRow extends Component {
   }
 
   render() {
-    const { open, dimmer } = this.state;
+    const { deleteOpen, editOpen, dimmer } = this.state;
 
     return (
       <>
         <Table.Row>
           <Table.Cell>
-            <Checkbox onClick={this.props.select} value={this.props.classes.instructor_email} />
+            <Checkbox onClick={this.props.select} value={this.props.classes.id} />
           </Table.Cell>
           <Table.Cell>{this.props.classes.instructor_name}</Table.Cell>
           <Table.Cell>{this.props.classes.instructor_email}</Table.Cell>
@@ -111,9 +114,10 @@ class CurrentSessionTableRow extends Component {
           <Table.Cell>{this.props.classes.instructor_pay}</Table.Cell>
           <Table.Cell>{this.props.classes.description}</Table.Cell>
           <Table.Cell>{this.props.classes.preparation_status}</Table.Cell>
-          <Table.Cell><Icon name="edit" onClick={this.show(true)} /></Table.Cell>
+          <Table.Cell><Button><Icon name="edit" onClick={this.show(true)} /></Button></Table.Cell>
+          <Table.Cell><Button><Icon name="trash" onClick={this.showDelete(true)} /></Button></Table.Cell>
         </Table.Row>
-        <Modal dimmer={dimmer} open={open} onClose={this.close}>
+        <Modal dimmer={dimmer} open={editOpen} onClose={this.close}>
           <Modal.Header>Edit Class</Modal.Header>
           <Modal.Content>
             <Modal.Description>
@@ -198,6 +202,18 @@ class CurrentSessionTableRow extends Component {
                     placeholder="Course Status"
                     defaultValue={this.props.classes.preparation_status}
                   />
+                  <Form.Input
+                    label="Building"
+                    onChange={this.handleChange('building')}
+                    placeholder="Building"
+                    defaultValue={this.props.classes.building}
+                  />
+                  <Form.Input
+                    label="Classroom"
+                    onChange={this.handleChange('classroom')}
+                    placeholder="Classroom"
+                    defaultValue={this.props.classes.classroom_number}
+                  />
                 </Form.Group>
                 <Form.Group>
                   <Form.Input
@@ -216,7 +232,34 @@ class CurrentSessionTableRow extends Component {
               icon="checkmark"
               labelPosition="right"
               content="Update"
-              onClick={this.close}
+              onClick={this.closeEdit}
+            />
+          </Modal.Actions>
+        </Modal>
+        <Modal dimmer={dimmer} open={deleteOpen} onClose={this.close}>
+          <Modal.Header>Delete Class</Modal.Header>
+          <Modal.Content image>
+            <Modal.Description>
+              <p>
+            Are you sure you want to delete
+                {' '}
+                {this.props.classes.class_name}
+                {' '}
+            on
+                {this.props.classes.day_of_week}
+              </p>
+            </Modal.Description>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button color="black" onClick={this.close}>
+          Do not delete class
+            </Button>
+            <Button
+              positive
+              icon="checkmark"
+              labelPosition="right"
+              content="Delete class"
+              onClick={this.closeDelete}
             />
           </Modal.Actions>
         </Modal>
