@@ -6,13 +6,13 @@ function sendEmail(email, res) {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'a.allendabney@gmail.com',
-      pass: 'Xayden8914',
+      user: 'noreplymplscommed@gmail.com',
+      pass: 'communityed2',
     },
   });
 
   const mailOptions = {
-    from: 'a.allendabney@gmail.com', // sender address
+    from: 'noreplymplscommed@gmail.com', // sender address
     to: email, // list of receivers
     subject: 'IT WORKS!', // Subject line
     html: `<p>${email}, hello friend</p>`, // plain text body
