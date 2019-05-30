@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
 
 class InstructorParse extends Component {
   // state = {
@@ -10,18 +10,18 @@ class InstructorParse extends Component {
   // }
 
   parseUrl = () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get('code');
-    const state = urlParams.get('state');
+    const url = new URLSearchParams(window.location.hash.substr(1));
+    const token = url.get('access_token');
+    console.log(token);
 
-    axios({
-      url: `/api/instructor/login/callback?code=${code}&state=${state}`,
-      method: 'GET',
-    }).then((response) => {
-      console.log(response);
-    }).catch((error) => {
-      console.log(error);
-    });
+    // axios({
+    //   url: `http://localhost:5000/api/instructor/login/callback#access_token=${token}`,
+    //   method: 'GET',
+    // }).then((response) => {
+    //   console.log(response);
+    // }).catch((error) => {
+    //   console.log(error);
+    // });
   }
 
   componentDidMount = () => {

@@ -4,13 +4,13 @@ const Auth0Strategy = require('passport-auth0');
 
 passport.serializeUser((user, done) => {
   console.log('------ in serialize user ------');
-  console.log('user:', user);
+  // console.log('user:', user);
   done(null, user);
 });
 
 passport.deserializeUser((user, done) => {
   console.log('------ in deserialize user ------');
-  console.log('user:', user);
+  // console.log('user:', user);
   done(null, user);
 });
 
@@ -23,6 +23,7 @@ passport.use('auth0', new Auth0Strategy({
   scope: 'openid email',
 }, ((accessToken, refreshToken, extraParams, profile, done) => {
   console.log('profile:', profile);
+  console.log('accessToken:', accessToken);
   done(null, profile);
 })));
 
