@@ -5,6 +5,8 @@ import {
   Table, Checkbox, Icon, Button,
 } from 'semantic-ui-react';
 
+const moment = require('moment');
+
 class CurrentSessionTableRow extends Component {
   render() {
     return (
@@ -15,8 +17,8 @@ class CurrentSessionTableRow extends Component {
         <Table.Cell>{this.props.classes.instructor_name}</Table.Cell>
         <Table.Cell>{this.props.classes.instructor_email}</Table.Cell>
         <Table.Cell>{this.props.classes.class_name}</Table.Cell>
-        <Table.Cell>{this.props.classes.start_date}</Table.Cell>
-        <Table.Cell>{this.props.classes.end_date}</Table.Cell>
+        <Table.Cell>{moment(this.props.classes.start_date).format('MM/DD/YYYY')}</Table.Cell>
+        <Table.Cell>{moment(this.props.classes.end_date).format('MM/DD/YYYY')}</Table.Cell>
         <Table.Cell>{this.props.classes.day_of_week}</Table.Cell>
         <Table.Cell>{this.props.classes.start_time}</Table.Cell>
         <Table.Cell>{this.props.classes.end_time}</Table.Cell>

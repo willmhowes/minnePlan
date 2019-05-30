@@ -91,8 +91,8 @@ class FutureSessionTableRow extends Component {
           <Table.Cell>{this.props.classes.instructor_name}</Table.Cell>
           <Table.Cell>{this.props.classes.instructor_email}</Table.Cell>
           <Table.Cell>{this.props.classes.class_name}</Table.Cell>
-          <Table.Cell>{moment(this.props.classes.start_date).calendar()}</Table.Cell>
-          <Table.Cell>{moment(this.props.classes.end_date).calendar()}</Table.Cell>
+          <Table.Cell>{moment(this.props.classes.start_date).format('MM/DD/YYYY')}</Table.Cell>
+          <Table.Cell>{moment(this.props.classes.end_date).format('MM/DD/YYYY')}</Table.Cell>
           <Table.Cell>{this.props.classes.day_of_week}</Table.Cell>
           <Table.Cell>{this.props.classes.start_time}</Table.Cell>
           <Table.Cell>{this.props.classes.end_time}</Table.Cell>
