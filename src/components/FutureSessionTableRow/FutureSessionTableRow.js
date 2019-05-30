@@ -35,7 +35,7 @@ class FutureSessionTableRow extends Component {
 
   close = () => {
     this.setState({ open: false });
-    const action = { type: 'UPDATE_CLASS_ROW', payload: this.state };
+    const action = { type: 'UPDATE_CLASS_ROW', payload: this.state.classRow };
     console.log(action);
     this.props.dispatch(action);
   }
@@ -83,8 +83,10 @@ class FutureSessionTableRow extends Component {
 
     return (
       <>
-        <Table.Row bgcolor={this.bgColor(this.props.classes.preparation_status)}>
-          <Table.Cell><Checkbox disabled /></Table.Cell>
+        <Table.Row>
+          <Table.Cell>
+            <Checkbox onClick={this.props.select} value={this.props.classes.instructor_email} />
+          </Table.Cell>
           <Table.Cell>{this.props.classes.instructor_name}</Table.Cell>
           <Table.Cell>{this.props.classes.instructor_email}</Table.Cell>
           <Table.Cell>{this.props.classes.class_name}</Table.Cell>

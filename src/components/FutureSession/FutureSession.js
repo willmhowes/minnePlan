@@ -2,15 +2,31 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {
-  Table,
+  Table, Button,
 } from 'semantic-ui-react';
 import FutureSessionTableRow from '../FutureSessionTableRow/FutureSessionTableRow';
 import './FutureSession.css';
 
 class FutureSession extends Component {
+  state = {
+    email: [],
+  }
+
   componentDidMount() {
     this.props.dispatch({ type: 'GET_CLASSES' });
     this.props.dispatch({ type: 'GET_INSTRUCTORS' });
+  }
+
+  handleSelect = (event, { value }) => {
+    console.log('in checkbox handler', value);
+    this.setState({
+      email: [...this.state.email, value],
+    });
+  }
+
+  sendEmailClick = () => {
+    console.log('email button clicked');
+    this.props.dispatch({ type: 'SEND_EMAIL', payload: this.state.email });
   }
 
   render() {
@@ -43,6 +59,7 @@ class FutureSession extends Component {
             </li>
           </ul>
         </div>
+        <Button onClick={this.sendEmailClick}>Email Instructors</Button>
         <div className="FutureSession-table-container">
           <br />
           <Table celled>
@@ -70,7 +87,13 @@ class FutureSession extends Component {
 
             <Table.Body>
               {this.props.reduxState.futureSetClassReducer
-                .map(classes => <FutureSessionTableRow classes={classes} key={classes.id} />)}
+                .map(classes => (
+                  <FutureSessionTableRow
+                    classes={classes}
+                    key={classes.id}
+                    select={this.handleSelect}
+                  />
+                ))}
             </Table.Body>
           </Table>
         </div>
