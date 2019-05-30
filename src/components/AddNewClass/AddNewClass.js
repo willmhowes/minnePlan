@@ -9,7 +9,6 @@ import {
   DateInput,
   TimeInput,
 } from 'semantic-ui-calendar-react';
-import 'moment/locale/es-us';
 
 class AddNewClass extends Component {
   state = {

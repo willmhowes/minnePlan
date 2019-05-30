@@ -82,6 +82,7 @@ class FutureSession extends Component {
                 <Table.HeaderCell>Course Description</Table.HeaderCell>
                 <Table.HeaderCell>Course Status</Table.HeaderCell>
                 <Table.HeaderCell>Edit Course</Table.HeaderCell>
+                <Table.HeaderCell>Delete Course</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
 
