@@ -50,7 +50,7 @@ router.get('/future', (req, res) => {
 
 router.get('/current', (req, res) => {
   console.log('getting classes');
-  const classesQuery = `SELECT  "classes"."id", "class_name", "start_date", "end_date", "day_of_week","start_time", "end_time", "instructor_pay", "num_of_sessions", "student_cost", "description", "instructor_name", "instructor_email" FROM "classes"
+  const classesQuery = `SELECT  "classes"."id", "class_name", "start_date", "end_date", "day_of_week","start_time", "end_time", "instructor_pay", "num_of_sessions", "student_cost", "description", "instructor_name", "instructor_email", "building", "classroom_number", "preparation_status" FROM "classes"
                         JOIN "instructors" ON "classes"."instructor_ref" = "instructors"."id"
                         JOIN "sessions" ON "classes"."session_ref" = "sessions"."id"
                         WHERE "sessions"."session_status" = 'current'`;
