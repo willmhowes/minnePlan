@@ -65,7 +65,7 @@ class FutureSession extends Component {
               Yellow - pending response
             </li>
             <li>
-              Blue - needs permit
+              Violet - needs permit
             </li>
             <li>
               Orange - needs review
