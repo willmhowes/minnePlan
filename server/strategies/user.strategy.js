@@ -6,7 +6,6 @@ const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
 
 passport.serializeUser((userObj, done) => {
-  console.log('------ in serialize user ------');
   const { user, userGroup } = userObj;
   const identity = { id: user.id, userGroup };
   console.log(identity);
@@ -14,8 +13,6 @@ passport.serializeUser((userObj, done) => {
 });
 
 passport.deserializeUser((identity, done) => {
-  console.log('------ in deserialize user ------');
-
   const { id, userGroup } = identity;
 
   if (userGroup === 'instructor') {
