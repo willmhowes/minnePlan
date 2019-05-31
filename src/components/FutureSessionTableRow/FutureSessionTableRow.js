@@ -32,6 +32,7 @@ class FutureSessionTableRow extends Component {
       preparation_status: this.props.classes.preparation_status,
       preparation_message: this.props.classes.preparation_message,
     },
+    selectVal: '',
   }
 
   show = dimmer => () => this.setState({ dimmer, editOpen: true });
@@ -94,6 +95,13 @@ class FutureSessionTableRow extends Component {
     this.props.dispatch(action);
   }
 
+  select = (email) => {
+    this.setState(prevState => ({
+      selectVal: true,
+    }));
+    this.props.select(email);
+  }
+
   render() {
     const { deleteOpen, editOpen, dimmer } = this.state;
 
@@ -101,7 +109,10 @@ class FutureSessionTableRow extends Component {
       <>
         <Table.Row bgColor={this.bgColor(this.props.classes.preparation_status)}>
           <Table.Cell>
-            <Checkbox onClick={this.props.select} value={this.props.classes.instructor_email} />
+            <Checkbox
+              onClick={() => this.select(this.props.classes.instructor_email)}
+              checked={this.state.selectVal}
+            />
           </Table.Cell>
           <Table.Cell>{this.props.classes.instructor_name}</Table.Cell>
           <Table.Cell>{this.props.classes.instructor_email}</Table.Cell>

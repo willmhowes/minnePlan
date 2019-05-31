@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { takeLatest } from 'redux-saga/effects';
+import { takeLatest, put } from 'redux-saga/effects';
 
 function* sendEmailSaga(action) {
   console.log('Hit the sendEmailSaga', action);
@@ -7,6 +7,8 @@ function* sendEmailSaga(action) {
     // Attempt to get instructor
     const response = yield axios.post('/send/email', { email: action.payload });
     console.log(response);
+    const newAction = { type: 'GET_CLASSES', payload: response.data };
+    yield put(newAction);
   } catch (error) {
     console.log('Couldn\'t send email', error);
   }
