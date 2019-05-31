@@ -20,7 +20,6 @@ router.get('/', (req, res) => {
 });
 
 router.get('/classcount', (req, res) => {
-  const { id } = req.user;
   console.log('getting class count');
   const { id } = req.user;
   const countQuery = `SELECT COUNT("class_name"), "instructors"."instructor_name" FROM "instructors"
