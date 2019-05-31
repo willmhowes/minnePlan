@@ -22,7 +22,7 @@ class CurrentSessionTableRow extends Component {
       start_time: this.props.classes.start_time,
       end_time: this.props.classes.end_time,
       building: this.props.classes.building,
-      classroom_number: this.props.classes.classroom_number,
+      classroom: this.props.classes.classroom_number,
       num_of_sessions: this.props.classes.num_of_sessions,
       student_cost: this.props.classes.student_cost,
       instructor_pay: this.props.classes.instructor_pay,

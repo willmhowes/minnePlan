@@ -54,7 +54,7 @@ class FutureSession extends Component {
 
     return (
       <div className="page-container">
-        <pre>{JSON.stringify(this.state)}</pre>
+        {/* <pre>{JSON.stringify(this.state)}</pre> */}
         <div className="legend">
           <h3 className="colorLegend">Color Legend</h3>
           <ul className="legendList">
