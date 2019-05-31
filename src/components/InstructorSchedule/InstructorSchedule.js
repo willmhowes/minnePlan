@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Table } from 'semantic-ui-react';
+import { Table, Button } from 'semantic-ui-react';
 // import swal from 'sweetalert';
 import InstructorScheduleRow from './InstructorScheduleRow';
 
@@ -9,8 +9,14 @@ import InstructorScheduleRow from './InstructorScheduleRow';
 
 class InstructorSchedule extends Component {
   componentDidMount() {
+    window.history.replaceState(null, null, ' ');
     this.props.dispatch({ type: 'GET_INSTRUCTOR_SCHEDULE' });
     this.props.dispatch({ type: 'GET_CLASS_COUNT' });
+  }
+
+  logout = () => {
+    this.props.dispatch({ type: 'LOGOUT' });
+    this.props.history.push('/instructor_login');
   }
 
   render() {
@@ -46,6 +52,12 @@ class InstructorSchedule extends Component {
             </Table.Row>
           </Table.Footer>
         </Table>
+        <Button
+          type="button"
+          onClick={this.logout}
+        >
+          Logout
+        </Button>
       </div>
     );
   }
