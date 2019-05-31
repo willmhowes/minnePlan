@@ -26,9 +26,9 @@ class FutureSession extends Component {
 
   handleSelect = (event, { value }) => {
     console.log('in checkbox handler', value);
-    this.setState({
-      email: [...this.state.email, value],
-    });
+    this.setState(prevState => ({
+      email: [...prevState.email, value],
+    }));
   }
 
   sendEmailClick = () => {
@@ -46,7 +46,7 @@ class FutureSession extends Component {
   }
 
   handleChange = (event, { name, value }) => {
-    this.setState({ session: { ...this.state.session, [name]: value } });
+    this.setState(prevState => ({ session: { ...prevState.session, [name]: value } }));
   }
 
   render() {

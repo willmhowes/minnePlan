@@ -10,7 +10,10 @@ class Nav extends Component {
   }
 
   componentDidMount = () => {
-    this.setActiveItemFromUrl();
+    // Checks if a site_coodinator is logged in
+    if (this.props.user.userGroup === 'site_coordinator') {
+      this.setActiveItemFromUrl();
+    }
   }
 
   // Determine page being viewed and set active item in Navbar accordingly
@@ -61,11 +64,19 @@ class Nav extends Component {
 
     return (
       <div>
-        <Link to="/future-session" onClick={this.handleHeaderClick}>
-          <h2 className="nav-header">MinnePlan</h2>
-        </Link>
 
-        {this.props.user.id && (
+        {this.props.user.userGroup === 'site_coordinator' ? (
+          <Link to="/future-session" onClick={this.handleHeaderClick}>
+            <h2 className="nav-header">MinnePlan</h2>
+          </Link>
+        )
+          : (
+            <h2 className="nav-header">MinnePlan</h2>
+          )
+        }
+
+        {/* Checks if a site_coodinator is logged in */}
+        {this.props.user.userGroup === 'site_coordinator' && (
         <Menu fluid widths={6}>
           <Menu.Item
             value="view-instructors"

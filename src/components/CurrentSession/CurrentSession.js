@@ -18,9 +18,9 @@ class CurrentSession extends Component {
 
   handleSelect = (event, { value }) => {
     console.log('in checkbox handler', value);
-    this.setState({
-      idArray: [...this.state.idArray, value],
-    });
+    this.setState(prevState => ({
+      idArray: [...prevState.idArray, value],
+    }));
   }
 
   handleClick = () => {
