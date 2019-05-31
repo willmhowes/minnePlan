@@ -28,6 +28,7 @@ class CurrentSessionTableRow extends Component {
       instructor_pay: this.props.classes.instructor_pay,
       description: this.props.classes.description,
       preparation_status: this.props.classes.preparation_status,
+      preparation_message: this.props.classes.preparation_message,
     },
   }
 
