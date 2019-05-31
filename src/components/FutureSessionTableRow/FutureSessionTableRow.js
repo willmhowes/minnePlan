@@ -70,7 +70,7 @@ class FutureSessionTableRow extends Component {
     if (status === 'pending response') {
       return 'yellow';
     } if (status === 'needs permit') {
-      return 'blue';
+      return 'violet';
     } if (status === 'needs review') {
       return 'orange';
     } if (status === 'ready to transfer') {
