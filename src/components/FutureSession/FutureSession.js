@@ -24,10 +24,10 @@ class FutureSession extends Component {
     this.props.dispatch({ type: 'GET_YEARS' });
   }
 
-  handleSelect = (event, { value }) => {
-    console.log('in checkbox handler', value);
+  handleSelect = (email) => {
+    console.log('in checkbox handler', email);
     this.setState(prevState => ({
-      email: [...prevState.email, value],
+      email: [...prevState.email, email],
     }));
   }
 
@@ -54,7 +54,7 @@ class FutureSession extends Component {
 
     return (
       <div className="page-container">
-        {/* <pre>{JSON.stringify(this.state)}</pre> */}
+        <pre>{JSON.stringify(this.state)}</pre>
         <div className="legend">
           <h3 className="colorLegend">Color Legend</h3>
           <ul className="legendList">
@@ -94,15 +94,15 @@ class FutureSession extends Component {
                 <Table.HeaderCell>Course Name</Table.HeaderCell>
                 <Table.HeaderCell>
                 Start Date/
-                <br />
+                  <br />
                 End Date
-              </Table.HeaderCell>
+                </Table.HeaderCell>
                 <Table.HeaderCell>Day of the Week</Table.HeaderCell>
                 <Table.HeaderCell>
                 Start Time/
-                <br />
+                  <br />
                 End Time
-              </Table.HeaderCell>
+                </Table.HeaderCell>
                 <Table.HeaderCell>Building</Table.HeaderCell>
                 <Table.HeaderCell>Classroom</Table.HeaderCell>
                 <Table.HeaderCell>Num. of instances</Table.HeaderCell>

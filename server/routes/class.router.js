@@ -167,11 +167,10 @@ router.post('/copy', rejectUnauthenticated, async (req, res) => {
       await client.query('ROLLBACK');
       console.log('copying class to future session error', error);
       res.sendStatus(500);
-    } finally {
-      client.release();
-      res.sendStatus(200);
     }
   }));
+  client.release();
+  res.sendStatus(200);
 });
 
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
