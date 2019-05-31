@@ -11,9 +11,6 @@ router.get('/callback',
   },
   passport.authenticate('auth0'),
   (req, res) => {
-    // console.log('req.session -- ', req.session);
-    // console.log('req.session.returnTo -- ', req.session.returnTo);
-    console.log('req.user -- ', req.user);
     res.redirect('http://localhost:3000/instructor_parse');
   });
 
