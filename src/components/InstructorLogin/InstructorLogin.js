@@ -3,12 +3,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import auth0 from 'auth0-js';
 
-const { AUTH0_CLIENT_ID, AUTH0_DOMAIN, AUTH0_CALLBACK_URL } = process.env;
-
 const webAuth = new auth0.WebAuth({
-  clientID: AUTH0_CLIENT_ID || 'V54yGoqSS6zr4Gi38q4xh1Fw1kZhNQvQ',
-  domain: AUTH0_DOMAIN || 'dev-o06mn1qr.auth0.com',
-  redirectUri: AUTH0_CALLBACK_URL || 'http://localhost:5000/api/instructor/login/callback',
+  clientID: 'V54yGoqSS6zr4Gi38q4xh1Fw1kZhNQvQ',
+  domain: 'dev-o06mn1qr.auth0.com',
+  redirectUri: 'http://localhost:5000/api/instructor/login/callback',
   responseType: 'token id_token',
   scope: 'openid email',
 });

@@ -9,6 +9,7 @@ passport.serializeUser((userObj, done) => {
   console.log('------ in serialize user ------');
   const { user, userGroup } = userObj;
   const identity = { id: user.id, userGroup };
+  console.log(identity);
   done(null, identity);
 });
 
@@ -22,7 +23,8 @@ passport.deserializeUser((identity, done) => {
       .then((result) => {
         const user = result && result.rows && result.rows[0];
         if (user) {
-          done(null, user);
+          user.userGroup = userGroup; // add userGroup to user object
+          done(null, user); // done takes an error (null in this case) and a user
         } else {
         // user not found
         // done takes an error (null in this case) and a user (also null in this case)
@@ -41,10 +43,9 @@ passport.deserializeUser((identity, done) => {
       const user = result && result.rows && result.rows[0];
 
       if (user) {
-      // user found
         delete user.password; // remove password so it doesn't get sent
-        // done takes an error (null in this case) and a user
-        done(null, user);
+        user.userGroup = userGroup; // add userGroup to user object
+        done(null, user); // done takes an error (null in this case) and a user
       } else {
       // user not found
       // done takes an error (null in this case) and a user (also null in this case)
