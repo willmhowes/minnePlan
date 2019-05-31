@@ -54,7 +54,7 @@ class FutureSession extends Component {
 
     return (
       <div className="page-container">
-        <pre>{JSON.stringify(this.state)}</pre>
+        {/* <pre>{JSON.stringify(this.state)}</pre> */}
         <div className="legend">
           <h3 className="colorLegend">Color Legend</h3>
           <ul className="legendList">
@@ -92,11 +92,17 @@ class FutureSession extends Component {
                 <Table.HeaderCell>Instructor Name</Table.HeaderCell>
                 <Table.HeaderCell>Instructor Email</Table.HeaderCell>
                 <Table.HeaderCell>Course Name</Table.HeaderCell>
-                <Table.HeaderCell>Start Date</Table.HeaderCell>
-                <Table.HeaderCell>End Date</Table.HeaderCell>
+                <Table.HeaderCell>
+                Start Date/
+                <br />
+                End Date
+              </Table.HeaderCell>
                 <Table.HeaderCell>Day of the Week</Table.HeaderCell>
-                <Table.HeaderCell>Start Time</Table.HeaderCell>
-                <Table.HeaderCell>End Time</Table.HeaderCell>
+                <Table.HeaderCell>
+                Start Time/
+                <br />
+                End Time
+              </Table.HeaderCell>
                 <Table.HeaderCell>Building</Table.HeaderCell>
                 <Table.HeaderCell>Classroom</Table.HeaderCell>
                 <Table.HeaderCell>Num. of instances</Table.HeaderCell>
@@ -104,6 +110,7 @@ class FutureSession extends Component {
                 <Table.HeaderCell>Instructor Rate</Table.HeaderCell>
                 <Table.HeaderCell>Course Description</Table.HeaderCell>
                 <Table.HeaderCell>Course Status</Table.HeaderCell>
+                <Table.HeaderCell>Feedback</Table.HeaderCell>
                 <Table.HeaderCell>Edit Course</Table.HeaderCell>
                 <Table.HeaderCell>Delete Course</Table.HeaderCell>
               </Table.Row>
