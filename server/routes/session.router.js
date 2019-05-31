@@ -51,9 +51,9 @@ router.put('/', rejectUnauthenticated, async (req, res) => {
   const newSession = 'INSERT INTO "sessions" ("coordinator_ref", "season", "year", "session_status") VALUES (1, $1, $2, \'planning\');';
   try {
     await client.query('BEGIN');
-    const updateCurrent = await client.query(updateCurrentSession);
-    const updateFuture = await client.query(updateFutureSession);
-    const createNew = await client.query(newSession, [req.body.season, req.body.year]);
+    await client.query(updateCurrentSession);
+    await client.query(updateFutureSession);
+    await client.query(newSession, [req.body.season, req.body.year]);
     await client.query('COMMIT');
   } catch (error) {
     await client.query('ROLLBACK');
