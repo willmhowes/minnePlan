@@ -38,7 +38,7 @@ class FutureSessionTableRow extends Component {
 
   closeEdit = () => {
     this.setState({ editOpen: false });
-    const action = { type: 'UPDATE_CLASS_ROW', payload: this.state.classRow };
+    const action = { type: 'UPDATE_CLASS_ROW', payload: this.state };
     console.log(action);
     this.props.dispatch(action);
   }
