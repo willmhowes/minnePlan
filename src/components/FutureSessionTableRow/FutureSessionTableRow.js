@@ -24,11 +24,11 @@ class FutureSessionTableRow extends Component {
       end_time: this.props.classes.end_time,
       building: this.props.classes.building,
       classroom: this.props.classes.classroom_number,
-      num_of_instances: this.props.classes.numInstances,
+      num_of_sessions: this.props.classes.num_of_sessions,
       student_cost: this.props.classes.student_cost,
       instructor_pay: this.props.classes.instructor_pay,
       description: this.props.classes.description,
-      course_status: this.props.classes.preparation_status,
+      preparation_status: this.props.classes.preparation_status,
     },
   }
 
@@ -104,11 +104,21 @@ class FutureSessionTableRow extends Component {
           <Table.Cell>{this.props.classes.instructor_name}</Table.Cell>
           <Table.Cell>{this.props.classes.instructor_email}</Table.Cell>
           <Table.Cell>{this.props.classes.class_name}</Table.Cell>
-          <Table.Cell>{moment(this.props.classes.start_date).format('MM/DD/YYYY')}</Table.Cell>
-          <Table.Cell>{moment(this.props.classes.end_date).format('MM/DD/YYYY')}</Table.Cell>
+          <Table.Cell textAlign="center">
+            {moment(this.props.classes.start_date).format('l')}
+            <br />
+            to
+            <br />
+            {moment(this.props.classes.end_date).format('l')}
+          </Table.Cell>
           <Table.Cell>{this.props.classes.day_of_week}</Table.Cell>
-          <Table.Cell>{this.props.classes.start_time}</Table.Cell>
-          <Table.Cell>{this.props.classes.end_time}</Table.Cell>
+          <Table.Cell textAlign="center">
+            {this.props.classes.start_time}
+            <br />
+            /
+            <br />
+            {this.props.classes.end_time}
+          </Table.Cell>
           <Table.Cell>{this.props.classes.building}</Table.Cell>
           <Table.Cell>{this.props.classes.classroom_number}</Table.Cell>
           <Table.Cell>{this.props.classes.num_of_sessions}</Table.Cell>
@@ -116,6 +126,7 @@ class FutureSessionTableRow extends Component {
           <Table.Cell>{this.props.classes.instructor_pay}</Table.Cell>
           <Table.Cell>{this.props.classes.description}</Table.Cell>
           <Table.Cell>{this.props.classes.preparation_status}</Table.Cell>
+          <Table.Cell>{this.props.classes.preparation_message}</Table.Cell>
           <Table.Cell><Button><Icon name="edit" onClick={this.show(true)} /></Button></Table.Cell>
           <Table.Cell><Button><Icon name="trash" onClick={this.showDelete(true)} /></Button></Table.Cell>
         </Table.Row>
@@ -136,6 +147,7 @@ class FutureSessionTableRow extends Component {
                     onChange={this.handleChange('instructor_email')}
                     placeholder="Email"
                     defaultValue={this.props.classes.instructor_email}
+                    disabled
                   />
                 </Form.Group>
                 <Form.Group>
@@ -166,6 +178,12 @@ class FutureSessionTableRow extends Component {
                     onChange={this.handleChange('day_of_week')}
                     placeholder="Day of Week"
                     defaultValue={this.props.classes.day_of_week}
+                  />
+                  <Form.Input
+                    label="Num of Instances"
+                    onChange={this.handleChange('num_of_sessions')}
+                    placeholder="Num of Instances"
+                    defaultValue={this.props.classes.num_of_sessions}
                   />
                 </Form.Group>
                 <Form.Group>
@@ -198,10 +216,16 @@ class FutureSessionTableRow extends Component {
                 </Form.Group>
                 <Form.Group>
                   <Form.Input
-                    label="Course Status"
-                    onChange={this.handleChange('preparation_status')}
-                    placeholder="Course Status"
-                    defaultValue={this.props.classes.preparation_status}
+                    label="Building"
+                    onChange={this.handleChange('building')}
+                    placeholder="Building"
+                    defaultValue={this.props.classes.building}
+                  />
+                  <Form.Input
+                    label="Classroom"
+                    onChange={this.handleChange('classroom')}
+                    placeholder="Classroom"
+                    defaultValue={this.props.classes.classroom_number}
                   />
                 </Form.Group>
                 <Form.Group>
@@ -210,6 +234,20 @@ class FutureSessionTableRow extends Component {
                     onChange={this.handleChange('description')}
                     placeholder="Description"
                     defaultValue={this.props.classes.description}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Input
+                    label="Course Status"
+                    onChange={this.handleChange('preparation_status')}
+                    placeholder="Course Status"
+                    defaultValue={this.props.classes.preparation_status}
+                  />
+                  <Form.Input
+                    label="Feedback"
+                    onChange={this.handleChange('preparation_message')}
+                    placeholder="Feedback"
+                    defaultValue={this.props.classes.preparation_message}
                   />
                 </Form.Group>
               </Form>

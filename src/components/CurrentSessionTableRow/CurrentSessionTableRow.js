@@ -22,12 +22,12 @@ class CurrentSessionTableRow extends Component {
       start_time: this.props.classes.start_time,
       end_time: this.props.classes.end_time,
       building: this.props.classes.building,
-      classroom: this.props.classes.classroom_number,
-      num_of_instances: this.props.classes.numInstances,
+      classroom_number: this.props.classes.classroom_number,
+      num_of_sessions: this.props.classes.num_of_sessions,
       student_cost: this.props.classes.student_cost,
       instructor_pay: this.props.classes.instructor_pay,
       description: this.props.classes.description,
-      course_status: this.props.classes.preparation_status,
+      preparation_status: this.props.classes.preparation_status,
     },
   }
 
@@ -159,6 +159,12 @@ class CurrentSessionTableRow extends Component {
                     onChange={this.handleChange('day_of_week')}
                     placeholder="Day of Week"
                     defaultValue={this.props.classes.day_of_week}
+                  />
+                  <Form.Input
+                    label="Num of Instances"
+                    onChange={this.handleChange('num_of_sessions')}
+                    placeholder="Num of Instances"
+                    defaultValue={this.props.classes.num_of_sessions}
                   />
                 </Form.Group>
                 <Form.Group>
