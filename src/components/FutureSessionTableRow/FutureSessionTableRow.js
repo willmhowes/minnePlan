@@ -128,8 +128,8 @@ class FutureSessionTableRow extends Component {
           <Table.Cell>{this.props.classes.description}</Table.Cell>
           <Table.Cell>{this.props.classes.preparation_status}</Table.Cell>
           <Table.Cell>{this.props.classes.preparation_message}</Table.Cell>
-          <Table.Cell><Button><Icon name="edit" onClick={this.show(true)} /></Button></Table.Cell>
-          <Table.Cell><Button><Icon name="trash" onClick={this.showDelete(true)} /></Button></Table.Cell>
+          <Table.Cell><Button onClick={this.show(true)}><Icon name="edit" /></Button></Table.Cell>
+          <Table.Cell><Button onClick={this.showDelete(true)}><Icon name="trash" /></Button></Table.Cell>
         </Table.Row>
         <Modal dimmer={dimmer} open={editOpen} onClose={this.close}>
           <Modal.Header>Edit Class</Modal.Header>
