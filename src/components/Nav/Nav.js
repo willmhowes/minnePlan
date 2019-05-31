@@ -65,15 +65,13 @@ class Nav extends Component {
     return (
       <div>
 
-        {this.props.user.userGroup === 'instructor' ? (
-          <Link to="/instructor_parse" onClick={this.handleHeaderClick}>
+        {this.props.user.userGroup === 'site_coordinator' ? (
+          <Link to="/future-session" onClick={this.handleHeaderClick}>
             <h2 className="nav-header">MinnePlan</h2>
           </Link>
         )
           : (
-            <Link to="/future-session" onClick={this.handleHeaderClick}>
-              <h2 className="nav-header">MinnePlan</h2>
-            </Link>
+            <h2 className="nav-header">MinnePlan</h2>
           )
         }
 
