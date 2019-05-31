@@ -10,7 +10,7 @@ CREATE TABLE "site_coordinators" (
   "id" SERIAL PRIMARY KEY,
   "user_ref" INT REFERENCES "user",
   "coordinator_name" VARCHAR (80),
-  "coordinator_email" VARCHAR (80)
+  "coordinator_email" VARCHAR (80) UNIQUE
 );
 
 CREATE TABLE "seasons" (
