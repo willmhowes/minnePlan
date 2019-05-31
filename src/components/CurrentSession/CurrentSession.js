@@ -52,11 +52,15 @@ class CurrentSession extends Component {
                 <br />
                 End Time
               </Table.HeaderCell>
-              <Table.HeaderCell>Building</Table.HeaderCell>
-              <Table.HeaderCell>Classroom</Table.HeaderCell>
+              <Table.HeaderCell>
+                Building/
+                <br />
+                Classroom
+              </Table.HeaderCell>
               <Table.HeaderCell>Num. of instances</Table.HeaderCell>
               <Table.HeaderCell>Course Rate</Table.HeaderCell>
               <Table.HeaderCell>Instructor Rate</Table.HeaderCell>
+              <Table.HeaderCell>Materials Cost</Table.HeaderCell>
               <Table.HeaderCell>Course Description</Table.HeaderCell>
               <Table.HeaderCell>Edit Course</Table.HeaderCell>
               <Table.HeaderCell>Delete Course</Table.HeaderCell>

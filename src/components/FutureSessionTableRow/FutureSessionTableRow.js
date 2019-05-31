@@ -27,6 +27,7 @@ class FutureSessionTableRow extends Component {
       num_of_sessions: this.props.classes.num_of_sessions,
       student_cost: this.props.classes.student_cost,
       instructor_pay: this.props.classes.instructor_pay,
+      materials_cost: this.props.classes.materials_cost,
       description: this.props.classes.description,
       preparation_status: this.props.classes.preparation_status,
       preparation_message: this.props.classes.preparation_message,
@@ -120,11 +121,17 @@ class FutureSessionTableRow extends Component {
             <br />
             {this.props.classes.end_time}
           </Table.Cell>
-          <Table.Cell>{this.props.classes.building}</Table.Cell>
-          <Table.Cell>{this.props.classes.classroom_number}</Table.Cell>
+          <Table.Cell textAlign="center">
+            {this.props.classes.building}
+            <br />
+             /
+            <br />
+            {this.props.classes.classroom_number}
+          </Table.Cell>
           <Table.Cell>{this.props.classes.num_of_sessions}</Table.Cell>
           <Table.Cell>{this.props.classes.student_cost}</Table.Cell>
           <Table.Cell>{this.props.classes.instructor_pay}</Table.Cell>
+          <Table.Cell>{this.props.classes.materials_cost}</Table.Cell>
           <Table.Cell>{this.props.classes.description}</Table.Cell>
           <Table.Cell>{this.props.classes.preparation_status}</Table.Cell>
           <Table.Cell>{this.props.classes.preparation_message}</Table.Cell>
@@ -213,6 +220,12 @@ class FutureSessionTableRow extends Component {
                     onChange={this.handleChange('instructor_pay')}
                     placeholder="Instructor Pay"
                     defaultValue={this.props.classes.instructor_pay}
+                  />
+                  <Form.Input
+                    label="Material Cost"
+                    onChange={this.handleChange('materials_cost')}
+                    placeholder="Material Cost"
+                    defaultValue={this.props.classes.materials_cost}
                   />
                 </Form.Group>
                 <Form.Group>

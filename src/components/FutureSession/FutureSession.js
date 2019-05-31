@@ -58,25 +58,25 @@ class FutureSession extends Component {
         <div className="legend">
           <h3 className="colorLegend">Color Legend</h3>
           <ul className="legendList">
-            <li>
+            <li className="white">
               White - No Status
             </li>
-            <li>
+            <li className="yellow">
               Yellow - pending response
             </li>
-            <li>
+            <li className="violet">
               Violet - needs permit
             </li>
-            <li>
+            <li className="orange">
               Orange - needs review
             </li>
-            <li>
+            <li className="green">
               Green - ready to transfer
             </li>
-            <li>
+            <li className="red">
               Red - no instructor
             </li>
-            <li>
+            <li className="grey">
               Grey - transfered to eleyo
             </li>
           </ul>
@@ -103,11 +103,16 @@ class FutureSession extends Component {
                 <br />
                 End Time
               </Table.HeaderCell>
-                <Table.HeaderCell>Building</Table.HeaderCell>
-                <Table.HeaderCell>Classroom</Table.HeaderCell>
+                <Table.HeaderCell>
+                  Building/
+                  <br />
+                  Classroom
+                </Table.HeaderCell>
+
                 <Table.HeaderCell>Num. of instances</Table.HeaderCell>
                 <Table.HeaderCell>Course Rate</Table.HeaderCell>
                 <Table.HeaderCell>Instructor Rate</Table.HeaderCell>
+                <Table.HeaderCell>Materials Cost</Table.HeaderCell>
                 <Table.HeaderCell>Course Description</Table.HeaderCell>
                 <Table.HeaderCell>Course Status</Table.HeaderCell>
                 <Table.HeaderCell>Feedback</Table.HeaderCell>
