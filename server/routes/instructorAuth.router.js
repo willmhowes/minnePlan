@@ -11,7 +11,7 @@ router.get('/callback',
   },
   passport.authenticate('auth0'),
   (req, res) => {
-    res.redirect('http://localhost:3000/instructor_parse');
+    res.redirect('http://localhost:3000/instructor-schedule');
   });
 
 module.exports = router;
