@@ -108,7 +108,18 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   // Not able to update instructor currently
   const queryText = 'UPDATE "classes" SET "class_name" = $1, "start_date" = $2, "end_date" = $3, "day_of_week" = $4, "start_time" = $5, "student_cost" = $6, "instructor_pay" = $7, "end_time" = $8, "preparation_status" = $9, "description" = $10 WHERE "id" = $11;';
   pool.query(queryText,
-    [className, startDate, endDate, weekDay, startTime, classCost, instructorPay, endTime, status, description, id])
+    [
+      className,
+      startDate,
+      endDate,
+      weekDay,
+      startTime,
+      classCost,
+      instructorPay,
+      endTime,
+      status,
+      description,
+      id])
     .then((result) => {
       res.sendStatus(200);
       console.log('back from database', result);

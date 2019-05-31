@@ -27,7 +27,7 @@ class FutureSessionTableRow extends Component {
       student_cost: this.props.classes.student_cost,
       instructor_pay: this.props.classes.instructor_pay,
       description: this.props.classes.description,
-      course_status: this.props.classes.preparation_status,
+      preparation_status: this.props.classes.preparation_status,
     },
   }
 
