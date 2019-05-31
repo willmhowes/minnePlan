@@ -97,7 +97,7 @@ class FutureSessionTableRow extends Component {
 
     return (
       <>
-        <Table.Row>
+        <Table.Row bgColor={this.bgColor(this.props.classes.preparation_status)}>
           <Table.Cell>
             <Checkbox onClick={this.props.select} value={this.props.classes.instructor_email} />
           </Table.Cell>
