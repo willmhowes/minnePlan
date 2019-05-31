@@ -153,14 +153,17 @@ router.post('/copy', rejectUnauthenticated, async (req, res) => {
         getSql.rows[0].materials_cost,
         getSql.rows[0].building,
       ];
-      const postSql = await client.query(sqlText, copyData);
+      await client.query(sqlText, copyData);
       await client.query('COMMIT');
     } catch (error) {
       await client.query('ROLLBACK');
       console.log('copying class to future session error', error);
+      res.sendStatus(500);
+    } finally {
+      client.release();
+      res.sendStatus(200);
     }
   }));
-  client.release();
 });
 
 router.delete('/:id', rejectUnauthenticated, (req, res) => {

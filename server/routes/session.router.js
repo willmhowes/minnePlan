@@ -58,8 +58,10 @@ router.put('/', rejectUnauthenticated, async (req, res) => {
   } catch (error) {
     await client.query('ROLLBACK');
     console.log('error creating new session', error);
+    res.sendStatus(500);
   } finally {
     client.release();
+    res.sendStatus(200);
   }
 });
 
