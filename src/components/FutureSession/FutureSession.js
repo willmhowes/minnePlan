@@ -64,13 +64,13 @@ class FutureSession extends Component {
             <li className="yellow">
               Yellow - pending response
             </li>
-            <li className="violet">
-              Violet - needs permit
+            <li className="teal">
+              Teal - needs permit
             </li>
             <li className="orange">
               Orange - needs review
             </li>
-            <li className="green">
+            <li className="olive">
               Green - ready to transfer
             </li>
             <li className="red">
@@ -94,15 +94,15 @@ class FutureSession extends Component {
                 <Table.HeaderCell>Course Name</Table.HeaderCell>
                 <Table.HeaderCell>
                 Start Date/
-                <br />
+                  <br />
                 End Date
-              </Table.HeaderCell>
+                </Table.HeaderCell>
                 <Table.HeaderCell>Day of the Week</Table.HeaderCell>
                 <Table.HeaderCell>
                 Start Time/
-                <br />
+                  <br />
                 End Time
-              </Table.HeaderCell>
+                </Table.HeaderCell>
                 <Table.HeaderCell>
                   Building/
                   <br />

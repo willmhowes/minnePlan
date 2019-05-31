@@ -72,13 +72,13 @@ class FutureSessionTableRow extends Component {
     if (status === 'pending response') {
       return 'yellow';
     } if (status === 'needs permit') {
-      return 'violet';
+      return 'teal';
     } if (status === 'needs review') {
       return 'orange';
     } if (status === 'ready to transfer') {
-      return 'green';
+      return 'darkgreen';
     } if (status === 'no instructor') {
-      return 'red';
+      return 'darkred';
     } if (status === 'transfered to eleyo') {
       return 'grey';
     } return 'white';
