@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {
-  Table, Checkbox, Icon, Modal, Button, Form, Select,
+  Table, Checkbox, Icon, Modal, Button, Form,
 } from 'semantic-ui-react';
 // import swal from 'sweetalert';
 
@@ -11,7 +11,8 @@ const moment = require('moment');
 class FutureSessionTableRow extends Component {
   state = {
     classRow: {
-      open: false,
+      deleteOpen: false,
+      editOpen: false,
       id: this.props.classes.id,
       instructor_name: this.props.classes.instructor_name,
       instructor_email: this.props.classes.instructor_email,
@@ -23,7 +24,7 @@ class FutureSessionTableRow extends Component {
       end_time: this.props.classes.end_time,
       building: this.props.classes.building,
       classroom: this.props.classes.classroom_number,
-      num_of_instances: this.props.classes.numInstances,
+      num_of_sessions: this.props.classes.num_of_sessions,
       student_cost: this.props.classes.student_cost,
       instructor_pay: this.props.classes.instructor_pay,
       description: this.props.classes.description,
@@ -31,12 +32,25 @@ class FutureSessionTableRow extends Component {
     },
   }
 
-  show = dimmer => () => this.setState({ dimmer, open: true });
+  show = dimmer => () => this.setState({ dimmer, editOpen: true });
 
-  close = () => {
-    this.setState({ open: false });
+  showDelete = dimmer => () => this.setState({ dimmer, deleteOpen: true });
+
+  closeEdit = () => {
+    this.setState({ editOpen: false });
     const action = { type: 'UPDATE_CLASS_ROW', payload: this.state };
     console.log(action);
+    this.props.dispatch(action);
+  }
+
+  close = () => {
+    this.setState({ deleteOpen: false });
+  }
+
+  closeDelete = () => {
+    this.setState({ deleteOpen: false });
+    const action = { type: 'DELETE_CLASS', payload: this.state.classRow.id };
+    console.log('deleting class', action);
     this.props.dispatch(action);
   }
 
@@ -79,20 +93,32 @@ class FutureSessionTableRow extends Component {
   }
 
   render() {
-    const { open, dimmer } = this.state;
+    const { deleteOpen, editOpen, dimmer } = this.state;
 
     return (
       <>
-        <Table.Row bgcolor={this.bgColor(this.props.classes.preparation_status)}>
-          <Table.Cell><Checkbox disabled /></Table.Cell>
+        <Table.Row>
+          <Table.Cell>
+            <Checkbox onClick={this.props.select} value={this.props.classes.instructor_email} />
+          </Table.Cell>
           <Table.Cell>{this.props.classes.instructor_name}</Table.Cell>
           <Table.Cell>{this.props.classes.instructor_email}</Table.Cell>
           <Table.Cell>{this.props.classes.class_name}</Table.Cell>
-          <Table.Cell>{moment(this.props.classes.start_date).calendar()}</Table.Cell>
-          <Table.Cell>{moment(this.props.classes.end_date).calendar()}</Table.Cell>
+          <Table.Cell textAlign="center">
+            {moment(this.props.classes.start_date).format('l')}
+            <br />
+            to
+            <br />
+            {moment(this.props.classes.end_date).format('l')}
+          </Table.Cell>
           <Table.Cell>{this.props.classes.day_of_week}</Table.Cell>
-          <Table.Cell>{this.props.classes.start_time}</Table.Cell>
-          <Table.Cell>{this.props.classes.end_time}</Table.Cell>
+          <Table.Cell textAlign="center">
+            {this.props.classes.start_time}
+            <br />
+            /
+            <br />
+            {this.props.classes.end_time}
+          </Table.Cell>
           <Table.Cell>{this.props.classes.building}</Table.Cell>
           <Table.Cell>{this.props.classes.classroom_number}</Table.Cell>
           <Table.Cell>{this.props.classes.num_of_sessions}</Table.Cell>
@@ -100,9 +126,11 @@ class FutureSessionTableRow extends Component {
           <Table.Cell>{this.props.classes.instructor_pay}</Table.Cell>
           <Table.Cell>{this.props.classes.description}</Table.Cell>
           <Table.Cell>{this.props.classes.preparation_status}</Table.Cell>
-          <Table.Cell><Icon name="edit" onClick={this.show(true)} /></Table.Cell>
+          <Table.Cell>{this.props.classes.preparation_message}</Table.Cell>
+          <Table.Cell><Button><Icon name="edit" onClick={this.show(true)} /></Button></Table.Cell>
+          <Table.Cell><Button><Icon name="trash" onClick={this.showDelete(true)} /></Button></Table.Cell>
         </Table.Row>
-        <Modal dimmer={dimmer} open={open} onClose={this.close}>
+        <Modal dimmer={dimmer} open={editOpen} onClose={this.close}>
           <Modal.Header>Edit Class</Modal.Header>
           <Modal.Content>
             <Modal.Description>
@@ -119,6 +147,7 @@ class FutureSessionTableRow extends Component {
                     onChange={this.handleChange('instructor_email')}
                     placeholder="Email"
                     defaultValue={this.props.classes.instructor_email}
+                    disabled
                   />
                 </Form.Group>
                 <Form.Group>
@@ -149,6 +178,12 @@ class FutureSessionTableRow extends Component {
                     onChange={this.handleChange('day_of_week')}
                     placeholder="Day of Week"
                     defaultValue={this.props.classes.day_of_week}
+                  />
+                  <Form.Input
+                    label="Num of Instances"
+                    onChange={this.handleChange('num_of_sessions')}
+                    placeholder="Num of Instances"
+                    defaultValue={this.props.classes.num_of_sessions}
                   />
                 </Form.Group>
                 <Form.Group>
@@ -181,10 +216,16 @@ class FutureSessionTableRow extends Component {
                 </Form.Group>
                 <Form.Group>
                   <Form.Input
-                    label="Course Status"
-                    onChange={this.handleChange('preparation_status')}
-                    placeholder="Course Status"
-                    defaultValue={this.props.classes.preparation_status}
+                    label="Building"
+                    onChange={this.handleChange('building')}
+                    placeholder="Building"
+                    defaultValue={this.props.classes.building}
+                  />
+                  <Form.Input
+                    label="Classroom"
+                    onChange={this.handleChange('classroom')}
+                    placeholder="Classroom"
+                    defaultValue={this.props.classes.classroom_number}
                   />
                 </Form.Group>
                 <Form.Group>
@@ -193,6 +234,20 @@ class FutureSessionTableRow extends Component {
                     onChange={this.handleChange('description')}
                     placeholder="Description"
                     defaultValue={this.props.classes.description}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Input
+                    label="Course Status"
+                    onChange={this.handleChange('preparation_status')}
+                    placeholder="Course Status"
+                    defaultValue={this.props.classes.preparation_status}
+                  />
+                  <Form.Input
+                    label="Feedback"
+                    onChange={this.handleChange('preparation_message')}
+                    placeholder="Feedback"
+                    defaultValue={this.props.classes.preparation_message}
                   />
                 </Form.Group>
               </Form>
@@ -204,7 +259,34 @@ class FutureSessionTableRow extends Component {
               icon="checkmark"
               labelPosition="right"
               content="Update"
-              onClick={this.close}
+              onClick={this.closeEdit}
+            />
+          </Modal.Actions>
+        </Modal>
+        <Modal dimmer={dimmer} open={deleteOpen} onClose={this.close}>
+          <Modal.Header>Delete Class</Modal.Header>
+          <Modal.Content image>
+            <Modal.Description>
+              <p>
+                Are you sure you want to delete
+                {' '}
+                {this.props.classes.class_name}
+                {' '}
+                on
+                {this.props.classes.day_of_week}
+              </p>
+            </Modal.Description>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button color="black" onClick={this.close}>
+              Do not delete class
+            </Button>
+            <Button
+              positive
+              icon="checkmark"
+              labelPosition="right"
+              content="Delete class"
+              onClick={this.closeDelete}
             />
           </Modal.Actions>
         </Modal>

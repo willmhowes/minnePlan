@@ -19,7 +19,7 @@ class InstructorScheduleRow extends Component {
       checked: true,
       classBackground: 'green',
     });
-    this.props.dispatch({ type: 'REVIEWED_CLASS', payload: { reason: 'CONFIRMED', status: 'needs_permit', id: this.props.schedule.id } });
+    this.props.dispatch({ type: 'REVIEWED_CLASS', payload: { reason: 'CONFIRMED', status: 'needs permit', id: this.props.schedule.id } });
   }
 
   declinedClass = () => {
@@ -28,7 +28,7 @@ class InstructorScheduleRow extends Component {
     })
       .then((value) => {
         swal(`Your reason is: ${value}`);
-        this.props.dispatch({ type: 'REVIEWED_CLASS', payload: { reason: value, status: 'needs_review', id: this.props.schedule.id } });
+        this.props.dispatch({ type: 'REVIEWED_CLASS', payload: { reason: value, status: 'needs review', id: this.props.schedule.id } });
         this.setState({
           classStatus: 'Denied',
           checked: true,
