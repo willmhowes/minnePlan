@@ -8,8 +8,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   console.log(req.body);
   const newClass = req.body;
   const queryText = `INSERT INTO "classes"(session_ref, instructor_ref, class_name, day_of_week, start_date,
-                      end_date, start_time, end_time, student_cost, instructor_pay, description, num_of_sessions, building, classroom_number)
-                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14);`;
+                      end_date, start_time, end_time, student_cost, instructor_pay, description, num_of_sessions, building, classroom_number, materials_cost)
+                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);`;
   const queryValues = [
     newClass.session,
     newClass.instructorRef,
@@ -25,6 +25,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     newClass.numInstances,
     newClass.building,
     newClass.classroom,
+    newClass.materialsCost,
   ];
   pool.query(queryText, queryValues)
     .then(() => { res.sendStatus(201); })
@@ -36,7 +37,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 router.get('/future', (req, res) => {
   console.log('getting classes');
-  const classesQuery = `SELECT  "classes"."id", "class_name", "start_date", "end_date", "day_of_week","start_time", "end_time", "instructor_pay", "num_of_sessions", "student_cost", "description", "instructor_name", "instructor_email", "building", "classroom_number", "preparation_status", "preparation_message" FROM "classes"
+  const classesQuery = `SELECT  "classes"."id", "class_name", "start_date", "end_date", "day_of_week","start_time", "end_time", "instructor_pay", "num_of_sessions", "student_cost", "description", "instructor_name", "instructor_email", "building", "classroom_number", "preparation_status", "preparation_message", "materials_cost" FROM "classes"
                         JOIN "instructors" ON "classes"."instructor_ref" = "instructors"."id"
                         JOIN "sessions" ON "classes"."session_ref" = "sessions"."id"
                         WHERE "sessions"."session_status" = 'planning'`;
@@ -50,7 +51,7 @@ router.get('/future', (req, res) => {
 
 router.get('/current', (req, res) => {
   console.log('getting classes');
-  const classesQuery = `SELECT  "classes"."id", "class_name", "start_date", "end_date", "day_of_week","start_time", "end_time", "instructor_pay", "num_of_sessions", "student_cost", "description", "instructor_name", "instructor_email", "building", "classroom_number", "preparation_status" FROM "classes"
+  const classesQuery = `SELECT  "classes"."id", "class_name", "start_date", "end_date", "day_of_week","start_time", "end_time", "instructor_pay", "num_of_sessions", "student_cost", "description", "instructor_name", "instructor_email", "building", "classroom_number", "preparation_status", "preparation_message", "materials_cost" FROM "classes"
                         JOIN "instructors" ON "classes"."instructor_ref" = "instructors"."id"
                         JOIN "sessions" ON "classes"."session_ref" = "sessions"."id"
                         WHERE "sessions"."session_status" = 'current'`;
@@ -109,8 +110,9 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   const building = req.body.classRow.building;
   const classroom = req.body.classRow.classroom;
   const numInstances = req.body.classRow.num_of_sessions;
+  const materialsCost = req.body.classRow.materials_cost;
   // Not able to update instructor currently
-  const queryText = 'UPDATE "classes" SET "class_name" = $1, "start_date" = $2, "end_date" = $3, "day_of_week" = $4, "start_time" = $5, "student_cost" = $6, "instructor_pay" = $7, "end_time" = $8, "preparation_status" = $9, "preparation_message" = $10, "description" = $11, "building" = $12, "classroom_number" = $13, "num_of_sessions" = $14 WHERE "id" = $15;';
+  const queryText = 'UPDATE "classes" SET "class_name" = $1, "start_date" = $2, "end_date" = $3, "day_of_week" = $4, "start_time" = $5, "student_cost" = $6, "instructor_pay" = $7, "end_time" = $8, "preparation_status" = $9, "preparation_message" = $10, "description" = $11, "building" = $12, "classroom_number" = $13, "num_of_sessions" = $14, "materials_cost" = $15 WHERE "id" = $15;';
   pool.query(queryText,
     [
       className,
@@ -127,6 +129,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
       building,
       classroom,
       numInstances,
+      materialsCost,
       id,
     ])
     .then((result) => {

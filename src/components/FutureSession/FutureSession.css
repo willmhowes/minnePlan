@@ -12,6 +12,7 @@
   padding-left: 10px;
   margin-left: 5px;
   margin-top: 10px;
+  background: black;
 }
 
 .colorLegend {
@@ -23,4 +24,32 @@
 
 .page-container {
   width: 100%;
+}
+
+.white {
+  color: white
+}
+
+.yellow {
+  color: yellow;
+}
+
+.violet {
+  color: violet
+}
+
+.orange {
+  color: orange
+}
+
+.green {
+  color: green
+}
+
+.red {
+  color: red
+}
+
+.grey {
+  color: grey
 }
