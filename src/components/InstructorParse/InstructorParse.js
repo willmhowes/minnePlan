@@ -7,11 +7,22 @@ class InstructorParse extends Component {
     window.history.replaceState(null, null, ' ');
   }
 
+  logout = () => {
+    this.props.dispatch({ type: 'LOGOUT' });
+    this.props.history.push('/instructor_login');
+  }
+
   render() {
     return (
       <div>
         <h1>This is the parsing page</h1>
         {/* {JSON.stringify(this.state)} */}
+        <button
+          type="button"
+          onClick={this.logout}
+        >
+          Logout
+        </button>
       </div>
     );
   }
