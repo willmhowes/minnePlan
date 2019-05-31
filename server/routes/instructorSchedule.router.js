@@ -40,7 +40,7 @@ router.put('/', (req, res) => {
   const reason = req.body.reason;
   const status = req.body.status;
   const queryText = 'UPDATE "classes" SET "preparation_status" = $1, "preparation_message" = $2 WHERE "id" = $3;';
-  pool.query(queryText, [reason, status, id])
+  pool.query(queryText, [status, reason, id])
     .then((result) => {
       res.sendStatus(200);
       console.log('back from database after updating class', result);
