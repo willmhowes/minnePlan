@@ -12,6 +12,8 @@ class InstructorSchedule extends Component {
     window.history.replaceState(null, null, ' ');
     this.props.dispatch({ type: 'GET_INSTRUCTOR_SCHEDULE' });
     this.props.dispatch({ type: 'GET_CLASS_COUNT' });
+    this.props.dispatch({ type: 'GET_SEASONS' });
+    this.props.dispatch({ type: 'GET_YEARS' });
   }
 
   logout = () => {
@@ -28,7 +30,14 @@ class InstructorSchedule extends Component {
           {' '}
           {this.props.reduxState.classCount.map(count => count.instructor_name)}
         </h1>
-        <p align="center"> Below you will find your classes for the upcoming session.</p>
+        <p align="center">
+          {' '}
+          Below you will find your classes for the upcoming session in
+          {' '}
+          {this.props.reduxState.classCount.map(seasons => seasons.season)}
+          {' '}
+          {this.props.reduxState.classCount.map(seasons => seasons.years)}
+        </p>
         <p align="center">
           {' '}
           If the information for a class looks correct please click the

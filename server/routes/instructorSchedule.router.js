@@ -22,11 +22,13 @@ router.get('/', (req, res) => {
 router.get('/classcount', (req, res) => {
   console.log('getting class count');
   const { id } = req.user;
-  const countQuery = `SELECT COUNT("class_name"), "instructors"."instructor_name" FROM "instructors"
-                        JOIN "classes" ON "classes"."instructor_ref" = "instructors"."id"
-                        JOIN "sessions" ON "classes"."session_ref" = "sessions"."id"
-                        WHERE "instructor_ref" = $1 AND "session_status" = 'planning'
-                        GROUP BY "instructor_name";`;
+  const countQuery = `SELECT COUNT("class_name"), "instructors"."instructor_name", "seasons"."season", "years"."years" FROM "instructors"
+                       JOIN "classes" ON "classes"."instructor_ref" = "instructors"."id"
+                       JOIN "sessions" ON "classes"."session_ref" = "sessions"."id"
+                       JOIN "years" ON "sessions"."year" = "years"."id"
+                       JOIN "seasons" ON "sessions"."season" = "seasons"."id"
+                       WHERE "instructor_ref" = $1 AND "session_status" = 'planning'
+                       GROUP BY "instructor_name", "seasons"."season", "years"."years";`;
   pool.query(countQuery, [id])
     .then((response) => { res.send(response.rows); })
     .catch((error) => {
