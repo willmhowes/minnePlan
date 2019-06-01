@@ -65,6 +65,8 @@ class Instructor extends Component {
                 <Form.Field>
                   <input placeholder="First Name" defaultValue={this.props.instructor.phone_number} onChange={this.handleChange('phone_number')} />
                 </Form.Field>
+              </Table.Cell>
+              <Table.Cell>
                 <Icon name="save" onClick={this.updateInstructor} />
               </Table.Cell>
             </Table.Row>
@@ -75,6 +77,8 @@ class Instructor extends Component {
               <Table.Cell>{this.props.instructor.instructor_email}</Table.Cell>
               <Table.Cell>
                 <span className="icon">{this.props.instructor.phone_number}</span>
+              </Table.Cell>
+              <Table.Cell>
                 <Icon name="edit" onClick={this.editInstructor} />
               </Table.Cell>
             </Table.Row>
