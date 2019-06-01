@@ -15,18 +15,19 @@ class AddNewClass extends Component {
     session: '',
     className: '',
     day: '',
-    startDate: '',
-    endDate: '',
-    startTime: '',
-    endTime: '',
-    studentCost: '',
-    instructorPay: '',
+    startDate: null,
+    endDate: null,
+    startTime: null,
+    endTime: null,
+    studentCost: null,
+    instructorPay: null,
     description: '',
     instructorRef: '',
     instructorEmail: '',
-    numInstances: '',
+    numInstances: null,
     classroom: '',
     building: '',
+    materialsCost: null,
   };
 
   componentDidMount() {
@@ -74,9 +75,25 @@ class AddNewClass extends Component {
     console.log('in handleSubmit');
     // POST new class to DB
     this.props.dispatch({ type: 'ADD_CLASS', payload: this.state });
+    alert('Your class has been added to the future session');
   }
 
+  // showCreate = dimmer => () => this.setState({ dimmer, createOpen: true });
+
+  // close = () => {
+  //   this.setState({ createOpen: false });
+  // }
+
+  // closeCreate = (event) => {
+  //   event.preventDefault();
+  //   this.setState({ createOpen: false });
+  //   const action = { type: 'ADD_CLASS', payload: this.state };
+  //   console.log('adding class', action);
+  //   this.props.dispatch(action);
+  // }
+
   render() {
+    // const { createOpen, dimmer } = this.state;
     return (
       <div className="AddNewClass-Segment_div">
         {/* <pre>{JSON.stringify(this.state)}</pre> */}
@@ -176,10 +193,40 @@ class AddNewClass extends Component {
             <Form.Group>
               <Form.Input label="Class Cost" onChange={this.handleNewChange('studentCost')} />
               <Form.Input label="Instructor Salary" onChange={this.handleNewChange('instructorPay')} />
+              <Form.Input label="Materials Cost" onChange={this.handleNewChange('materialsCost')} />
             </Form.Group>
             <Form.Group>
               <Form.TextArea label="Course Description" onChange={this.handleNewChange('description')} />
             </Form.Group>
+            {/* <Button onClick={this.showCreate(true)} positive>Create</Button>
+            <Modal dimmer={dimmer} open={createOpen} onClose={this.close}>
+              <Modal.Header>Add Class</Modal.Header>
+              <Modal.Content image>
+                <Modal.Description>
+                  <p>
+                    Are you sure you want to add
+                    {' '}
+                    {this.state.className}
+                    {' '}
+                    for
+                    {' '}
+                    {this.state.session}
+                  </p>
+                </Modal.Description>
+              </Modal.Content>
+              <Modal.Actions>
+                <Button color="black" onClick={this.close}>
+                  Do not add class
+                </Button>
+                <Button
+                  positive
+                  icon="checkmark"
+                  labelPosition="right"
+                  content="Add class"
+                  onClick={this.closeCreate}
+                />
+              </Modal.Actions>
+            </Modal> */}
             <Form.Button type="submit">Create</Form.Button>
           </Form>
         </Segment>
