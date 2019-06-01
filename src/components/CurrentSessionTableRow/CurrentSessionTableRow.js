@@ -255,6 +255,7 @@ class CurrentSessionTableRow extends Component {
                 {this.props.classes.class_name}
                 {' '}
             on
+                {' '}
                 {this.props.classes.day_of_week}
               </p>
             </Modal.Description>
