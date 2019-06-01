@@ -46,6 +46,7 @@ class CurrentSessionTableRow extends Component {
 
   close = () => {
     this.setState({ deleteOpen: false });
+    this.setState({ editOpen: false });
   }
 
   closeDelete = () => {
@@ -236,6 +237,9 @@ class CurrentSessionTableRow extends Component {
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
+            <Button color="black" onClick={this.close}>
+            Do not edit class
+            </Button>
             <Button
               positive
               icon="checkmark"
