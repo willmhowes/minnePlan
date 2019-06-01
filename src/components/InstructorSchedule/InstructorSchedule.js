@@ -12,8 +12,6 @@ class InstructorSchedule extends Component {
     window.history.replaceState(null, null, ' ');
     this.props.dispatch({ type: 'GET_INSTRUCTOR_SCHEDULE' });
     this.props.dispatch({ type: 'GET_CLASS_COUNT' });
-    this.props.dispatch({ type: 'GET_SEASONS' });
-    this.props.dispatch({ type: 'GET_YEARS' });
   }
 
   logout = () => {
@@ -37,6 +35,7 @@ class InstructorSchedule extends Component {
           {this.props.reduxState.classCount.map(seasons => seasons.season)}
           {' '}
           {this.props.reduxState.classCount.map(seasons => seasons.years)}
+          .
         </p>
         <p align="center">
           {' '}
