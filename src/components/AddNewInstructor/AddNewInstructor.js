@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Button, Form } from 'semantic-ui-react';
+import swal from 'sweetalert';
 
 class AddNewInstructor extends Component {
   state= {
@@ -24,6 +25,7 @@ class AddNewInstructor extends Component {
     const action = { type: 'ADD_INSTRUCTOR', payload: this.state };
     console.log(action);
     this.props.dispatch(action);
+    swal('The new instructor has been added!');
   }
 
   render() {

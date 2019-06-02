@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Table, Button } from 'semantic-ui-react';
 import './Instructor.css';
-import swal from 'sweetalert';
 import InstructorRow from './InstructorRow';
 
 class Instructor extends Component {
@@ -14,7 +13,6 @@ class Instructor extends Component {
   addInstructor = () => {
     console.log('Add new instructor button clicked');
     this.props.history.push('/add-new-instructor');
-    swal('The new instructor has been added!');
   }
 
   render() {
