@@ -9,6 +9,7 @@ import {
   DateInput,
   TimeInput,
 } from 'semantic-ui-calendar-react';
+import swal from 'sweetalert';
 
 class AddNewClass extends Component {
   state = {
@@ -75,7 +76,7 @@ class AddNewClass extends Component {
     console.log('in handleSubmit');
     // POST new class to DB
     this.props.dispatch({ type: 'ADD_CLASS', payload: this.state });
-    alert('Your class has been added to the future session');
+    swal('Your class has been added to the future session!');
   }
 
   // showCreate = dimmer => () => this.setState({ dimmer, createOpen: true });
@@ -97,7 +98,7 @@ class AddNewClass extends Component {
     return (
       <div className="AddNewClass-Segment_div">
         {/* <pre>{JSON.stringify(this.state)}</pre> */}
-        <Header as="h1" attached="top">Add New Class</Header>
+        <Header className="addClassHeader" as="h1" attached="top">Add New Class</Header>
         <Segment attached>
           <Form className="NewClass" onSubmit={this.handleSubmit}>
             <Form.Group>

@@ -6,6 +6,7 @@ import {
 } from 'semantic-ui-react';
 import CurrentSessionTableRow from '../CurrentSessionTableRow/CurrentSessionTableRow';
 import './CurrentSession.css';
+import swal from 'sweetalert';
 
 class CurrentSession extends Component {
   state = {
@@ -25,6 +26,7 @@ class CurrentSession extends Component {
 
   handleClick = () => {
     this.props.dispatch({ type: 'COPY_CLASS', payload: this.state.idArray });
+    swal('Your class has been added to the future session!');
   }
 
   render() {
