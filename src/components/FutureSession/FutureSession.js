@@ -77,7 +77,7 @@ class FutureSession extends Component {
               Red - no instructor
             </li>
             <li className="grey">
-              Grey - transfered to eleyo
+              Grey - transferred to eleyo
             </li>
           </ul>
         </div>

@@ -81,7 +81,7 @@ class FutureSessionTableRow extends Component {
       return 'darkgreen';
     } if (status === 'no instructor') {
       return 'darkred';
-    } if (status === 'transfered to eleyo') {
+    } if (status === 'transferred to eleyo') {
       return 'grey';
     } return 'white';
   }
