@@ -14,7 +14,7 @@ class Instructor extends Component {
   addInstructor = () => {
     console.log('Add new instructor button clicked');
     this.props.history.push('/add-new-instructor');
-    swal('The new instructor has been created!');
+    swal('The new instructor has been added!');
   }
 
   render() {
