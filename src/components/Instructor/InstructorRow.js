@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Icon, Table, Form } from 'semantic-ui-react';
 import './Instructor.css';
+import swal from 'sweetalert';
 
 class Instructor extends Component {
   state = {
@@ -43,6 +44,7 @@ class Instructor extends Component {
     });
     const action = { type: 'UPDATE_INSTRUCTOR', payload: this.state.instructor };
     this.props.dispatch(action);
+    swal('The new instructor has been updated!');
   }
 
   render() {
