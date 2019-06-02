@@ -44,7 +44,7 @@ class Instructor extends Component {
     });
     const action = { type: 'UPDATE_INSTRUCTOR', payload: this.state.instructor };
     this.props.dispatch(action);
-    swal('The new instructor has been updated!');
+    swal('The instructor has been updated!');
   }
 
   render() {
