@@ -6,6 +6,7 @@ import {
 } from 'semantic-ui-react';
 import FutureSessionTableRow from '../FutureSessionTableRow/FutureSessionTableRow';
 import './FutureSession.css';
+import swal from 'sweetalert';
 
 class FutureSession extends Component {
   state = {
@@ -34,6 +35,7 @@ class FutureSession extends Component {
   sendEmailClick = () => {
     console.log('email button clicked');
     this.props.dispatch({ type: 'SEND_EMAIL', payload: this.state.email });
+    swal('The instructor has been emailed their schedule!');
   }
 
   show = () => this.setState({ open: true });
