@@ -12,7 +12,7 @@ const emptyForm = {
 
 const addBrian = {
   instructor_name: 'Brian Zilka',
-  instructor_email: 'jarvisgyang@gmail.com',
+  instructor_email: 'brianzilka321@gmail.com',
   phone_number: '6517732654',
 };
 
