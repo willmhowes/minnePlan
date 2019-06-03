@@ -52,7 +52,7 @@ const autoFormOne = {
 const autoFormTwo = {
   session: 2,
   className: 'Pumpkin Carving',
-  day: '',
+  day: 'Tuesday',
   startDate: '10/9/2019',
   endDate: '10/16/2019',
   startTime: '06:00 PM',
