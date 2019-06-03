@@ -30,6 +30,44 @@ const emptyForm = {
   materialsCost: '',
 };
 
+const autoFormOne = {
+  session: 2,
+  className: 'Disc Golf',
+  day: '',
+  startDate: '09/24/2019',
+  endDate: '10/15/2019',
+  startTime: '06:00 PM',
+  endTime: '07:00 PM',
+  studentCost: 25,
+  instructorPay: 21,
+  description: 'Learn disc golf basics',
+  instructorRef: 1,
+  instructorEmail: 'jarvis.landry@aol.com',
+  numInstances: 4,
+  classroom: 'Lower Gym',
+  building: 'JP',
+  materialsCost: null,
+};
+
+const autoFormTwo = {
+  session: 2,
+  className: 'Pumpkin Carving',
+  day: '',
+  startDate: '10/9/2019',
+  endDate: '10/16/2019',
+  startTime: '06:00 PM',
+  endTime: '07:00 PM',
+  studentCost: 25,
+  instructorPay: 21,
+  description: 'Learn to pumpkin carve',
+  instructorRef: 1,
+  instructorEmail: 'jarvis.landry@aol.com',
+  numInstances: 4,
+  classroom: '115',
+  building: 'WA',
+  materialsCost: 10,
+};
+
 class AddNewClass extends Component {
   state = {
     session: '',
@@ -101,6 +139,17 @@ class AddNewClass extends Component {
     swal('Your class has been added to the future session!');
   }
 
+  handleAutoFillOne = () => {
+    this.setState({
+      ...autoFormOne,
+    });
+  }
+
+  handleAutoFillTwo = () => {
+    this.setState({
+      ...autoFormTwo,
+    });
+  }
   // showCreate = dimmer => () => this.setState({ dimmer, createOpen: true });
 
   // close = () => {
@@ -120,7 +169,7 @@ class AddNewClass extends Component {
     return (
       <div className="AddNewClass-Segment_div">
         {/* <pre>{JSON.stringify(this.state)}</pre> */}
-        <Header className="addClassHeader" as="h1" attached="top">Add New Class</Header>
+        <Header className="addClassHeader" as="h1" attached="top" onClick={this.handleAutoFillOne}>Add New Class</Header>
         <Segment attached>
           <Form className="NewClass" onSubmit={this.handleSubmit}>
             <Form.Group>
@@ -169,7 +218,7 @@ class AddNewClass extends Component {
               />
               <Form.Input label="Instructor Email" defaultValue={this.state.instructorEmail} onChange={this.handleNewChange('instructorEmail')} />
             </Form.Group>
-            <Header as="h5">Day Of Week</Header>
+            <Header as="h5" onClick={this.handleAutoFillTwo}>Day Of Week</Header>
             <Form.Group>
               <Form.Input label="Monday" type="checkbox" value="Monday" onClick={this.handleDay} />
               <Form.Input label="Tuesday" type="checkbox" value="Tuesday" onClick={this.handleDay} />
