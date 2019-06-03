@@ -10,6 +10,12 @@ const emptyForm = {
   phone_number: '',
 };
 
+const addBrian = {
+  instructor_name: 'Brian Zilka',
+  instructor_email: 'jarvisgyang@gmail.com',
+  phone_number: '6517732654',
+};
+
 class AddNewInstructor extends Component {
   state= {
     instructor_name: '',
@@ -37,10 +43,16 @@ class AddNewInstructor extends Component {
     swal('The new instructor has been added!');
   }
 
+  handleAutoFillBrian = () => {
+    this.setState({
+      ...addBrian,
+    });
+  }
+
   render() {
     return (
       <div>
-        <h1>Add New Instructor Form Goes Here!!!!</h1>
+        <h1 onClick={this.handleAutoFillBrian}>Add New Instructor</h1>
         <Form>
           <Form.Input value={this.state.instructor_name} label="Instructor's Name" placeholder="Instructor's Name" onChange={this.handleChange('instructor_name')} />
           <Form.Input value={this.state.phone_number} label="Phone Number" placeholder="Phone number" onChange={this.handleChange('phone_number')} />
