@@ -83,8 +83,10 @@ class FutureSession extends Component {
             </li>
           </ul>
         </div>
-        <Button onClick={this.sendEmailClick}>Email Instructors</Button>
-        <Button onClick={this.show}>Start New Session</Button>
+        <div className="email-button">
+          <Button onClick={this.sendEmailClick}>Email Instructors</Button>
+          <Button onClick={this.show}>Start New Session</Button>
+        </div>
         <div className="FutureSession-table-container">
           <br />
           <Table celled>
