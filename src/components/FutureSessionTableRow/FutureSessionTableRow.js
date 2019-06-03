@@ -115,8 +115,11 @@ class FutureSessionTableRow extends Component {
               checked={this.state.selectVal}
             />
           </Table.Cell>
-          <Table.Cell>{this.props.classes.instructor_name}</Table.Cell>
-          <Table.Cell>{this.props.classes.instructor_email}</Table.Cell>
+          <Table.Cell>
+            {this.props.classes.instructor_name}
+            <br />
+            {this.props.classes.instructor_email}
+          </Table.Cell>
           <Table.Cell>{this.props.classes.class_name}</Table.Cell>
           <Table.Cell textAlign="center">
             {moment(this.props.classes.start_date).format('l')}

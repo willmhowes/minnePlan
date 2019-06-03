@@ -40,8 +40,11 @@ class CurrentSession extends Component {
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>Select</Table.HeaderCell>
-              <Table.HeaderCell>Instructor Name</Table.HeaderCell>
-              <Table.HeaderCell>Instructor Email</Table.HeaderCell>
+              <Table.HeaderCell>
+                Instructor Name
+                <br />
+                Instructor Email
+              </Table.HeaderCell>
               <Table.HeaderCell>Course Name</Table.HeaderCell>
               <Table.HeaderCell>
                 Start Date/
