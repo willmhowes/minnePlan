@@ -11,6 +11,25 @@ import {
 } from 'semantic-ui-calendar-react';
 import swal from 'sweetalert';
 
+const emptyForm = {
+  session: '',
+  className: '',
+  day: '',
+  startDate: '',
+  endDate: '',
+  startTime: '',
+  endTime: '',
+  studentCost: '',
+  instructorPay: '',
+  description: '',
+  instructorRef: '',
+  instructorEmail: '',
+  numInstances: '',
+  classroom: '',
+  building: '',
+  materialsCost: '',
+};
+
 class AddNewClass extends Component {
   state = {
     session: '',
@@ -76,6 +95,9 @@ class AddNewClass extends Component {
     console.log('in handleSubmit');
     // POST new class to DB
     this.props.dispatch({ type: 'ADD_CLASS', payload: this.state });
+    this.setState({
+      ...emptyForm,
+    });
     swal('Your class has been added to the future session!');
   }
 
@@ -103,10 +125,12 @@ class AddNewClass extends Component {
           <Form className="NewClass" onSubmit={this.handleSubmit}>
             <Form.Group>
               <Form.Input
+                value={this.state.className}
                 label="Class Name"
                 onChange={this.handleNewChange('className')}
               />
               <Form.Select
+                value={this.state.session}
                 label="Session"
                 name="session"
                 options={this.props.reduxState.session.map(session => ({
@@ -117,13 +141,14 @@ class AddNewClass extends Component {
                 onChange={this.handleChange}
               />
               <Form.Input
+                value={this.state.numInstances}
                 label="Number of Instances"
                 onChange={this.handleNewChange('numInstances')}
               />
             </Form.Group>
             <Form.Group>
-              <Form.Input label="Building" onChange={this.handleNewChange('building')} />
-              <Form.Input label="Classroom" onChange={this.handleNewChange('classroom')} />
+              <Form.Input value={this.state.building} label="Building" onChange={this.handleNewChange('building')} />
+              <Form.Input value={this.state.classroom} label="Classroom" onChange={this.handleNewChange('classroom')} />
             </Form.Group>
             {/* TODO: Fix goofy label on dropdown */}
             <Form.Group>
@@ -192,12 +217,12 @@ class AddNewClass extends Component {
               />
             </Form.Group>
             <Form.Group>
-              <Form.Input label="Class Cost" onChange={this.handleNewChange('studentCost')} />
-              <Form.Input label="Instructor Salary" onChange={this.handleNewChange('instructorPay')} />
-              <Form.Input label="Materials Cost" onChange={this.handleNewChange('materialsCost')} />
+              <Form.Input value={this.state.studentCost}  label="Class Cost" onChange={this.handleNewChange('studentCost')} />
+              <Form.Input value={this.state.instructorPay}  label="Instructor Salary" onChange={this.handleNewChange('instructorPay')} />
+              <Form.Input value={this.state.materialsCost}  label="Materials Cost" onChange={this.handleNewChange('materialsCost')} />
             </Form.Group>
             <Form.Group>
-              <Form.TextArea label="Course Description" onChange={this.handleNewChange('description')} />
+              <Form.TextArea value={this.state.description} label="Course Description" onChange={this.handleNewChange('description')} />
             </Form.Group>
             {/* <Button onClick={this.showCreate(true)} positive>Create</Button>
             <Modal dimmer={dimmer} open={createOpen} onClose={this.close}>
