@@ -46,6 +46,7 @@ class CurrentSessionTableRow extends Component {
 
   close = () => {
     this.setState({ deleteOpen: false });
+    this.setState({ editOpen: false });
   }
 
   closeDelete = () => {
@@ -86,8 +87,11 @@ class CurrentSessionTableRow extends Component {
           <Table.Cell>
             <Checkbox onClick={this.props.select} value={this.props.classes.id} />
           </Table.Cell>
-          <Table.Cell>{this.props.classes.instructor_name}</Table.Cell>
-          <Table.Cell>{this.props.classes.instructor_email}</Table.Cell>
+          <Table.Cell>
+            {this.props.classes.instructor_name}
+            <br />
+            {this.props.classes.instructor_email}
+          </Table.Cell>
           <Table.Cell>{this.props.classes.class_name}</Table.Cell>
           <Table.Cell textAlign="center">
             {moment(this.props.classes.start_date).format('l')}
@@ -127,9 +131,9 @@ class CurrentSessionTableRow extends Component {
               <Form>
                 <Form.Group>
                   <Form.Input
-                    label="First Name"
+                    label="Name"
                     onChange={this.handleChange('instructor_name')}
-                    placeholder="First Name"
+                    placeholder="Name"
                     defaultValue={this.props.classes.instructor_name}
                   />
                   <Form.Input
@@ -236,6 +240,9 @@ class CurrentSessionTableRow extends Component {
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
+            <Button color="black" onClick={this.close}>
+            Do not edit class
+            </Button>
             <Button
               positive
               icon="checkmark"
@@ -255,6 +262,7 @@ class CurrentSessionTableRow extends Component {
                 {this.props.classes.class_name}
                 {' '}
             on
+                {' '}
                 {this.props.classes.day_of_week}
               </p>
             </Modal.Description>

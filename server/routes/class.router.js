@@ -40,7 +40,8 @@ router.get('/future', (req, res) => {
   const classesQuery = `SELECT  "classes"."id", "class_name", "start_date", "end_date", "day_of_week","start_time", "end_time", "instructor_pay", "num_of_sessions", "student_cost", "description", "instructor_name", "instructor_email", "building", "classroom_number", "preparation_status", "preparation_message", "materials_cost" FROM "classes"
                         JOIN "instructors" ON "classes"."instructor_ref" = "instructors"."id"
                         JOIN "sessions" ON "classes"."session_ref" = "sessions"."id"
-                        WHERE "sessions"."session_status" = 'planning'`;
+                        WHERE "sessions"."session_status" = 'planning'
+                        ORDER BY "instructor_name";`;
   pool.query(classesQuery)
     .then((response) => { res.send(response.rows); })
     .catch((error) => {
@@ -112,7 +113,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   const numInstances = req.body.classRow.num_of_sessions;
   const materialsCost = req.body.classRow.materials_cost;
   // Not able to update instructor currently
-  const queryText = 'UPDATE "classes" SET "class_name" = $1, "start_date" = $2, "end_date" = $3, "day_of_week" = $4, "start_time" = $5, "student_cost" = $6, "instructor_pay" = $7, "end_time" = $8, "preparation_status" = $9, "preparation_message" = $10, "description" = $11, "building" = $12, "classroom_number" = $13, "num_of_sessions" = $14, "materials_cost" = $15 WHERE "id" = $15;';
+  const queryText = 'UPDATE "classes" SET "class_name" = $1, "start_date" = $2, "end_date" = $3, "day_of_week" = $4, "start_time" = $5, "student_cost" = $6, "instructor_pay" = $7, "end_time" = $8, "preparation_status" = $9, "preparation_message" = $10, "description" = $11, "building" = $12, "classroom_number" = $13, "num_of_sessions" = $14, "materials_cost" = $15 WHERE "id" = $16;';
   pool.query(queryText,
     [
       className,

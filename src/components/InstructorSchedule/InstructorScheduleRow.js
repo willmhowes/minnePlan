@@ -17,7 +17,7 @@ class InstructorScheduleRow extends Component {
     this.setState({
       classStatus: 'Approved',
       checked: true,
-      classBackground: 'darkgreen',
+      classBackground: 'green',
     });
     this.props.dispatch({ type: 'REVIEWED_CLASS', payload: { reason: 'CONFIRMED', status: 'needs permit', id: this.props.schedule.id } });
   }
@@ -30,9 +30,9 @@ class InstructorScheduleRow extends Component {
         swal(`Your reason is: ${value}`);
         this.props.dispatch({ type: 'REVIEWED_CLASS', payload: { reason: value, status: 'needs review', id: this.props.schedule.id } });
         this.setState({
-          classStatus: 'Denied',
+          classStatus: 'Feedback Submitted',
           checked: true,
-          classBackground: 'darkred',
+          classBackground: 'orange',
         });
       });
   }

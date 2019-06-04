@@ -27,6 +27,7 @@ class Instructor extends Component {
               <Table.HeaderCell>Instructor Name</Table.HeaderCell>
               <Table.HeaderCell>Email</Table.HeaderCell>
               <Table.HeaderCell>Phone Number</Table.HeaderCell>
+              <Table.HeaderCell>{'\u00A0'}</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>

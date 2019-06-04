@@ -6,6 +6,7 @@ import {
 } from 'semantic-ui-react';
 import FutureSessionTableRow from '../FutureSessionTableRow/FutureSessionTableRow';
 import './FutureSession.css';
+import swal from 'sweetalert';
 
 class FutureSession extends Component {
   state = {
@@ -34,6 +35,7 @@ class FutureSession extends Component {
   sendEmailClick = () => {
     console.log('email button clicked');
     this.props.dispatch({ type: 'SEND_EMAIL', payload: this.state.email });
+    swal('The instructor has been emailed their schedule!');
   }
 
   show = () => this.setState({ open: true });
@@ -77,20 +79,25 @@ class FutureSession extends Component {
               Red - no instructor
             </li>
             <li className="grey">
-              Grey - transfered to eleyo
+              Grey - transferred to eleyo
             </li>
           </ul>
         </div>
-        <Button onClick={this.sendEmailClick}>Email Instructors</Button>
-        <Button onClick={this.show}>Start New Session</Button>
+        <div className="email-button">
+          <Button onClick={this.sendEmailClick}>Email Instructors</Button>
+          <Button onClick={this.show}>Start New Session</Button>
+        </div>
         <div className="FutureSession-table-container">
           <br />
           <Table celled>
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>Select</Table.HeaderCell>
-                <Table.HeaderCell>Instructor Name</Table.HeaderCell>
-                <Table.HeaderCell>Instructor Email</Table.HeaderCell>
+                <Table.HeaderCell>
+                Instructor Name
+                  <br />
+                Instructor Email
+                </Table.HeaderCell>
                 <Table.HeaderCell>Course Name</Table.HeaderCell>
                 <Table.HeaderCell>
                 Start Date/
