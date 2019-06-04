@@ -14,16 +14,16 @@
   width: 17%;
   margin-right: auto;
   list-style-type: none;
-  padding-left: 10px;
+  padding-left: 0px;
   margin-left: 5px;
   margin-top: 10px;
-  background: black;
+  text-align: center
 }
 
 .colorLegend {
   margin-left: 50px;
   padding-top: 5px;
-  width: 10%;
+  width: 13%;
   margin-bottom: 5px;
 }
 
@@ -32,29 +32,29 @@
 }
 
 .white {
-  color: white
+
 }
 
 .yellow {
-  color: yellow;
+background-color: #ffee58;
 }
 
-.teal {
-  color: teal
+.blue {
+background-color: CornflowerBlue;
 }
 
 .orange {
-  color: orange
+background-color: #ff8f00;
 }
 
 .olive {
-  color: darkgreen
+background-color: lightgreen;
 }
 
 .red {
-  color: red
+background-color: #ef5350;
 }
 
 .grey {
-  color: grey
+background-color: grey;
 }
