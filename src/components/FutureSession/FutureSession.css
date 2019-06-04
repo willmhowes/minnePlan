@@ -2,6 +2,11 @@
   width: 90%;
   margin-right: auto;
   table-layout: fixed;
+  margin-left: 10px;
+}
+
+.email-button {
+  margin-left: 10px;
 }
 
 .legendList {
@@ -47,7 +52,7 @@
 }
 
 .red {
-  color: darkred
+  color: red
 }
 
 .grey {

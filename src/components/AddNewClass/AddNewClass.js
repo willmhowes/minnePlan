@@ -9,24 +9,83 @@ import {
   DateInput,
   TimeInput,
 } from 'semantic-ui-calendar-react';
+import swal from 'sweetalert';
+
+const emptyForm = {
+  session: '',
+  className: '',
+  day: '',
+  startDate: '',
+  endDate: '',
+  startTime: '',
+  endTime: '',
+  studentCost: '',
+  instructorPay: '',
+  description: '',
+  instructorRef: '',
+  instructorEmail: '',
+  numInstances: '',
+  classroom: '',
+  building: '',
+  materialsCost: '',
+};
+
+const autoFormOne = {
+  session: 2,
+  className: 'Disc Golf',
+  day: '',
+  startDate: '09/24/2019',
+  endDate: '10/15/2019',
+  startTime: '06:00 PM',
+  endTime: '07:00 PM',
+  studentCost: 25,
+  instructorPay: 21,
+  description: 'Learn disc golf basics',
+  instructorRef: null,
+  instructorEmail: '',
+  numInstances: 4,
+  classroom: 'Lower Gym',
+  building: 'JP',
+  materialsCost: null,
+};
+
+const autoFormTwo = {
+  session: 2,
+  className: 'Pumpkin Carving',
+  day: 'Tuesday',
+  startDate: '10/9/2019',
+  endDate: '10/16/2019',
+  startTime: '06:00 PM',
+  endTime: '07:00 PM',
+  studentCost: 25,
+  instructorPay: 21,
+  description: 'Learn to pumpkin carve',
+  instructorRef: null,
+  instructorEmail: '',
+  numInstances: 4,
+  classroom: '115',
+  building: 'WA',
+  materialsCost: 10,
+};
 
 class AddNewClass extends Component {
   state = {
     session: '',
     className: '',
     day: '',
-    startDate: '',
-    endDate: '',
-    startTime: '',
-    endTime: '',
-    studentCost: '',
-    instructorPay: '',
+    startDate: null,
+    endDate: null,
+    startTime: null,
+    endTime: null,
+    studentCost: null,
+    instructorPay: null,
     description: '',
     instructorRef: '',
     instructorEmail: '',
-    numInstances: '',
+    numInstances: null,
     classroom: '',
     building: '',
+    materialsCost: null,
   };
 
   componentDidMount() {
@@ -74,21 +133,53 @@ class AddNewClass extends Component {
     console.log('in handleSubmit');
     // POST new class to DB
     this.props.dispatch({ type: 'ADD_CLASS', payload: this.state });
+    this.setState({
+      ...emptyForm,
+    });
+    swal('Your class has been added to the future session!');
   }
 
+  handleAutoFillOne = () => {
+    this.setState({
+      ...autoFormOne,
+    });
+  }
+
+  handleAutoFillTwo = () => {
+    this.setState({
+      ...autoFormTwo,
+    });
+  }
+  // showCreate = dimmer => () => this.setState({ dimmer, createOpen: true });
+
+  // close = () => {
+  //   this.setState({ createOpen: false });
+  // }
+
+  // closeCreate = (event) => {
+  //   event.preventDefault();
+  //   this.setState({ createOpen: false });
+  //   const action = { type: 'ADD_CLASS', payload: this.state };
+  //   console.log('adding class', action);
+  //   this.props.dispatch(action);
+  // }
+
   render() {
+    // const { createOpen, dimmer } = this.state;
     return (
       <div className="AddNewClass-Segment_div">
         {/* <pre>{JSON.stringify(this.state)}</pre> */}
-        <Header as="h1" attached="top">Add New Class</Header>
+        <Header className="addClassHeader" as="h1" attached="top" onClick={this.handleAutoFillOne}>Add New Class</Header>
         <Segment attached>
           <Form className="NewClass" onSubmit={this.handleSubmit}>
             <Form.Group>
               <Form.Input
+                value={this.state.className}
                 label="Class Name"
                 onChange={this.handleNewChange('className')}
               />
               <Form.Select
+                value={this.state.session}
                 label="Session"
                 name="session"
                 options={this.props.reduxState.session.map(session => ({
@@ -99,13 +190,14 @@ class AddNewClass extends Component {
                 onChange={this.handleChange}
               />
               <Form.Input
+                value={this.state.numInstances}
                 label="Number of Instances"
                 onChange={this.handleNewChange('numInstances')}
               />
             </Form.Group>
             <Form.Group>
-              <Form.Input label="Building" onChange={this.handleNewChange('building')} />
-              <Form.Input label="Classroom" onChange={this.handleNewChange('classroom')} />
+              <Form.Input value={this.state.building} label="Building" onChange={this.handleNewChange('building')} />
+              <Form.Input value={this.state.classroom} label="Classroom" onChange={this.handleNewChange('classroom')} />
             </Form.Group>
             {/* TODO: Fix goofy label on dropdown */}
             <Form.Group>
@@ -126,7 +218,7 @@ class AddNewClass extends Component {
               />
               <Form.Input label="Instructor Email" defaultValue={this.state.instructorEmail} onChange={this.handleNewChange('instructorEmail')} />
             </Form.Group>
-            <Header as="h5">Day Of Week</Header>
+            <Header as="h5" onClick={this.handleAutoFillTwo}>Day Of Week</Header>
             <Form.Group>
               <Form.Input label="Monday" type="checkbox" value="Monday" onClick={this.handleDay} />
               <Form.Input label="Tuesday" type="checkbox" value="Tuesday" onClick={this.handleDay} />
@@ -174,12 +266,42 @@ class AddNewClass extends Component {
               />
             </Form.Group>
             <Form.Group>
-              <Form.Input label="Class Cost" onChange={this.handleNewChange('studentCost')} />
-              <Form.Input label="Instructor Salary" onChange={this.handleNewChange('instructorPay')} />
+              <Form.Input value={this.state.studentCost}  label="Class Cost" onChange={this.handleNewChange('studentCost')} />
+              <Form.Input value={this.state.instructorPay}  label="Instructor Salary" onChange={this.handleNewChange('instructorPay')} />
+              <Form.Input value={this.state.materialsCost}  label="Materials Cost" onChange={this.handleNewChange('materialsCost')} />
             </Form.Group>
             <Form.Group>
-              <Form.TextArea label="Course Description" onChange={this.handleNewChange('description')} />
+              <Form.TextArea value={this.state.description} label="Course Description" onChange={this.handleNewChange('description')} />
             </Form.Group>
+            {/* <Button onClick={this.showCreate(true)} positive>Create</Button>
+            <Modal dimmer={dimmer} open={createOpen} onClose={this.close}>
+              <Modal.Header>Add Class</Modal.Header>
+              <Modal.Content image>
+                <Modal.Description>
+                  <p>
+                    Are you sure you want to add
+                    {' '}
+                    {this.state.className}
+                    {' '}
+                    for
+                    {' '}
+                    {this.state.session}
+                  </p>
+                </Modal.Description>
+              </Modal.Content>
+              <Modal.Actions>
+                <Button color="black" onClick={this.close}>
+                  Do not add class
+                </Button>
+                <Button
+                  positive
+                  icon="checkmark"
+                  labelPosition="right"
+                  content="Add class"
+                  onClick={this.closeCreate}
+                />
+              </Modal.Actions>
+            </Modal> */}
             <Form.Button type="submit">Create</Form.Button>
           </Form>
         </Segment>

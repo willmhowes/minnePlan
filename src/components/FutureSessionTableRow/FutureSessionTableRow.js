@@ -48,6 +48,7 @@ class FutureSessionTableRow extends Component {
 
   close = () => {
     this.setState({ deleteOpen: false });
+    this.setState({ editOpen: false });
   }
 
   closeDelete = () => {
@@ -114,8 +115,11 @@ class FutureSessionTableRow extends Component {
               checked={this.state.selectVal}
             />
           </Table.Cell>
-          <Table.Cell>{this.props.classes.instructor_name}</Table.Cell>
-          <Table.Cell>{this.props.classes.instructor_email}</Table.Cell>
+          <Table.Cell>
+            {this.props.classes.instructor_name}
+            <br />
+            {this.props.classes.instructor_email}
+          </Table.Cell>
           <Table.Cell>{this.props.classes.class_name}</Table.Cell>
           <Table.Cell textAlign="center">
             {moment(this.props.classes.start_date).format('l')}
@@ -279,6 +283,9 @@ class FutureSessionTableRow extends Component {
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
+            <Button color="black" onClick={this.close}>
+            Do not edit class
+            </Button>
             <Button
               positive
               icon="checkmark"

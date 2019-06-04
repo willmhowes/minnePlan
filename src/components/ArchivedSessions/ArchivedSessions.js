@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Table, Checkbox, Button } from 'semantic-ui-react';
+import swal from 'sweetalert';
 
 class ArchivedSessions extends Component {
   state = {
@@ -17,6 +18,7 @@ class ArchivedSessions extends Component {
 
   handleClick = () => {
     this.props.dispatch({ type: 'COPY_CLASS', payload: this.state.idArray });
+    swal('Your class has been added to the future session!');
   }
 
   render() {
