@@ -71,15 +71,15 @@ class FutureSessionTableRow extends Component {
 
   bgColor = (status) => {
     if (status === 'pending response') {
-      return 'yellow';
+      return '#ffee58';
     } if (status === 'needs permit') {
-      return 'teal';
+      return 'CornflowerBlue';
     } if (status === 'needs review') {
-      return 'orange';
+      return '#ff8f00';
     } if (status === 'ready to transfer') {
-      return 'darkgreen';
+      return 'lightgreen';
     } if (status === 'no instructor') {
-      return 'darkred';
+      return '#ef5350';
     } if (status === 'transfered to eleyo') {
       return 'grey';
     } return 'white';
@@ -107,7 +107,7 @@ class FutureSessionTableRow extends Component {
 
     return (
       <>
-        <Table.Row bgColor={this.bgColor(this.props.classes.preparation_status)}>
+        <Table.Row bgcolor={this.bgColor(this.props.classes.preparation_status)}>
           <Table.Cell>
             <Checkbox
               onClick={() => this.select(this.props.classes.instructor_email)}
