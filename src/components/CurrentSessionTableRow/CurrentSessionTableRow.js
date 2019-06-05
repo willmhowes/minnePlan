@@ -245,6 +245,7 @@ class CurrentSessionTableRow extends Component {
             />
           </Modal.Actions>
         </Modal>
+        {/* delete modal to delete class */}
         <Modal dimmer={dimmer} open={deleteOpen} onClose={this.close}>
           <Modal.Header>Delete Class</Modal.Header>
           <Modal.Content image>
