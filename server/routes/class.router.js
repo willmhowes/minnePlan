@@ -4,6 +4,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 const router = express.Router();
 
+// adds new class into database "classes"
 router.post('/', rejectUnauthenticated, (req, res) => {
   const newClass = req.body;
   const queryText = `INSERT INTO "classes"(session_ref, instructor_ref, class_name, day_of_week, start_date,
@@ -33,6 +34,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
+// gets all classes where the session associated to classes = planning
 router.get('/future', (req, res) => {
   const classesQuery = `SELECT  "classes"."id", "class_name", "start_date", "end_date", "day_of_week","start_time", "end_time", "instructor_pay", "num_of_sessions", "student_cost", "description", "instructor_name", "instructor_email", "building", "classroom_number", "preparation_status", "preparation_message", "materials_cost" FROM "classes"
                         JOIN "instructors" ON "classes"."instructor_ref" = "instructors"."id"
@@ -46,6 +48,7 @@ router.get('/future', (req, res) => {
     });
 });
 
+// gets all classes where the session associated to classes = current
 router.get('/current', (req, res) => {
   const classesQuery = `SELECT  "classes"."id", "class_name", "start_date", "end_date", "day_of_week","start_time", "end_time", "instructor_pay", "num_of_sessions", "student_cost", "description", "instructor_name", "instructor_email", "building", "classroom_number", "preparation_status", "preparation_message", "materials_cost" FROM "classes"
                         JOIN "instructors" ON "classes"."instructor_ref" = "instructors"."id"
@@ -58,6 +61,8 @@ router.get('/current', (req, res) => {
     });
 });
 
+// gets all classes where the session associated to classes = archived based on the season and year
+// sent over in the api url or params
 router.get('/history/:season/:year', rejectUnauthenticated, (req, res) => {
   const archivedQuery = `SELECT "classes"."id", "class_name", "description", "day_of_week", "materials_cost", "building", "instructor_name", "instructor_pay", "student_cost" FROM "classes"
                           JOIN "instructors" ON "classes"."instructor_ref" = "instructors"."id"
@@ -70,6 +75,7 @@ router.get('/history/:season/:year', rejectUnauthenticated, (req, res) => {
     });
 });
 
+// gets all classes with the id that is in api URL or params
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   const queryText = 'SELECT * FROM "classes" WHERE id = $1';
   pool.query(queryText, [req.params.id])
@@ -81,6 +87,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
+// updates class based on id, with class information
 router.put('/:id', rejectUnauthenticated, (req, res) => {
   const id = req.body.classRow.id;
   const className = req.body.classRow.class_name;
@@ -126,13 +133,19 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
+// creates a new class
 router.post('/copy', rejectUnauthenticated, async (req, res) => {
+  // used to shorten pool.connect in transaction
   const client = await pool.connect();
   const sqlText = 'INSERT INTO "classes"(session_ref, instructor_ref, class_name, day_of_week, start_time, end_time, instructor_pay, materials_cost, building) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);';
+  // maps throuhg the array of class.id's and gets class data and duplicates it with a new session id
   await Promise.all(req.body.map(async (id) => {
     try {
+      // begins sql transacation
       await client.query('BEGIN');
+      // gets all class information assocciated with id sent in req.body
       const getSql = await client.query(`SELECT * FROM "classes" WHERE id = ${id}`);
+      // gets future session id, or session id == 'planning'
       const sessionSql = await client.query('SELECT * FROM "sessions" WHERE "session_status" = \'planning\';');
       const copyData = [
         sessionSql.rows[0].id,
@@ -145,17 +158,23 @@ router.post('/copy', rejectUnauthenticated, async (req, res) => {
         getSql.rows[0].materials_cost,
         getSql.rows[0].building,
       ];
+      // uses sql text on line 140, and duplicates class data from getSql with session id from
+      // sessionSql to create a new class
       await client.query(sqlText, copyData);
+      // commits all sql request if all work
       await client.query('COMMIT');
     } catch (error) {
+      // cancels all sql queries if any of the fail
       await client.query('ROLLBACK');
       res.sendStatus(500);
     }
   }));
+  // release the transaction
   client.release();
   res.sendStatus(200);
 });
 
+// deletes class with id sent in params
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
   const queryText = `DELETE FROM "classes" WHERE "id" = ${req.params.id};`;
   pool.query(queryText)
