@@ -51,6 +51,7 @@ class InstructorLogin extends Component {
       email,
       verificationCode: code,
     }, (err) => {
+      console.error(err);
       // handle errors
     });
   }

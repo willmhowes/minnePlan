@@ -8,6 +8,7 @@ function* instructorScheduleSaga(action) {
     const newAction = { type: 'SET_INSTRUCTOR_SCHEDULE', payload: response.data };
     yield put(newAction);
   } catch (error) {
+    console.log('Couldn\'t get instructor\'s schedule', error);
   }
 }
 

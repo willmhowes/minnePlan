@@ -8,6 +8,7 @@ function* sessionSaga(action) {
     const newAction = { type: 'SET_SESSIONS', payload: response.data };
     yield put(newAction);
   } catch (error) {
+    console.log('Couldn\'t get sessions', error);
   }
 }
 
