@@ -20,7 +20,7 @@ function sendEmail(email, res) {
       <p>Please click this <a href="http://localhost:3000/instructor_login" target="_blank" rel="noopener noreferrer">link</a> to review your schedule, or copy and paste the link below into the URL bar of your browser.</p>
       <p><a href="http://localhost:3000/instructor_login" target="_blank" rel="noopener noreferrer">http://localhost:3000/instructor_login</a></p>
       <p>For any additional questions, please reach out to Eliana Power directly. This email address is not monitored.</p>
-      <p>Thank you!</p>`, // plain text body
+      <p>Thank you!</p>`, // plain text body, can use any HTML tags
   };
 
   transporter.sendMail(mailOptions, (err, info) => {
@@ -32,6 +32,7 @@ function sendEmail(email, res) {
   });
 }
 
+// removes all duplicate emails from array
 function removeDuplicates(emails, res) {
   const unique = {};
   emails.forEach((i) => {
@@ -40,6 +41,7 @@ function removeDuplicates(emails, res) {
     }
   });
   const uniqueEmail = Object.keys(unique);
+  // sends unique to every unique email in array
   for (const email of uniqueEmail) {
     sendEmail(email, res);
   }
