@@ -40,7 +40,6 @@ class CurrentSessionTableRow extends Component {
   closeEdit = () => {
     this.setState({ editOpen: false });
     const action = { type: 'UPDATE_CLASS_ROW', payload: this.state };
-    // console.log(action);
     this.props.dispatch(action);
   }
 
@@ -52,16 +51,12 @@ class CurrentSessionTableRow extends Component {
   closeDelete = () => {
     this.setState({ deleteOpen: false });
     const action = { type: 'DELETE_CLASS', payload: this.state.classRow.id };
-    console.log('deleting class', action);
     this.props.dispatch(action);
   }
 
   handleChange = name => (event) => {
-    console.log(event.target.value, name);
-    // console.log(this.state.classRow);
     this.setState({
       classRow: {
-        // eslint-disable-next-line react/no-access-state-in-setstate
         ...this.state.classRow,
         [name]: event.target.value,
       },
@@ -69,7 +64,6 @@ class CurrentSessionTableRow extends Component {
   };
 
   updateclassRow = () => {
-    console.log('Updating classRow', this.state.classRow);
     const afterUpdate = this.state.edit;
     this.setState({
       edit: !afterUpdate,

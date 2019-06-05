@@ -16,7 +16,6 @@ class InstructorParse extends Component {
     return (
       <div>
         <h1>This is the parsing page</h1>
-        {/* {JSON.stringify(this.state)} */}
         <button
           type="button"
           onClick={this.logout}

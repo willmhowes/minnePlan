@@ -26,14 +26,12 @@ class FutureSession extends Component {
   }
 
   handleSelect = (email) => {
-    console.log('in checkbox handler', email);
     this.setState(prevState => ({
       email: [...prevState.email, email],
     }));
   }
 
   sendEmailClick = () => {
-    console.log('email button clicked');
     this.props.dispatch({ type: 'SEND_EMAIL', payload: this.state.email });
     swal('The instructor has been emailed their schedule!');
   }
@@ -43,7 +41,6 @@ class FutureSession extends Component {
   close = () => {
     this.setState({ open: false });
     const action = { type: 'NEW_SESSION', payload: this.state.session };
-    console.log(action);
     this.props.dispatch(action);
   }
 
@@ -56,7 +53,6 @@ class FutureSession extends Component {
 
     return (
       <div className="page-container">
-        {/* <pre>{JSON.stringify(this.state)}</pre> */}
         <div className="legend">
           <h3 className="colorLegend">Color Legend</h3>
           <ul className="legendList">
@@ -75,7 +71,7 @@ class FutureSession extends Component {
             <li className="olive">
               Green - ready to transfer
             </li>
-            <li className="red">
+            <li className="reds">
               Red - no instructor
             </li>
             <li className="grey">

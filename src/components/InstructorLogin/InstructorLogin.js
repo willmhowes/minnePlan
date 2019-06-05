@@ -36,7 +36,6 @@ class InstructorLogin extends Component {
       email,
     }, (err) => {
       if (err) {
-        // eslint-disable-next-line no-alert
         alert(`error sending email: ${err.error_description}`);
       }
       this.setState({
@@ -53,7 +52,6 @@ class InstructorLogin extends Component {
       verificationCode: code,
     }, (err) => {
       // handle errors
-      console.error(err);
     });
   }
 

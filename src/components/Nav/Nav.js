@@ -19,7 +19,6 @@ class Nav extends Component {
   // Determine page being viewed and set active item in Navbar accordingly
   setActiveItemFromUrl = () => {
     const pathSplit = window.location.hash.split('/');
-    console.log(pathSplit);
     this.setState({ activeItem: pathSplit[1] });
   }
 
@@ -29,23 +28,18 @@ class Nav extends Component {
     const value = event.target.getAttribute('value');
 
     if (value === 'view-instructors') {
-      console.log('view-instructors button activated');
       this.props.history.push('/view-instructors');
       this.setState({ activeItem: value });
     } else if (value === 'session-history') {
-      console.log('session-history button activated');
       this.props.history.push('/session-history');
       this.setState({ activeItem: value });
     } else if (value === 'current-session') {
-      console.log('current-session button activated');
       this.props.history.push('/current-session');
       this.setState({ activeItem: value });
     } else if (value === 'future-session') {
-      console.log('future-session button activated');
       this.props.history.push('/future-session');
       this.setState({ activeItem: value });
     } else if (value === 'add-new-class') {
-      console.log('add-new-class button activated');
       this.props.history.push('/add-new-class');
       this.setState({ activeItem: value });
     } else if (value === 'logout') {
