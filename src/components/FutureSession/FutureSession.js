@@ -17,7 +17,6 @@ class FutureSession extends Component {
       season: 0,
       year: 0,
     },
-    csvData: [],
   }
 
   componentDidMount() {
@@ -25,9 +24,6 @@ class FutureSession extends Component {
     this.props.dispatch({ type: 'GET_INSTRUCTORS' });
     this.props.dispatch({ type: 'GET_SEASONS' });
     this.props.dispatch({ type: 'GET_YEARS' });
-    this.setState({
-      csvData: this.props.reduxState.futureSetClassReducer,
-    });
   }
 
   handleSelect = (email) => {
@@ -56,7 +52,7 @@ class FutureSession extends Component {
     this.setState(prevState => ({ session: { ...prevState.session, [name]: value } }));
   }
 
-  exportCSV() {
+  exportCSV = () => {
     const csvRow = [];
     const taco = [[
       '"Course Name"',
@@ -73,7 +69,7 @@ class FutureSession extends Component {
       '"Materals Cost"',
       '"Course Status"',
     ]];
-    const re = this.state.csvData;
+    const re = this.props.reduxState.futureSetClassReducer;
 
     for (let i = 0; i < re.length; i++) {
       taco.push([
