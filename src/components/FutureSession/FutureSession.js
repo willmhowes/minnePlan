@@ -4,9 +4,9 @@ import { withRouter } from 'react-router-dom';
 import {
   Table, Button, Modal, Form,
 } from 'semantic-ui-react';
+import swal from 'sweetalert';
 import FutureSessionTableRow from '../FutureSessionTableRow/FutureSessionTableRow';
 import './FutureSession.css';
-import swal from 'sweetalert';
 
 class FutureSession extends Component {
   state = {
