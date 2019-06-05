@@ -46,18 +46,22 @@ class FutureSession extends Component {
   // opens modal to start new session
   show = () => this.setState({ open: true });
 
+  // closes modal and sends new session data to newSessionSaga.js
   close = () => {
     this.setState({ open: false });
     const action = { type: 'NEW_SESSION', payload: this.state.session };
     this.props.dispatch(action);
   }
 
+  // updates state has values are updated.
   handleChange = (event, { name, value }) => {
     this.setState(prevState => ({ session: { ...prevState.session, [name]: value } }));
   }
 
+  // function to export table to CSV
   exportCSV = () => {
     const csvRow = [];
+    // this will be the whole table. Every array is a row, taco starts with just the column headers
     const taco = [[
       '"Course Name"',
       '"Course Description"',
@@ -73,8 +77,10 @@ class FutureSession extends Component {
       '"Materals Cost"',
       '"Course Status"',
     ]];
+    // this sets variable to reduxState.futureSetClassReducer
     const re = this.props.reduxState.futureSetClassReducer;
 
+    // adds every object to taco in an array to form a new "row" in csv data
     for (let i = 0; i < re.length; i++) {
       taco.push([
         `"${re[i].class_name}"`,
@@ -92,11 +98,15 @@ class FutureSession extends Component {
         `"${re[i].preparation_status}"`,
       ]);
     }
+    // pushes each rowArray into csvRow with commas between each array
     for (let i = 0; i < taco.length; i++) {
       csvRow.push(taco[i].join(','));
     }
+    // creates a string that breaks each array with %0A,
+    // so the csv file understands that that is a row break
     const csvString = csvRow.join('%0A');
     const a = document.createElement('a');
+    // creates all the data documents you will use in download
     a.href = 'data:attachment/csv,' + csvString;
     a.target = '_Blank';
     a.download = 'futureSession.csv';
