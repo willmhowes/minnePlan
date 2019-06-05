@@ -1,3 +1,6 @@
+// This componenet is currently not being used since there is only 1 user but, can be implemented
+// later if dev chooses to expand it.
+
 // This component is currently not imported into the main App.js component.
 // It may be imported back into it to create new admin accounts to the application.
 

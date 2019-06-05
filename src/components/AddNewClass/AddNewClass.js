@@ -88,21 +88,27 @@ class AddNewClass extends Component {
     materialsCost: null,
   };
 
+  // will disptach on load to have in reducers to use on load of page
   componentDidMount() {
+    // sends dispatches to setSessionSaga.js
     this.props.dispatch({ type: 'GET_SESSIONS' });
+    // sends dispatches to setInstructorSaga.js
     this.props.dispatch({ type: 'GET_INSTRUCTORS' });
   }
 
+  // will update state on every chane of value
   handleChange = (event, { name, value }) => {
     this.setState({ [name]: value });
   }
 
+  // will update state on every chane of value
   handleNewChange = name => (event) => {
     this.setState({
       [name]: event.target.value,
     });
   };
 
+  // updates instructor email to match instructor's name on form
   handleInstructor = (event, { value }) => {
     this.setState({
       instructorRef: this.props.reduxState.instructor[value].id,
@@ -117,6 +123,7 @@ class AddNewClass extends Component {
     });
   }
 
+  // Sends class to addClassSaga.js
   handleSubmit = (event) => {
     event.preventDefault();
     // POST new class to DB
@@ -138,22 +145,8 @@ class AddNewClass extends Component {
       ...autoFormTwo,
     });
   }
-  // showCreate = dimmer => () => this.setState({ dimmer, createOpen: true });
-
-  // close = () => {
-  //   this.setState({ createOpen: false });
-  // }
-
-  // closeCreate = (event) => {
-  //   event.preventDefault();
-  //   this.setState({ createOpen: false });
-  //   const action = { type: 'ADD_CLASS', payload: this.state };
-  //   console.log('adding class', action);
-  //   this.props.dispatch(action);
-  // }
 
   render() {
-    // const { createOpen, dimmer } = this.state;
     return (
       <div className="AddNewClass-Segment_div">
         <Header className="addClassHeader" as="h1" attached="top" onClick={this.handleAutoFillOne}>Add New Class</Header>

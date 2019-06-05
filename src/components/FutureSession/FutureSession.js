@@ -5,7 +5,6 @@ import {
   Table, Button, Modal, Form,
 } from 'semantic-ui-react';
 import swal from 'sweetalert';
-// import { ExportToCsv } from 'export-to-csv';
 import FutureSessionTableRow from '../FutureSessionTableRow/FutureSessionTableRow';
 import './FutureSession.css';
 
@@ -19,38 +18,50 @@ class FutureSession extends Component {
     },
   }
 
+  // sends dispatches on load of page to update reduxStates
   componentDidMount() {
+    // dispateches to getClassFutureSaga.js
     this.props.dispatch({ type: 'GET_CLASSES' });
+    // dispateches to setInstructorSaga.js
     this.props.dispatch({ type: 'GET_INSTRUCTORS' });
+    // dispateches to seasonSaga.js
     this.props.dispatch({ type: 'GET_SEASONS' });
+    // dispateches to yearSaga.js
     this.props.dispatch({ type: 'GET_YEARS' });
   }
 
+  // adds email to state to be sent to router later
   handleSelect = (email) => {
     this.setState(prevState => ({
       email: [...prevState.email, email],
     }));
   }
 
+  // function to send emails from state to sendEmailSaga.js
   sendEmailClick = () => {
     this.props.dispatch({ type: 'SEND_EMAIL', payload: this.state.email });
-    swal('The instructor has been emailed their schedule!');
+    swal('The instructors have been emailed their schedule!');
   }
 
+  // opens modal to start new session
   show = () => this.setState({ open: true });
 
+  // closes modal and sends new session data to newSessionSaga.js
   close = () => {
     this.setState({ open: false });
     const action = { type: 'NEW_SESSION', payload: this.state.session };
     this.props.dispatch(action);
   }
 
+  // updates state has values are updated.
   handleChange = (event, { name, value }) => {
     this.setState(prevState => ({ session: { ...prevState.session, [name]: value } }));
   }
 
+  // function to export table to CSV
   exportCSV = () => {
     const csvRow = [];
+    // this will be the whole table. Every array is a row, taco starts with just the column headers
     const taco = [[
       '"Course Name"',
       '"Course Description"',
@@ -66,12 +77,14 @@ class FutureSession extends Component {
       '"Materals Cost"',
       '"Course Status"',
     ]];
+    // this sets variable to reduxState.futureSetClassReducer
     const re = this.props.reduxState.futureSetClassReducer;
 
+    // adds every object to taco in an array to form a new "row" in csv data
     for (let i = 0; i < re.length; i++) {
       taco.push([
         `"${re[i].class_name}"`,
-        `"${re[i].description}`,
+        `"${re[i].description}"`,
         `"${re[i].instructor_name}"`,
         `"${re[i].instructor_email}"`,
         `"${re[i].start_date}"`,
@@ -85,12 +98,16 @@ class FutureSession extends Component {
         `"${re[i].preparation_status}"`,
       ]);
     }
+    // pushes each rowArray into csvRow with commas between each array
     for (let i = 0; i < taco.length; i++) {
       csvRow.push(taco[i].join(','));
     }
+    // creates a string that breaks each array with %0A,
+    // so the csv file understands that that is a row break
     const csvString = csvRow.join('%0A');
     const a = document.createElement('a');
-    a.href = `data:attachment/csv,${csvString}`;
+    // creates all the data documents you will use in download
+    a.href = 'data:attachment/csv,' + csvString;
     a.target = '_Blank';
     a.download = 'futureSession.csv';
     document.body.appendChild(a);
@@ -185,6 +202,7 @@ class FutureSession extends Component {
                 ))}
             </Table.Body>
           </Table>
+          {/* Modal that appears to create a new session */}
           <Modal dimmer={dimmer} open={open} onClose={this.close}>
             <Modal.Header>Start a New Session</Modal.Header>
             <Modal.Content image>

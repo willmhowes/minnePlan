@@ -3,7 +3,7 @@ import { takeLatest, put } from 'redux-saga/effects';
 
 function* instructorSaga() {
   try {
-    // Attempt to get instructors
+    // Attempt to get all instructors
     const response = yield axios.get('/api/instructor');
     const newAction = { type: 'SET_INSTRUCTORS', payload: response.data };
     yield put(newAction);

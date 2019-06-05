@@ -1,3 +1,4 @@
+// expect current session classes
 const currentSessionReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_CURRENT_SESSIONS':

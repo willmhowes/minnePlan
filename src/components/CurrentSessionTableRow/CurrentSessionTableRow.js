@@ -33,27 +33,33 @@ class CurrentSessionTableRow extends Component {
     },
   }
 
+  // opens edit modal
   show = dimmer => () => this.setState({ dimmer, editOpen: true });
 
+  // opens delete modal
   showDelete = dimmer => () => this.setState({ dimmer, deleteOpen: true });
 
+  // closes edit modal and sendds action to updateClassRowSaga.js
   closeEdit = () => {
     this.setState({ editOpen: false });
     const action = { type: 'UPDATE_CLASS_ROW', payload: this.state };
     this.props.dispatch(action);
   }
 
+  // closes modal when no changes are needed
   close = () => {
     this.setState({ deleteOpen: false });
     this.setState({ editOpen: false });
   }
 
+  // closes delete modal and sends action to deleteClassSaga.js
   closeDelete = () => {
     this.setState({ deleteOpen: false });
     const action = { type: 'DELETE_CLASS', payload: this.state.classRow.id };
     this.props.dispatch(action);
   }
 
+  // updates state as classes are being edited in edit modal
   handleChange = name => (event) => {
     this.setState(prevState => ({
       classRow: {
@@ -62,15 +68,6 @@ class CurrentSessionTableRow extends Component {
       },
     }));
   };
-
-  updateclassRow = () => {
-    const afterUpdate = this.state.edit;
-    this.setState({
-      edit: !afterUpdate,
-    });
-    const action = { type: 'UPDATE_CLASSROW', payload: this.state.classRow };
-    this.props.dispatch(action);
-  }
 
   render() {
     const { deleteOpen, editOpen, dimmer } = this.state;
@@ -118,6 +115,7 @@ class CurrentSessionTableRow extends Component {
           <Table.Cell><Button onClick={this.show(true)}><Icon name="edit" /></Button></Table.Cell>
           <Table.Cell><Button onClick={this.showDelete(true)}><Icon name="trash" /></Button></Table.Cell>
         </Table.Row>
+        {/* On click of edit Button, opens this modal with form to update class */}
         <Modal dimmer={dimmer} open={editOpen} onClose={this.close}>
           <Modal.Header>Edit Class</Modal.Header>
           <Modal.Content>
@@ -246,6 +244,7 @@ class CurrentSessionTableRow extends Component {
             />
           </Modal.Actions>
         </Modal>
+        {/* delete modal to delete class */}
         <Modal dimmer={dimmer} open={deleteOpen} onClose={this.close}>
           <Modal.Header>Delete Class</Modal.Header>
           <Modal.Content image>
