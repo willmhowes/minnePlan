@@ -4,9 +4,10 @@ import { withRouter } from 'react-router-dom';
 import {
   Table, Button, Modal, Form,
 } from 'semantic-ui-react';
+import swal from 'sweetalert';
+// import { ExportToCsv } from 'export-to-csv';
 import FutureSessionTableRow from '../FutureSessionTableRow/FutureSessionTableRow';
 import './FutureSession.css';
-import swal from 'sweetalert';
 
 class FutureSession extends Component {
   state = {
@@ -16,6 +17,7 @@ class FutureSession extends Component {
       season: 0,
       year: 0,
     },
+    csvData: [],
   }
 
   componentDidMount() {
@@ -23,6 +25,9 @@ class FutureSession extends Component {
     this.props.dispatch({ type: 'GET_INSTRUCTORS' });
     this.props.dispatch({ type: 'GET_SEASONS' });
     this.props.dispatch({ type: 'GET_YEARS' });
+    this.setState({
+      csvData: this.props.reduxState.futureSetClassReducer,
+    });
   }
 
   handleSelect = (email) => {
@@ -51,12 +56,65 @@ class FutureSession extends Component {
     this.setState(prevState => ({ session: { ...prevState.session, [name]: value } }));
   }
 
+  exportCSV() {
+    const csvRow = [];
+    const taco = [[
+      '"Course Name"',
+      '"Course Description"',
+      '"Instructor Name"',
+      '"Instructor Email"',
+      '"Start Date"',
+      '"End Date"',
+      '"Day of The Week"',
+      '"Start Time"',
+      '"End Time"',
+      '"Course Rate"',
+      '"Instructor Rate"',
+      '"Materals Cost"',
+      '"Course Status"',
+    ]];
+    const re = this.state.csvData;
+
+    for (let i = 0; i < re.length; i++) {
+      taco.push([
+        `"${re[i].class_name}"`,
+        `"${re[i].description}`,
+        `"${re[i].instructor_name}"`,
+        `"${re[i].instructor_email}"`,
+        `"${re[i].start_date}"`,
+        `"${re[i].end_date}"`,
+        `"${re[i].day_of_week}"`,
+        `"${re[i].start_time}"`,
+        `"${re[i].end_time}"`,
+        `"${re[i].student_cost}"`,
+        `"${re[i].instructor_pay}"`,
+        `"${re[i].materials_cost}"`,
+        `"${re[i].preparation_status}"`,
+      ]);
+    }
+    console.log(taco);
+    for (let i = 0; i < taco.length; i++) {
+      csvRow.push(taco[i].join(','));
+    }
+    console.log(csvRow);
+    const csvString = csvRow.join('%0A');
+    console.log(csvString);
+    const a = document.createElement('a');
+    a.href = 'data:attachment/csv,' + csvString;
+    console.log(a.href);
+    a.target = '_Blank';
+    a.download = 'futureSession.csv';
+    document.body.appendChild(a);
+    a.click();
+  }
+
   render() {
     const { open, dimmer } = this.state;
+    console.log(this.props.reduxState.futureSetClassReducer);
 
     return (
       <div className="page-container">
-        {/* <pre>{JSON.stringify(this.state)}</pre> */}
+        <pre>{JSON.stringify(this.props.reduxState.futureSetClassReducer)}</pre>
         <div className="legend">
           <h3 className="colorLegend">Color Legend</h3>
           <ul className="legendList">
@@ -86,6 +144,7 @@ class FutureSession extends Component {
         <div className="email-button">
           <Button onClick={this.sendEmailClick}>Email Instructors</Button>
           <Button onClick={this.show}>Start New Session</Button>
+          <Button onClick={this.exportCSV}>Export Table</Button>
         </div>
         <div className="FutureSession-table-container">
           <br />
