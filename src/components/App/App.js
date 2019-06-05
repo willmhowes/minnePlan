@@ -22,7 +22,6 @@ import Instructor from '../Instructor/Instructor';
 import AddNewInstructor from '../AddNewInstructor/AddNewInstructor';
 import InstructorSchedule from '../InstructorSchedule/InstructorSchedule';
 import InstructorLogin from '../InstructorLogin/InstructorLogin';
-import InstructorParse from '../InstructorParse/InstructorParse';
 import ArchivedSessions from '../ArchivedSessions/ArchivedSessions';
 
 // importing semanitc ui styling
@@ -95,11 +94,6 @@ class App extends Component {
               exact
               path="/instructor_login"
               component={InstructorLogin}
-            />
-            <Route
-              exact
-              path="/instructor_parse"
-              component={InstructorParse}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
