@@ -29,6 +29,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   pool.query(queryText, queryValues)
     .then(() => { res.sendStatus(201); })
     .catch((err) => {
+      console.log('Error:', err);
       res.sendStatus(500);
     });
 });
@@ -42,6 +43,7 @@ router.get('/future', (req, res) => {
   pool.query(classesQuery)
     .then((response) => { res.send(response.rows); })
     .catch((error) => {
+      console.log('Error:', error);
       res.sendStatus(500);
     });
 });
@@ -54,6 +56,7 @@ router.get('/current', (req, res) => {
   pool.query(classesQuery)
     .then((response) => { res.send(response.rows); })
     .catch((error) => {
+      console.log('Error:', error);
       res.sendStatus(500);
     });
 });
@@ -66,6 +69,7 @@ router.get('/history/:season/:year', rejectUnauthenticated, (req, res) => {
   pool.query(archivedQuery)
     .then((response) => { res.send(response.rows); })
     .catch((error) => {
+      console.log('Error:', error);
       res.sendStatus(500);
     });
 });
@@ -77,6 +81,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
       res.send(response.rows);
     })
     .catch((err) => {
+      console.log('Error:', err);
       res.sendStatus(500);
     });
 });
@@ -118,10 +123,11 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
       materialsCost,
       id,
     ])
-    .then((result) => {
+    .then(() => {
       res.sendStatus(200);
     })
     .catch((err) => {
+      console.log('Error:', err);
       res.sendStatus(500);
     });
 });
@@ -161,6 +167,7 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
   pool.query(queryText)
     .then(() => { res.sendStatus(200); })
     .catch((err) => {
+      console.log('Error:', err);
       res.sendStatus(500);
     });
 });

@@ -23,8 +23,9 @@ function sendEmail(email, res) {
       <p>Thank you!</p>`, // plain text body
   };
 
-  transporter.sendMail(mailOptions, (err, info) => {
+  transporter.sendMail(mailOptions, (err) => {
     if (err) {
+      console.log(err);
       res.sendStatus(500);
     } else {
       res.sendStatus(200);

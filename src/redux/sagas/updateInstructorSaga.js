@@ -5,7 +5,7 @@ function* updateInstructorSaga(action) {
   const id = action.payload.id;
   try {
   // Attempt to get instructor
-    const response = yield axios.put(`/api/instructor/${id}`, action.payload);
+    yield axios.put(`/api/instructor/${id}`, action.payload);
     const getAction = { type: 'GET_INSTRUCTORS', payload: id };
     yield put(getAction);
   } catch (error) {

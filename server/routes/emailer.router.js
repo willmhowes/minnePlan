@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
     try {
       await client.query('BEGIN');
       const getSql = await client.query(getQuery, [email]);
-      const updateSql = await client.query(updateQuery, ['pending response', getSql.rows[0].id]);
+      await client.query(updateQuery, ['pending response', getSql.rows[0].id]);
       await client.query('COMMIT');
     } catch (error) {
       await client.query('ROLLBACK');

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { takeLatest, put } from 'redux-saga/effects';
 
-function* classCountSaga(action) {
+function* classCountSaga() {
   try {
     // Attempt to get class count
     const response = yield axios.get('/instructorSchedule/classcount');

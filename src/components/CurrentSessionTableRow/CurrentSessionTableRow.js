@@ -55,12 +55,12 @@ class CurrentSessionTableRow extends Component {
   }
 
   handleChange = name => (event) => {
-    this.setState({
+    this.setState(prevState => ({
       classRow: {
-        ...this.state.classRow,
+        ...prevState.classRow,
         [name]: event.target.value,
       },
-    });
+    }));
   };
 
   updateclassRow = () => {
