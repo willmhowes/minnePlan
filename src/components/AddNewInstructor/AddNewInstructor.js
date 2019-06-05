@@ -10,6 +10,7 @@ const emptyForm = {
   phone_number: '',
 };
 
+// for auto-fill on click of button
 const addBrian = {
   instructor_name: 'Brian Zilka',
   instructor_email: 'brianzilka321@gmail.com',
@@ -23,26 +24,26 @@ class AddNewInstructor extends Component {
     phone_number: '',
   }
 
+  // updates state as for gets updated
   handleChange = name => (event) => {
-    // console.log(event.target.value, name);
-    // console.log(this.state);
     this.setState({
       [name]: event.target.value,
     });
   };
 
+  // adds instructor to DB by sending state to addInstructorSaga.js
   addInstructor = (event) => {
     event.preventDefault();
-    console.log('adding instructor', this.state);
     const action = { type: 'ADD_INSTRUCTOR', payload: this.state };
-    console.log(action);
     this.props.dispatch(action);
     this.setState({
       ...emptyForm,
     });
+    // Sends alert to DOM that instructor has been added
     swal('The new instructor has been added!');
   }
 
+  // Auto fill to add Brian
   handleAutoFillBrian = () => {
     this.setState({
       ...addBrian,

@@ -246,9 +246,9 @@ class AddNewClass extends Component {
               />
             </Form.Group>
             <Form.Group>
-              <Form.Input value={this.state.studentCost}  label="Class Cost" onChange={this.handleNewChange('studentCost')} />
-              <Form.Input value={this.state.instructorPay}  label="Instructor Salary" onChange={this.handleNewChange('instructorPay')} />
-              <Form.Input value={this.state.materialsCost}  label="Materials Cost" onChange={this.handleNewChange('materialsCost')} />
+              <Form.Input value={this.state.studentCost} label="Class Cost" onChange={this.handleNewChange('studentCost')} />
+              <Form.Input value={this.state.instructorPay} label="Instructor Salary" onChange={this.handleNewChange('instructorPay')} />
+              <Form.Input value={this.state.materialsCost} label="Materials Cost" onChange={this.handleNewChange('materialsCost')} />
             </Form.Group>
             <Form.Group>
               <Form.TextArea value={this.state.description} label="Course Description" onChange={this.handleNewChange('description')} />
