@@ -9,7 +9,7 @@ function* addClassSaga(action) {
     console.log('Couldn\'t add class', error);
   }
 }
-//
+
 function* addClass() {
   yield takeLatest('ADD_CLASS', addClassSaga);
 }
