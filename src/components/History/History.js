@@ -9,18 +9,21 @@ class History extends Component {
     year: '',
   }
 
+  // sends dispatch to update season and year reducers on load of page
   componentDidMount() {
     this.props.dispatch({ type: 'GET_SEASONS' });
     this.props.dispatch({ type: 'GET_YEARS' });
   }
 
+  // updates state as form is being updates
   handleChange = (event, { name, value }) => {
     this.setState({ [name]: value });
   }
 
+  // sends state to get correct session for ArchivedSessions, goes to archivedSaga.js
+  // redirects user to ArchivedSessions page
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('in geting session', this.state);
     // GET archived session data
     this.props.dispatch({ type: 'GET_ARCHIVED', payload: this.state });
     this.props.history.push('/archived-session-history');
