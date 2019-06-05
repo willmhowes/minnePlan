@@ -3,7 +3,7 @@ import { takeLatest, put } from 'redux-saga/effects';
 
 function* classCountSaga(action) {
   try {
-    // Attempt to get class count
+    // Attempt to get class count for specific instructor
     const response = yield axios.get('/instructorSchedule/classcount');
     const newAction = { type: 'SET_CLASS_COUNT', payload: response.data };
     yield put(newAction);

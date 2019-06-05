@@ -1,3 +1,4 @@
+// expect instructor class count
 const classCountReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_CLASS_COUNT':

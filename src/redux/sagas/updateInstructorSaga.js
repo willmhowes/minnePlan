@@ -4,7 +4,7 @@ import { takeLatest, put } from 'redux-saga/effects';
 function* updateInstructorSaga(action) {
   const id = action.payload.id;
   try {
-  // Attempt to get instructor
+  // Attempt to update instructors information
     const response = yield axios.put(`/api/instructor/${id}`, action.payload);
     const getAction = { type: 'GET_INSTRUCTORS', payload: id };
     yield put(getAction);

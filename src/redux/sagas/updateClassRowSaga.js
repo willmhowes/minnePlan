@@ -4,7 +4,7 @@ import { takeLatest, put } from 'redux-saga/effects';
 function* updateclassRowSaga(action) {
   const id = action.payload.id;
   try {
-    // Attempt to get classRow
+    // Attempt to update classRow
     const response = yield axios.put(`/api/classes/${id}`, action.payload);
     const getAction = { type: 'GET_CLASSES' };
     yield put(getAction);

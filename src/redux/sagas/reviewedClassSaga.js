@@ -3,7 +3,7 @@ import { takeLatest } from 'redux-saga/effects';
 
 function* reviewedClassSaga(action) {
   try {
-  // Attempt to get brand
+  // Attempt to update classes on instructors schedule to instructor's repsonse
     const response = yield axios.put('/instructorSchedule', action.payload);
   } catch (error) {
   }
