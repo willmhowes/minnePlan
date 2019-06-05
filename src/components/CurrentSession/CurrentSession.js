@@ -13,17 +13,19 @@ class CurrentSession extends Component {
     idArray: [],
   };
 
+  // on load of page dispatches to currentSessionSaga.js
   componentDidMount() {
     this.props.dispatch({ type: 'GET_CURRENT_SESSIONS' });
   }
 
+  // on click of select box, add value to this.state.idArray array
   handleSelect = (event, { value }) => {
-    console.log('in checkbox handler', value);
     this.setState(prevState => ({
       idArray: [...prevState.idArray, value],
     }));
   }
 
+  // sends id to copyClassSaga.js, with all ids of selected classes
   handleClick = () => {
     this.props.dispatch({ type: 'COPY_CLASS', payload: this.state.idArray });
     swal('Your class has been added to the future session!');
@@ -35,7 +37,6 @@ class CurrentSession extends Component {
         <br />
         <Button onClick={this.handleClick}>Add to Future Session</Button>
         <br />
-        {/* <pre>{JSON.stringify(this.state)}</pre> */}
         <Table celled>
           <Table.Header>
             <Table.Row>
