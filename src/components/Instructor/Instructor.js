@@ -6,10 +6,12 @@ import './Instructor.css';
 import InstructorRow from './InstructorRow';
 
 class Instructor extends Component {
+  // sends dispatch to setInstructorSaga.js, to update instructor reducer
   componentDidMount() {
     this.props.dispatch({ type: 'GET_INSTRUCTORS' });
   }
 
+  // redirects user to add new instructor page
   addInstructor = () => {
     this.props.history.push('/add-new-instructor');
   }
