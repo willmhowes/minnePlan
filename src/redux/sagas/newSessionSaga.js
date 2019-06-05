@@ -9,6 +9,7 @@ function* newSessionSaga(action) {
     const getAction = { type: 'GET_CLASSES' };
     yield put(getAction);
   } catch (error) {
+    console.log('Could not create new session', error);
   }
 }
 

@@ -9,6 +9,7 @@ function* updateInstructorSaga(action) {
     const getAction = { type: 'GET_INSTRUCTORS', payload: id };
     yield put(getAction);
   } catch (error) {
+    console.log('Could not update instructor', error);
   }
 }
 

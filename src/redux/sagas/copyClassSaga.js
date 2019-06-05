@@ -6,6 +6,7 @@ function* copyClassSaga(action) {
     // Attempt to add class to future session
     const response = yield axios.post('/api/classes/copy', action.payload);
   } catch (error) {
+    console.log('Couldn\'t add class to future session', error);
   }
 }
 

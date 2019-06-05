@@ -6,6 +6,7 @@ function* addClassSaga(action) {
     // Attempt to add class to DB
     const response = yield axios.post('/api/classes', action.payload);
   } catch (error) {
+    console.log('Couldn\'t add class', error);
   }
 }
 

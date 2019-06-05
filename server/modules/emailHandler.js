@@ -41,10 +41,15 @@ function removeDuplicates(emails, res) {
     }
   });
   const uniqueEmail = Object.keys(unique);
+<<<<<<< HEAD
   // sends unique to every unique email in array
   for (const email of uniqueEmail) {
+=======
+
+  uniqueEmail.forEach((email) => {
+>>>>>>> 87f291d31b6b8c1d2ddf6ae6159b500f5b2de4fe
     sendEmail(email, res);
-  }
+  });
 }
 
 module.exports = { sendEmail, removeDuplicates };

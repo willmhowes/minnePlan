@@ -9,6 +9,7 @@ function* getInstructorSaga(action) {
     const setInstructor = { type: 'SET_INSTRUCTOR', payload: response.data[0] };
     yield put(setInstructor);
   } catch (error) {
+    console.log('Could not get instructor', error);
   }
 }
 

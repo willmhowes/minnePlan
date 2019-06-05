@@ -9,6 +9,7 @@ function* getClassFutureSaga(action) {
     const setClass = { type: 'SET_CLASSES', payload: response.data };
     yield put(setClass);
   } catch (error) {
+    console.log('Could not get class', error);
   }
 }
 

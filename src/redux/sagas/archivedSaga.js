@@ -8,6 +8,7 @@ function* archivedSaga(action) {
     const setArchived = { type: 'SET_ARCHIVED', payload: response.data };
     yield put(setArchived);
   } catch (error) {
+    console.log('Could not get ARCHIVED', error);
   }
 }
 

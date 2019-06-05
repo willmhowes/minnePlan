@@ -90,7 +90,7 @@ class FutureSessionTableRow extends Component {
 
   // adds email to this.state, to send class schedule to instructor
   select = (email) => {
-    this.setState(prevState => ({
+    this.setState(({
       selectVal: true,
     }));
     this.props.select(email);
