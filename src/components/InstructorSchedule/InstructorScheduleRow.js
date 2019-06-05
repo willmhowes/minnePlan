@@ -44,10 +44,10 @@ class InstructorScheduleRow extends Component {
           {this.props.schedule.class_name}
           <br />
                     Start Date:
-          {moment(this.props.schedule.start_date).subtract(10, 'days').calendar()}
+          {moment(this.props.schedule.start_date).calendar()}
           <br />
                     End Date:
-          {moment(this.props.schedule.end_date).subtract(10, 'days').calendar()}
+          {moment(this.props.schedule.end_date).calendar()}
         </Table.Cell>
         <Table.Cell>
           {this.props.schedule.day_of_week}

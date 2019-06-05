@@ -25,10 +25,8 @@ function sendEmail(email, res) {
 
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
-      console.log(err);
       res.sendStatus(500);
     } else {
-      console.log(info);
       res.sendStatus(200);
     }
   });
@@ -43,7 +41,6 @@ function removeDuplicates(emails, res) {
   });
   const uniqueEmail = Object.keys(unique);
   for (const email of uniqueEmail) {
-    console.log('unique email', email);
     sendEmail(email, res);
   }
 }

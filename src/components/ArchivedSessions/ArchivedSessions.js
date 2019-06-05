@@ -11,7 +11,6 @@ class ArchivedSessions extends Component {
 
   // on click of select box, add value to this.state.idArray array
   handleSelect = (event, { value }) => {
-    console.log('in checkbox handler', value);
     this.setState(prevState => ({
       idArray: [...prevState.idArray, value],
     }));

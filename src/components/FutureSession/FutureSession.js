@@ -127,7 +127,7 @@ class FutureSession extends Component {
             <li className="olive">
               Green - ready to transfer
             </li>
-            <li className="red">
+            <li className="reds">
               Red - no instructor
             </li>
             <li className="grey">

@@ -61,7 +61,6 @@ class CurrentSessionTableRow extends Component {
 
   // updates state as classes are being edited in edit modal
   handleChange = name => (event) => {
-    console.log(event.target.value, name);
     this.setState({
       classRow: {
         ...this.state.classRow,

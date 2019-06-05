@@ -17,7 +17,6 @@ class Instructor extends Component {
   }
 
   editInstructor = () => {
-    console.log('Edit instructor button clicked', this.state);
     const editNow = this.state.edit;
     this.setState({
       edit: !editNow,
@@ -25,11 +24,8 @@ class Instructor extends Component {
   }
 
   handleChange = name => (event) => {
-    console.log(event.target.value, name);
-    console.log(this.state.instructor);
     this.setState({
       instructor: {
-        // eslint-disable-next-line react/no-access-state-in-setstate
         ...this.state.instructor,
         [name]: event.target.value,
       },
@@ -37,7 +33,6 @@ class Instructor extends Component {
   };
 
   updateInstructor = () => {
-    console.log('Updating instructor', this.state.instructor);
     const afterUpdate = this.state.edit;
     this.setState({
       edit: !afterUpdate,
