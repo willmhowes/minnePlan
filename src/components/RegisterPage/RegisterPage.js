@@ -1,3 +1,6 @@
+// This component is currently not imported into the main App.js component.
+// It may be imported back into it to create new admin accounts to the application.
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -95,4 +98,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(RegisterPage);
-
