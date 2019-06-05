@@ -97,7 +97,7 @@ class FutureSessionTableRow extends Component {
   }
 
   select = (email) => {
-    this.setState(prevState => ({
+    this.setState(({
       selectVal: true,
     }));
     this.props.select(email);
