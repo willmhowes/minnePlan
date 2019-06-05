@@ -27,14 +27,12 @@ class FutureSession extends Component {
   }
 
   handleSelect = (email) => {
-    console.log('in checkbox handler', email);
     this.setState(prevState => ({
       email: [...prevState.email, email],
     }));
   }
 
   sendEmailClick = () => {
-    console.log('email button clicked');
     this.props.dispatch({ type: 'SEND_EMAIL', payload: this.state.email });
     swal('The instructor has been emailed their schedule!');
   }
@@ -44,7 +42,6 @@ class FutureSession extends Component {
   close = () => {
     this.setState({ open: false });
     const action = { type: 'NEW_SESSION', payload: this.state.session };
-    console.log(action);
     this.props.dispatch(action);
   }
 
@@ -88,16 +85,12 @@ class FutureSession extends Component {
         `"${re[i].preparation_status}"`,
       ]);
     }
-    console.log(taco);
     for (let i = 0; i < taco.length; i++) {
       csvRow.push(taco[i].join(','));
     }
-    console.log(csvRow);
     const csvString = csvRow.join('%0A');
-    console.log(csvString);
     const a = document.createElement('a');
     a.href = 'data:attachment/csv,' + csvString;
-    console.log(a.href);
     a.target = '_Blank';
     a.download = 'futureSession.csv';
     document.body.appendChild(a);
@@ -106,11 +99,9 @@ class FutureSession extends Component {
 
   render() {
     const { open, dimmer } = this.state;
-    console.log(this.props.reduxState.futureSetClassReducer);
 
     return (
       <div className="page-container">
-        <pre>{JSON.stringify(this.props.reduxState.futureSetClassReducer)}</pre>
         <div className="legend">
           <h3 className="colorLegend">Color Legend</h3>
           <ul className="legendList">
