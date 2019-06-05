@@ -18,24 +18,32 @@ class FutureSession extends Component {
     },
   }
 
+  // sends dispatches on load of page to update reduxStates
   componentDidMount() {
+    // dispateches to getClassFutureSaga.js
     this.props.dispatch({ type: 'GET_CLASSES' });
+    // dispateches to setInstructorSaga.js
     this.props.dispatch({ type: 'GET_INSTRUCTORS' });
+    // dispateches to seasonSaga.js
     this.props.dispatch({ type: 'GET_SEASONS' });
+    // dispateches to yearSaga.js
     this.props.dispatch({ type: 'GET_YEARS' });
   }
 
+  // adds email to state to be sent to router later
   handleSelect = (email) => {
     this.setState(prevState => ({
       email: [...prevState.email, email],
     }));
   }
 
+  // function to send emails from state to sendEmailSaga.js
   sendEmailClick = () => {
     this.props.dispatch({ type: 'SEND_EMAIL', payload: this.state.email });
-    swal('The instructor has been emailed their schedule!');
+    swal('The instructors have been emailed their schedule!');
   }
 
+  // opens modal to start new session
   show = () => this.setState({ open: true });
 
   close = () => {
@@ -70,7 +78,7 @@ class FutureSession extends Component {
     for (let i = 0; i < re.length; i++) {
       taco.push([
         `"${re[i].class_name}"`,
-        `"${re[i].description}`,
+        `"${re[i].description}"`,
         `"${re[i].instructor_name}"`,
         `"${re[i].instructor_email}"`,
         `"${re[i].start_date}"`,
