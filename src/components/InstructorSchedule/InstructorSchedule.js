@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Table, Button } from 'semantic-ui-react';
-// import swal from 'sweetalert';
 import InstructorScheduleRow from './InstructorScheduleRow';
-
-// const moment = require('moment');
 
 class InstructorSchedule extends Component {
   componentDidMount() {
@@ -53,7 +50,6 @@ class InstructorSchedule extends Component {
           and give a brief explanation as to why.
         </p>
         <p align="center"> Once you are done please logout.</p>
-        {/* <pre>{JSON.stringify(this.state)}</pre> */}
         <Table size="large">
           <Table.Header>
             <Table.Row>

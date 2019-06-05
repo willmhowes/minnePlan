@@ -8,7 +8,6 @@ const pool = require('../modules/pool');
 passport.serializeUser((userObj, done) => {
   const { user, userGroup } = userObj;
   const identity = { id: user.id, userGroup };
-  console.log(identity);
   done(null, identity);
 });
 
@@ -29,7 +28,6 @@ passport.deserializeUser((identity, done) => {
           done(null, null);
         }
       }).catch((error) => {
-        console.log('Error with query during deserializing instructor ', error);
         // done takes an error (we have one) and a user (null in this case)
         // this will result in the server returning a 500 status code
         done(error, null);
@@ -50,7 +48,6 @@ passport.deserializeUser((identity, done) => {
         done(null, null);
       }
     }).catch((error) => {
-      console.log('Error with query during deserializing user ', error);
       // done takes an error (we have one) and a user (null in this case)
       // this will result in the server returning a 500 status code
       done(error, null);
@@ -68,7 +65,6 @@ passport.use('auth0', new Auth0Strategy({
   callbackURL: process.env.AUTH0_CALLBACK_URL,
   scope: 'openid email',
 }, ((accessToken, refreshToken, extraParams, profile, done) => {
-  console.log('email:', profile._json.email);
   const { email } = profile._json;
 
   pool.query('SELECT * FROM "instructors" WHERE "instructor_email" = $1', [email])
@@ -78,7 +74,6 @@ passport.use('auth0', new Auth0Strategy({
       user = { user, userGroup: 'instructor' };
       done(null, user);
     }).catch((error) => {
-      console.log('Error with query for instructor ', error);
       // done takes an error (we have one) and a user (null in this case)
       // this will result in the server returning a 500 status code
       done(error, null);
@@ -102,7 +97,6 @@ passport.use('local', new LocalStrategy((username, password, done) => {
         done(null, null);
       }
     }).catch((error) => {
-      console.log('Error with query for user ', error);
       // done takes an error (we have one) and a user (null in this case)
       // this will result in the server returning a 500 status code
       done(error, null);
