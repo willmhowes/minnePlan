@@ -47,7 +47,7 @@ class InstructorSchedule extends Component {
           {' '}
           <Button size="small" icon={{ color: 'red', name: 'close' }} disabled />
           {' '}
-          and give a breif explanation as to why.
+          and give a brief explanation as to why.
         </p>
         <p align="center"> Once you are done please logout.</p>
         <Table size="large">
