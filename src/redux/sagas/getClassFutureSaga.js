@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { takeLatest, put } from 'redux-saga/effects';
 
-function* getClassFutureSaga(action) {
-  // const id = action.payload;
+function* getClassFutureSaga() {
   try {
     // Attempt to get class
     const response = yield axios.get('/api/classes/future');

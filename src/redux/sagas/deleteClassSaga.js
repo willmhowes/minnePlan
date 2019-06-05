@@ -5,7 +5,7 @@ function* deleteclassSaga(action) {
   const id = action.payload;
   try {
     // Attempt to get classRow
-    const response = yield axios.delete(`/api/classes/${id}`);
+    yield axios.delete(`/api/classes/${id}`);
     const getAction = { type: 'GET_CLASSES' };
     const getCurrent = { type: 'GET_CURRENT_SESSIONS' };
     yield put(getAction);

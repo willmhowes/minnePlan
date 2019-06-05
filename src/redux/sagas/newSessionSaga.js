@@ -4,7 +4,7 @@ import { takeLatest, put } from 'redux-saga/effects';
 function* newSessionSaga(action) {
   try {
   // Attempt to create a new session
-    const response = yield axios.put('/api/session', action.payload);
+    yield axios.put('/api/session', action.payload);
     const getAction = { type: 'GET_CLASSES' };
     yield put(getAction);
   } catch (error) {
