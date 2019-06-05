@@ -10,7 +10,6 @@ class ArchivedSessions extends Component {
   };
 
   handleSelect = (event, { value }) => {
-    console.log('in checkbox handler', value);
     this.setState(prevState => ({
       idArray: [...prevState.idArray, value],
     }));
@@ -26,7 +25,6 @@ class ArchivedSessions extends Component {
       <div>
         <br />
         <Button onClick={this.handleClick}>Add to Future Session</Button>
-        {/* <pre>{JSON.stringify(this.props.reduxState.archived)}</pre> */}
         <br />
         <Table celled>
           <Table.Header>

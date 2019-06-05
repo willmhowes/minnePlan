@@ -6,8 +6,8 @@ function sendEmail(email, res) {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'noreplymplscommed@gmail.com',
-      pass: 'communityed2',
+      user: process.env.GMAIL,
+      pass: process.env.GMAIL_PASSWORD,
     },
   });
 
@@ -25,10 +25,8 @@ function sendEmail(email, res) {
 
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
-      console.log(err);
       res.sendStatus(500);
     } else {
-      console.log(info);
       res.sendStatus(200);
     }
   });
@@ -44,7 +42,6 @@ function removeDuplicates(emails, res) {
   const uniqueEmail = Object.keys(unique);
 
   uniqueEmail.forEach((email) => {
-    console.log('unique email', email);
     sendEmail(email, res);
   });
 }

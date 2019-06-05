@@ -13,7 +13,7 @@ const emptyForm = {
 const addBrian = {
   instructor_name: 'Brian Zilka',
   instructor_email: 'brianzilka321@gmail.com',
-  phone_number: '6517732654',
+  phone_number: '6515555555',
 };
 
 class AddNewInstructor extends Component {
@@ -24,8 +24,6 @@ class AddNewInstructor extends Component {
   }
 
   handleChange = name => (event) => {
-    // console.log(event.target.value, name);
-    // console.log(this.state);
     this.setState({
       [name]: event.target.value,
     });
@@ -33,9 +31,7 @@ class AddNewInstructor extends Component {
 
   addInstructor = (event) => {
     event.preventDefault();
-    console.log('adding instructor', this.state);
     const action = { type: 'ADD_INSTRUCTOR', payload: this.state };
-    console.log(action);
     this.props.dispatch(action);
     this.setState({
       ...emptyForm,

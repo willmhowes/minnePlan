@@ -97,17 +97,7 @@ class AddNewClass extends Component {
     this.setState({ [name]: value });
   }
 
-  // handleNewSession = (event, { value, name }) => {
-  //   // console.log(value, name);
-  //   // console.log(this.state);
-  //   this.setState({
-  //     [name]: value,
-  //   });
-  // }
-
   handleNewChange = name => (event) => {
-    // console.log(event.target.value, name);
-    // console.log(this.state);
     this.setState({
       [name]: event.target.value,
     });
@@ -118,7 +108,6 @@ class AddNewClass extends Component {
       instructorRef: this.props.reduxState.instructor[value].id,
       instructorEmail: this.props.reduxState.instructor[value].instructor_email,
     });
-    // this.props.dispatch({ type: 'GET_INSTRUCTOR', payload: value });
   }
 
   handleDay = (event) => {
@@ -130,7 +119,6 @@ class AddNewClass extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('in handleSubmit');
     // POST new class to DB
     this.props.dispatch({ type: 'ADD_CLASS', payload: this.state });
     this.setState({
@@ -168,7 +156,6 @@ class AddNewClass extends Component {
     // const { createOpen, dimmer } = this.state;
     return (
       <div className="AddNewClass-Segment_div">
-        {/* <pre>{JSON.stringify(this.state)}</pre> */}
         <Header className="addClassHeader" as="h1" attached="top" onClick={this.handleAutoFillOne}>Add New Class</Header>
         <Segment attached>
           <Form className="NewClass" onSubmit={this.handleSubmit}>

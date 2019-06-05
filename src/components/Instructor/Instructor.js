@@ -11,7 +11,6 @@ class Instructor extends Component {
   }
 
   addInstructor = () => {
-    console.log('Add new instructor button clicked');
     this.props.history.push('/add-new-instructor');
   }
 
@@ -20,7 +19,6 @@ class Instructor extends Component {
       <div>
         <h1>All Instructors</h1>
         <Button onClick={this.addInstructor}>Add New Instructor</Button>
-        {/* <pre>{JSON.stringify(this.props.reduxState.instructor)}</pre> */}
         <Table celled>
           <Table.Header>
             <Table.Row>
