@@ -3,6 +3,7 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
+// gets all classes assigned to logged in instructor, with session status of planning
 router.get('/', (req, res) => {
   const { id } = req.user;
   const scheduleQuery = `SELECT "classes"."id", "class_name", "start_date", "end_date", "day_of_week","start_time",
@@ -17,6 +18,7 @@ router.get('/', (req, res) => {
     });
 });
 
+// gets class count of logged in instructor
 router.get('/classcount', (req, res) => {
   const { id } = req.user;
   const countQuery = `SELECT COUNT("class_name"), "instructors"."instructor_name", "seasons"."season", "years"."years" FROM "instructors"
@@ -33,6 +35,7 @@ router.get('/classcount', (req, res) => {
     });
 });
 
+// updates class with instructor's repsonse
 router.put('/', (req, res) => {
   const id = req.body.id;
   const reason = req.body.reason;
