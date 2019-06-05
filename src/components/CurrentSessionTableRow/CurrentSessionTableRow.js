@@ -33,50 +33,42 @@ class CurrentSessionTableRow extends Component {
     },
   }
 
+  // opens edit modal
   show = dimmer => () => this.setState({ dimmer, editOpen: true });
 
+  // opens delete modal
   showDelete = dimmer => () => this.setState({ dimmer, deleteOpen: true });
 
+  // closes edit modal and sendds action to updateClassRowSaga.js
   closeEdit = () => {
     this.setState({ editOpen: false });
     const action = { type: 'UPDATE_CLASS_ROW', payload: this.state };
-    // console.log(action);
     this.props.dispatch(action);
   }
 
+  // closes modal when no changes are needed
   close = () => {
     this.setState({ deleteOpen: false });
     this.setState({ editOpen: false });
   }
 
+  // closes delete modal and sends action to deleteClassSaga.js
   closeDelete = () => {
     this.setState({ deleteOpen: false });
     const action = { type: 'DELETE_CLASS', payload: this.state.classRow.id };
-    console.log('deleting class', action);
     this.props.dispatch(action);
   }
 
+  // updates state as classes are being edited in edit modal
   handleChange = name => (event) => {
     console.log(event.target.value, name);
-    // console.log(this.state.classRow);
     this.setState({
       classRow: {
-        // eslint-disable-next-line react/no-access-state-in-setstate
         ...this.state.classRow,
         [name]: event.target.value,
       },
     });
   };
-
-  updateclassRow = () => {
-    console.log('Updating classRow', this.state.classRow);
-    const afterUpdate = this.state.edit;
-    this.setState({
-      edit: !afterUpdate,
-    });
-    const action = { type: 'UPDATE_CLASSROW', payload: this.state.classRow };
-    this.props.dispatch(action);
-  }
 
   render() {
     const { deleteOpen, editOpen, dimmer } = this.state;
@@ -124,6 +116,7 @@ class CurrentSessionTableRow extends Component {
           <Table.Cell><Button onClick={this.show(true)}><Icon name="edit" /></Button></Table.Cell>
           <Table.Cell><Button onClick={this.showDelete(true)}><Icon name="trash" /></Button></Table.Cell>
         </Table.Row>
+        {/* On click of edit Button, opens this modal with form to update class */}
         <Modal dimmer={dimmer} open={editOpen} onClose={this.close}>
           <Modal.Header>Edit Class</Modal.Header>
           <Modal.Content>
