@@ -24,12 +24,12 @@ class Instructor extends Component {
   }
 
   handleChange = name => (event) => {
-    this.setState({
+    this.setState(prevState => ({
       instructor: {
-        ...this.state.instructor,
+        ...prevState.instructor,
         [name]: event.target.value,
       },
-    });
+    }));
   };
 
   updateInstructor = () => {

@@ -5,7 +5,7 @@ function* updateclassRowSaga(action) {
   const id = action.payload.id;
   try {
     // Attempt to get classRow
-    const response = yield axios.put(`/api/classes/${id}`, action.payload);
+    yield axios.put(`/api/classes/${id}`, action.payload);
     const getAction = { type: 'GET_CLASSES' };
     yield put(getAction);
     const getCurrentAction = { type: 'GET_CURRENT_SESSIONS' };
