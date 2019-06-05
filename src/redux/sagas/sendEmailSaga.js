@@ -8,6 +8,7 @@ function* sendEmailSaga(action) {
     const newAction = { type: 'GET_CLASSES', payload: response.data };
     yield put(newAction);
   } catch (error) {
+    console.log('Couldn\'t send email', error);
   }
 }
 

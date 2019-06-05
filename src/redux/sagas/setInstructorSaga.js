@@ -8,6 +8,7 @@ function* instructorSaga(action) {
     const newAction = { type: 'SET_INSTRUCTORS', payload: response.data };
     yield put(newAction);
   } catch (error) {
+    console.log('Couldn\'t get instructors', error);
   }
 }
 

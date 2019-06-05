@@ -8,6 +8,7 @@ function* seasonSaga(action) {
     const newAction = { type: 'SET_SEASONS', payload: response.data };
     yield put(newAction);
   } catch (error) {
+    console.log('Couldn\'t get seasons', error);
   }
 }
 
