@@ -16,6 +16,7 @@ class Instructor extends Component {
     },
   }
 
+  // changes this.state.edit to conditional render input fields
   editInstructor = () => {
     const editNow = this.state.edit;
     this.setState({
@@ -23,6 +24,7 @@ class Instructor extends Component {
     });
   }
 
+  // updates state as user types in fields
   handleChange = name => (event) => {
     this.setState({
       instructor: {
@@ -32,6 +34,8 @@ class Instructor extends Component {
     });
   };
 
+  // flips condional render to not show input fields, sends updated information
+  // to updateInstructorSaga.js
   updateInstructor = () => {
     const afterUpdate = this.state.edit;
     this.setState({
@@ -47,6 +51,7 @@ class Instructor extends Component {
       <>
         {this.state.edit
           ? (
+            // conditional renders to edit if this.state.edit == true
             <Table.Row>
               <Table.Cell>
                 <Form.Field>
@@ -68,7 +73,7 @@ class Instructor extends Component {
               </Table.Cell>
             </Table.Row>
           )
-          : (
+          : ( // conditional renders to text if this.state.edit == false
             <Table.Row>
               <Table.Cell>{this.props.instructor.instructor_name}</Table.Cell>
               <Table.Cell>{this.props.instructor.instructor_email}</Table.Cell>
