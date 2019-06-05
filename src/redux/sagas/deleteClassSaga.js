@@ -11,6 +11,7 @@ function* deleteclassSaga(action) {
     yield put(getAction);
     yield put(getCurrent);
   } catch (error) {
+    console.log('Could not delete class', error);
   }
 }
 

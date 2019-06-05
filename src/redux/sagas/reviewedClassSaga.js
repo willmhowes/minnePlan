@@ -6,6 +6,7 @@ function* reviewedClassSaga(action) {
   // Attempt to get brand
     const response = yield axios.put('/instructorSchedule', action.payload);
   } catch (error) {
+    console.log('Could not update instructor', error);
   }
 }
 

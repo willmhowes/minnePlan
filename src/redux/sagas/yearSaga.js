@@ -8,6 +8,7 @@ function* yearSaga(action) {
     const newAction = { type: 'SET_YEARS', payload: response.data };
     yield put(newAction);
   } catch (error) {
+    console.log('Couldn\'t get years', error);
   }
 }
 

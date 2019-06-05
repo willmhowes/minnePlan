@@ -46,6 +46,7 @@ router.put('/', rejectUnauthenticated, async (req, res) => {
     await client.query(newSession, [req.body.season, req.body.year]);
     await client.query('COMMIT');
   } catch (error) {
+    console.log('error creating new session', error);
     await client.query('ROLLBACK');
     res.sendStatus(500);
   } finally {

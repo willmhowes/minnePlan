@@ -8,6 +8,7 @@ function* classCountSaga(action) {
     const newAction = { type: 'SET_CLASS_COUNT', payload: response.data };
     yield put(newAction);
   } catch (error) {
+    console.log('Couldn\'t get instructor\'s class count', error);
   }
 }
 

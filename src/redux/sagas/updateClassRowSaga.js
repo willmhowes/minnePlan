@@ -11,6 +11,7 @@ function* updateclassRowSaga(action) {
     const getCurrentAction = { type: 'GET_CURRENT_SESSIONS' };
     yield put(getCurrentAction);
   } catch (error) {
+    console.log('Could not update classRow', error);
   }
 }
 
