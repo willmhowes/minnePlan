@@ -45,8 +45,8 @@ class App extends Component {
             /> */}
             <Redirect exact from="/" to="/future-session" />
             {/* For protected routes, the view could show one of several things on the same route.
-            Visiting localhost:3000/home will show the UserPage if the user is logged in.
-            ProtectedRoute will show the 'Login / Register' page if the user is not logged in */}
+            Visiting localhost:3000/future-session will show the FutureSession if the user is logged in.
+            ProtectedRoute will show the 'Login' page if the user is not logged in */}
             <ProtectedRoute
               exact
               path="/future-session"
