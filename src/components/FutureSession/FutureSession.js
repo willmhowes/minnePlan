@@ -202,6 +202,7 @@ class FutureSession extends Component {
                 ))}
             </Table.Body>
           </Table>
+          {/* Modal that appears to create a new session */}
           <Modal dimmer={dimmer} open={open} onClose={this.close}>
             <Modal.Header>Start a New Session</Modal.Header>
             <Modal.Content image>

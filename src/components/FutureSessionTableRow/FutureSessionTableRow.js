@@ -35,27 +35,33 @@ class FutureSessionTableRow extends Component {
     selectVal: '',
   }
 
+  // opens edit modal
   show = dimmer => () => this.setState({ dimmer, editOpen: true });
 
+  // opens delete modal
   showDelete = dimmer => () => this.setState({ dimmer, deleteOpen: true });
 
+  // closes edit modal and sendds action to updateClassRowSaga.js
   closeEdit = () => {
     this.setState({ editOpen: false });
     const action = { type: 'UPDATE_CLASS_ROW', payload: this.state };
     this.props.dispatch(action);
   }
 
+  // closes modal when no changes are needed
   close = () => {
     this.setState({ deleteOpen: false });
     this.setState({ editOpen: false });
   }
 
+  // closes delete modal and sends action to deleteClassSaga.js
   closeDelete = () => {
     this.setState({ deleteOpen: false });
     const action = { type: 'DELETE_CLASS', payload: this.state.classRow.id };
     this.props.dispatch(action);
   }
 
+  // updates state as classes are being edited in edit modal
   handleChange = name => (event) => {
     this.setState({
       classRow: {
@@ -65,6 +71,7 @@ class FutureSessionTableRow extends Component {
     });
   };
 
+  // assigns background colors to the row based on status
   bgColor = (status) => {
     if (status === 'pending response') {
       return '#ffee58';
@@ -81,15 +88,7 @@ class FutureSessionTableRow extends Component {
     } return 'white';
   }
 
-  updateclassRow = () => {
-    const afterUpdate = this.state.edit;
-    this.setState({
-      edit: !afterUpdate,
-    });
-    const action = { type: 'UPDATE_CLASSROW', payload: this.state.classRow };
-    this.props.dispatch(action);
-  }
-
+  // adds email to this.state, to send class schedule to instructor
   select = (email) => {
     this.setState(prevState => ({
       selectVal: true,
@@ -147,6 +146,7 @@ class FutureSessionTableRow extends Component {
           <Table.Cell><Button onClick={this.show(true)}><Icon name="edit" /></Button></Table.Cell>
           <Table.Cell><Button onClick={this.showDelete(true)}><Icon name="trash" /></Button></Table.Cell>
         </Table.Row>
+        {/* edit modal */}
         <Modal dimmer={dimmer} open={editOpen} onClose={this.close}>
           <Modal.Header>Edit Class</Modal.Header>
           <Modal.Content>
@@ -289,6 +289,7 @@ class FutureSessionTableRow extends Component {
             />
           </Modal.Actions>
         </Modal>
+        {/* Delete modal */}
         <Modal dimmer={dimmer} open={deleteOpen} onClose={this.close}>
           <Modal.Header>Delete Class</Modal.Header>
           <Modal.Content image>
