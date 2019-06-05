@@ -40,9 +40,10 @@ function removeDuplicates(emails, res) {
     }
   });
   const uniqueEmail = Object.keys(unique);
-  for (const email of uniqueEmail) {
+
+  uniqueEmail.forEach((email) => {
     sendEmail(email, res);
-  }
+  });
 }
 
 module.exports = { sendEmail, removeDuplicates };

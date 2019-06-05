@@ -4,9 +4,9 @@ import { withRouter } from 'react-router-dom';
 import {
   Table, Button,
 } from 'semantic-ui-react';
+import swal from 'sweetalert';
 import CurrentSessionTableRow from '../CurrentSessionTableRow/CurrentSessionTableRow';
 import './CurrentSession.css';
-import swal from 'sweetalert';
 
 class CurrentSession extends Component {
   state = {

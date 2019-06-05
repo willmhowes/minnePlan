@@ -90,7 +90,7 @@ class FutureSession extends Component {
     }
     const csvString = csvRow.join('%0A');
     const a = document.createElement('a');
-    a.href = 'data:attachment/csv,' + csvString;
+    a.href = `data:attachment/csv,${csvString}`;
     a.target = '_Blank';
     a.download = 'futureSession.csv';
     document.body.appendChild(a);
