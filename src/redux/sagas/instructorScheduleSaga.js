@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { takeLatest, put } from 'redux-saga/effects';
 
-function* instructorScheduleSaga(action) {
+function* instructorScheduleSaga() {
   try {
     // Attempt to get instructors scheduled classes
     const response = yield axios.get('/instructorSchedule');

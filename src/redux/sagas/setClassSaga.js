@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { takeLatest, put } from 'redux-saga/effects';
 
-function* classSaga(action) {
+function* classSaga() {
   try {
     // Attempt update classes
     const response = yield axios.get('/api/classes');

@@ -10,6 +10,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   pool.query(sessionQuery)
     .then((response) => { res.send(response.rows); })
     .catch((error) => {
+      console.log('Error:', error);
       res.sendStatus(500);
     });
 });
@@ -20,6 +21,7 @@ router.get('/year', rejectUnauthenticated, (req, res) => {
   pool.query(yearQuery)
     .then((response) => { res.send(response.rows); })
     .catch((error) => {
+      console.log('Error:', error);
       res.sendStatus(500);
     });
 });
@@ -30,6 +32,7 @@ router.get('/season', rejectUnauthenticated, (req, res) => {
   pool.query(yearQuery)
     .then((response) => { res.send(response.rows); })
     .catch((error) => {
+      console.log('Error:', error);
       res.sendStatus(500);
     });
 });

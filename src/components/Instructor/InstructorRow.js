@@ -26,12 +26,12 @@ class Instructor extends Component {
 
   // updates state as user types in fields
   handleChange = name => (event) => {
-    this.setState({
+    this.setState(prevState => ({
       instructor: {
-        ...this.state.instructor,
+        ...prevState.instructor,
         [name]: event.target.value,
       },
-    });
+    }));
   };
 
   // flips condional render to not show input fields, sends updated information

@@ -63,12 +63,12 @@ class FutureSessionTableRow extends Component {
 
   // updates state as classes are being edited in edit modal
   handleChange = name => (event) => {
-    this.setState({
+    this.setState(prevState => ({
       classRow: {
-        ...this.state.classRow,
+        ...prevState.classRow,
         [name]: event.target.value,
       },
-    });
+    }));
   };
 
   // assigns background colors to the row based on status

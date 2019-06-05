@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { takeLatest, put } from 'redux-saga/effects';
 
-function* currentSessionSaga(action) {
+function* currentSessionSaga() {
   try {
     // Attempt to get current session classes
     const response = yield axios.get('/api/classes/current');

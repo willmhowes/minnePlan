@@ -23,6 +23,7 @@ router.post('/', async (req, res) => {
       // to pending repsonse
       const updateSql = await client.query(updateQuery, ['pending response', getSql.rows[0].id]);
       // pushes all sql queries all the way through
+      await client.query(updateQuery, ['pending response', getSql.rows[0].id]);
       await client.query('COMMIT');
     } catch (error) {
       // aborts all sql queries if any of them fail

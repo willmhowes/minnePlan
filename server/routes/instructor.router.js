@@ -10,6 +10,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   pool.query(instructorQuery)
     .then((response) => { res.send(response.rows); })
     .catch((error) => {
+      console.log('Error:', error);
       res.sendStatus(500);
     });
 });
@@ -22,6 +23,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   pool.query(queryText, queryValues)
     .then(() => { res.sendStatus(201); })
     .catch((err) => {
+      console.log('Error:', err);
       res.sendStatus(500);
     });
 });
@@ -34,6 +36,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
       res.send(response.rows);
     })
     .catch((err) => {
+      console.log('Error:', err);
       res.sendStatus(500);
     });
 });
@@ -46,10 +49,11 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   const phoneNum = req.body.phone_number;
   const queryText = 'UPDATE "instructors" SET "instructor_name" = $1, "instructor_email" = $2, "phone_number" = $3 WHERE "id" = $4;';
   pool.query(queryText, [name, email, phoneNum, id])
-    .then((result) => {
+    .then(() => {
       res.sendStatus(200);
     })
     .catch((err) => {
+      console.log('Error:', err);
       res.sendStatus(500);
     });
 });

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { takeLatest, put } from 'redux-saga/effects';
 
-function* sessionSaga(action) {
+function* sessionSaga() {
   try {
     // Attempt to get all sessions
     const response = yield axios.get('/api/session');

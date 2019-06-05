@@ -14,6 +14,7 @@ router.get('/', (req, res) => {
   pool.query(scheduleQuery, [id])
     .then((response) => { res.send(response.rows); })
     .catch((error) => {
+      console.log('Error:', error);
       res.sendStatus(500);
     });
 });
@@ -31,6 +32,7 @@ router.get('/classcount', (req, res) => {
   pool.query(countQuery, [id])
     .then((response) => { res.send(response.rows); })
     .catch((error) => {
+      console.log('Error:', error);
       res.sendStatus(500);
     });
 });
@@ -42,10 +44,11 @@ router.put('/', (req, res) => {
   const status = req.body.status;
   const queryText = 'UPDATE "classes" SET "preparation_status" = $1, "preparation_message" = $2 WHERE "id" = $3;';
   pool.query(queryText, [status, reason, id])
-    .then((result) => {
+    .then(() => {
       res.sendStatus(200);
     })
     .catch((err) => {
+      console.log('Error:', err);
       res.sendStatus(500);
     });
 });

@@ -5,6 +5,8 @@ function* addInstructorSaga(action) {
   try {
     // Attempt to add instructor
     const response = yield axios.post('/api/instructor', action.payload);
+    // Attempt to get instructor
+    yield axios.post('/api/instructor', action.payload);
   } catch (error) {
     console.log('Couldn\'t add instructor', error);
   }

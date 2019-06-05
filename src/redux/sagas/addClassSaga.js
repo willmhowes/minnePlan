@@ -4,7 +4,7 @@ import { takeLatest } from 'redux-saga/effects';
 function* addClassSaga(action) {
   try {
     // Attempt to add class to DB
-    const response = yield axios.post('/api/classes', action.payload);
+    yield axios.post('/api/classes', action.payload);
   } catch (error) {
     console.log('Couldn\'t add class', error);
   }

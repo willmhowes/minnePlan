@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { takeLatest, put } from 'redux-saga/effects';
 
-function* seasonSaga(action) {
+function* seasonSaga() {
   try {
     // Attempt to get seasons
     const response = yield axios.get('/api/session/season');
