@@ -9,6 +9,7 @@ class ArchivedSessions extends Component {
     idArray: [],
   };
 
+  // on click of select box, add value to this.state.idArray array
   handleSelect = (event, { value }) => {
     console.log('in checkbox handler', value);
     this.setState(prevState => ({
@@ -16,6 +17,7 @@ class ArchivedSessions extends Component {
     }));
   }
 
+  // sends id to copyClassSaga.js, with all ids of selected classes
   handleClick = () => {
     this.props.dispatch({ type: 'COPY_CLASS', payload: this.state.idArray });
     swal('Your class has been added to the future session!');
@@ -26,7 +28,6 @@ class ArchivedSessions extends Component {
       <div>
         <br />
         <Button onClick={this.handleClick}>Add to Future Session</Button>
-        {/* <pre>{JSON.stringify(this.props.reduxState.archived)}</pre> */}
         <br />
         <Table celled>
           <Table.Header>
