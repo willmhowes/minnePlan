@@ -5,12 +5,14 @@ import { Table, Button } from 'semantic-ui-react';
 import InstructorScheduleRow from './InstructorScheduleRow';
 
 class InstructorSchedule extends Component {
+  // Gathers instructor information on component load
   componentDidMount() {
     window.history.replaceState(null, null, ' ');
     this.props.dispatch({ type: 'GET_INSTRUCTOR_SCHEDULE' });
     this.props.dispatch({ type: 'GET_CLASS_COUNT' });
   }
 
+  // Handles user logout
   logout = () => {
     this.props.dispatch({ type: 'LOGOUT' });
     this.props.history.push('/instructor_login');

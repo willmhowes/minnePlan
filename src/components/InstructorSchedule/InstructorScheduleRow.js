@@ -13,6 +13,7 @@ class InstructorScheduleRow extends Component {
     classBackground: '',
   };
 
+  // Handles click of 'Checkmark' button
   checkedClass =() => {
     this.setState({
       classStatus: 'Approved',
@@ -22,6 +23,7 @@ class InstructorScheduleRow extends Component {
     this.props.dispatch({ type: 'REVIEWED_CLASS', payload: { reason: 'CONFIRMED', status: 'needs permit', id: this.props.schedule.id } });
   }
 
+  // Handles click of 'X' button
   declinedClass = () => {
     swal('Please tell us why you cannot instruct this class:', {
       content: 'input',
