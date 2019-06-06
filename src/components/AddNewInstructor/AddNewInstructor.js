@@ -43,17 +43,10 @@ class AddNewInstructor extends Component {
     swal('The new instructor has been added!');
   }
 
-  // Auto fill to add Brian
-  handleAutoFillBrian = () => {
-    this.setState({
-      ...addBrian,
-    });
-  }
-
   render() {
     return (
       <div>
-        <h1 onClick={this.handleAutoFillBrian}>Add New Instructor</h1>
+        <h1>Add New Instructor</h1>
         <Form>
           <Form.Input value={this.state.instructor_name} label="Instructor's Name" placeholder="Instructor's Name" onChange={this.handleChange('instructor_name')} />
           <Form.Input value={this.state.phone_number} label="Phone Number" placeholder="Phone number" onChange={this.handleChange('phone_number')} />
