@@ -4,7 +4,6 @@ MinnePlan is a web application that helps to manage scheduling and communication
 
 This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
 
 ## Download (Don't Clone) This Repository
 
@@ -52,7 +51,7 @@ If you would like to name your database something else, you will need to change 
 
     ```NEED TO PUT INSTRUCTIONS ON HOW TO SETUP AUTH0 HERE```
 
-    This application is also set up with Nodemailer to send out email notifications utilizing your Gmail account. Provide your creditials in the `.env` file to enable this feature.
+    This application is also set up with Nodemailer to utilize your email account to send out email notifications. Provide your creditions in the `.env` file to enable this feature. Nodemailer is set-up for a gmail account, the service on line 7 in /server/modules/emailHandler.js will need to be updated if you are using a different email service.
 
 * Start postgres if not running already by using `brew services start postgresql`
 * Run `npm run server`
@@ -80,7 +79,7 @@ Before pushing to Heroku, run `npm run build` in terminal. This will create a bu
 * `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
 * `server/` contains the Express App
 
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
+This code is also heavily commented. If you're wondering where to start, consider reading through component file comments in the following order:
 
 * src/components
   * AddNewClass/AddNewClass
@@ -120,14 +119,11 @@ This code is also heavily commented. We recommend reading through the comments, 
 1. Make sure you have already set up the designated local database and have postgres running.
 1. In terminal, type `heroku addons:create heroku-postgresql:hobby-dev` to set up Postgresql on your Heroku project.
 1. Next, type `heroku pg:push your_database DATABASE_URL` to copy your database contents up to Heroku. **your_database** is the actual name of your database (e.g. minneplan). DATABASE_URL is a heroku config variable created by the Add On. Do not replace it with something else, just type: DATABASE_URL. For example, if you were deploying the **minneplan** database, you should type `heroku pg:push minneplan DATABASE_URL`.
-1. Add an environment variable for the listed variables above on
+1. Add an environment variable for the listed variables in your `.env` file.
 
 ## Authors
 
-* Amareya Allen-Dabney, Will Howes, Brian Zilka, [Jarvis Yang](https://jarvis.netlify.com/)
-
-## Acknowledgments
-
-* Thank you to Eliana Power for this amazying opportunity.
-* Thank you to our fellow classmates in the Atbash Cohort from Prime Digital Academy.
-* Thank you to Mary and Kris, our insightful and knowledgeable instructors!
+- Amareya Allen-Dabney
+- Brian Zilka
+- Jarvis Yang
+- Will Howes
