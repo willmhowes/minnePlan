@@ -4,7 +4,6 @@ MinnePlan is a web application that helps to manage scheduling and communication
 
 This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
 
 ## Download (Don't Clone) This Repository
 
@@ -51,7 +50,7 @@ If you would like to name your database something else, you will need to change 
 
     ```NEED TO PUT INSTRUCTIONS ON HOW TO SETUP AUTH0 HERE```
 
-    This application is also set up with Nodemailer to utilize your Gmail account to send out email notifications. Provide your creditions in the `.env` file to enable this feature.
+    This application is also set up with Nodemailer to utilize your email account to send out email notifications. Provide your creditions in the `.env` file to enable this feature. Nodemailer is set-up for a gmail account, the service on line 7 in /server/modules/emailHandler.js will need to be updated if you are using a different email service.
 
 * Start postgres if not running already by using `brew services start postgresql`
 * Run `npm run server`
@@ -62,11 +61,7 @@ If you would like to name your database something else, you will need to change 
 
 To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
 
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
-
 Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
-
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
 
 ## Production Build
 
@@ -83,7 +78,7 @@ Before pushing to Heroku, run `npm run build` in terminal. This will create a bu
 * `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
 * `server/` contains the Express App
 
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
+This code is also heavily commented. If you're wondering where to start, consider reading through component file comments in the following order:
 
 * src/components
   * AddNewClass/AddNewClass
@@ -104,19 +99,6 @@ This code is also heavily commented. We recommend reading through the comments, 
   * ProtectedRoute/ProtectedRoute
   * RegisterPage/RegisterPage
 
-### Completed Features
-
-High level list of items completed.
-
-- [x] Feature a
-- [x] Feature b
-
-### Next Steps
-
-Features that you would like to add at some point in the future.
-
-- [ ] Feature c
-
 ## Deployment
 
 1. Create a new Heroku project
@@ -129,10 +111,7 @@ Features that you would like to add at some point in the future.
 
 ## Authors
 
-* Amareya Allen-Dabney, Will Howes, Brian Zilka, [Jarvis Yang](https://jarvis.netlify.com/)
-
-## Acknowledgments
-
-* Thank you to Eliana Power for this amazying opportunity.
-* Thank you to our fellow classmates in the Atbash Cohort from Prime Digital Academy.
-* Thank you to Mary and Kris, our insightful and knowledgeable instructors!
+- Amareya Allen-Dabney
+- Brian Zilka
+- Jarvis Yang
+- Will Howes
