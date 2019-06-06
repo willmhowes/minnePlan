@@ -49,7 +49,17 @@ If you would like to name your database something else, you will need to change 
 
     You'll also need to set up an Auth0 account by going to the website: [Auth0](https://auth0.com/).
 
-    ```NEED TO PUT INSTRUCTIONS ON HOW TO SETUP AUTH0 HERE```
+    ```
+    1. Register for an Auth0 account.
+    2. Create a 'Tenant doman'.
+    3. Click the '+ Create Application' button.
+    4. Select the 'Single Page Web Applicatins' option and feel free to rename the application (we recommend 'Minneplan' but anything else works).
+    5. Click 'Create'  to create the new Auth0 Application.
+    5. Navigate to the 'Settings Tab' and copy the 'Domain', 'Client ID' and 'Client Secret' to your '.env' file.
+    6. Insert `http://localhost:5000/api/instructor/login/callback` into your Auth0 Application's 'Allowed Callback URL's' form and copy this into your local `.env` file's AUTH0_CALLBACK_URL.
+    7. Insert `http://localhost:3000, http://localhost:5000` into your Auth0 Application's 'Allowed Web Origins', 'Allowed Logout URLs', and 'Allowed Origin's' forms.
+    8. Go the bottom of the page and click on 'SAVE CHANGES'.
+    ```
 
     This application is also set up with Nodemailer to utilize your email account to send out email notifications. Provide your creditions in the `.env` file to enable this feature. Nodemailer is set-up for a gmail account, the service on line 7 in /server/modules/emailHandler.js will need to be updated if you are using a different email service.
 
