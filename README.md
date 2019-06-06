@@ -23,6 +23,8 @@ Before you get started, make sure you have the following software installed on y
 - [PostgreSQL](https://www.postgresql.org/)
 - [Nodemon](https://nodemon.io/)
 
+If you are working with the VSCode text editor, we recommend you install the [ESLint Extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) to make it easier comply with ESLint ruleset employed within MinnePlan.
+
 ## Create database and table
 
 Create a new database called `minneplan` and run the sql text from the `database.sql` file to create the needed tables for the database.
