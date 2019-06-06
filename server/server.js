@@ -3,6 +3,7 @@ require('dotenv').config();
 
 const app = express();
 const bodyParser = require('body-parser');
+const path = require('path');
 const sessionMiddleware = require('./modules/session-middleware');
 
 const passport = require('./strategies/user.strategy');
@@ -38,6 +39,10 @@ app.use('/send/email', sendEmail);
 
 // Serve static files
 app.use(express.static('build'));
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
+});
 
 // App Set //
 const PORT = process.env.PORT || 5000;
