@@ -61,7 +61,7 @@ If you would like to name your database something else, you will need to change 
     8. Go the bottom of the page and click on 'SAVE CHANGES'.
     ```
 
-    This application is also set up with Nodemailer to utilize your email account to send out email notifications. Provide your creditions in the `.env` file to enable this feature. Nodemailer is set-up for a gmail account, the service on line 7 in /server/modules/emailHandler.js will need to be updated if you are using a different email service.
+    This application is also set up with Nodemailer to utilize your email account to send out email notifications. Provide your creditis in the `.env` file to enable this feature. Nodemailer is set-up for a gmail account, the service on line 7 in /server/modules/emailHandler.js will need to be updated if you are using a different email service.
 
 * Start postgres if not running already by using `brew services start postgresql`
 * Run `npm run server`
