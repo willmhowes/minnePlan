@@ -55,11 +55,8 @@ router.put('/', rejectUnauthenticated, async (req, res) => {
     // proceeds with all sql if they all go through
     await client.query('COMMIT');
   } catch (error) {
-<<<<<<< HEAD
     // aborts all sql queries if 1 fails
-=======
     console.log('error creating new session', error);
->>>>>>> 87f291d31b6b8c1d2ddf6ae6159b500f5b2de4fe
     await client.query('ROLLBACK');
     res.sendStatus(500);
   } finally {
