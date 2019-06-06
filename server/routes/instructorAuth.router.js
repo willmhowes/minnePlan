@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get('/callback',
   (req, res, next) => {
+    console.log(req);
     next();
   },
   passport.authenticate('auth0'),
