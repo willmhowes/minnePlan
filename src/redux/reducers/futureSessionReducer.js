@@ -1,3 +1,4 @@
+// expect future session table
 const sessionReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_SESSIONS':

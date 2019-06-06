@@ -4,6 +4,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 const router = express.Router();
 
+// gets all instructors in databse and order alphabetically
 router.get('/', rejectUnauthenticated, (req, res) => {
   const instructorQuery = 'SELECT "id", "instructor_name", "instructor_email", "phone_number" FROM "instructors" ORDER BY "instructor_name";';
   pool.query(instructorQuery)
@@ -14,6 +15,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
+// adds a new instructor to database
 router.post('/', rejectUnauthenticated, (req, res) => {
   const queryText = `INSERT INTO "instructors" ("instructor_name", "instructor_email", "phone_number")
   VALUES ($1, $2, $3);`;
@@ -26,6 +28,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
+// get's specific instructor based on id
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   const queryText = 'SELECT "id", "instructor_name", "instructor_email", "phone_number" FROM "instructors" WHERE id = $1';
   pool.query(queryText, [req.params.id])
@@ -38,6 +41,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
+// updates instructor's information in database
 router.put('/:id', rejectUnauthenticated, (req, res) => {
   const id = req.body.id;
   const name = req.body.instructor_name;

@@ -19,6 +19,7 @@ class InstructorLogin extends Component {
     codeIsSent: false,
   }
 
+  // handles updates to values stored in component state
   handleInputChangeFor = (event) => {
     const name = event.target.getAttribute('name');
     const { value } = event.target;
@@ -27,6 +28,7 @@ class InstructorLogin extends Component {
     });
   }
 
+  // sends an email with a temporary code to the desired email address
   sendEmail = () => {
     const { email } = this.state;
 
@@ -37,13 +39,15 @@ class InstructorLogin extends Component {
     }, (err) => {
       if (err) {
         alert(`error sending email: ${err.error_description}`);
+      } else {
+        this.setState({
+          codeIsSent: true,
+        });
       }
-      this.setState({
-        codeIsSent: true,
-      });
     });
   }
 
+  // sends login code to auth0 servers for verification
   verifyCode = () => {
     const { email, code } = this.state;
     webAuth.passwordlessLogin({
@@ -51,8 +55,8 @@ class InstructorLogin extends Component {
       email,
       verificationCode: code,
     }, (err) => {
-      console.error(err);
       // handle errors
+      console.error(err);
     });
   }
 
@@ -86,6 +90,7 @@ class InstructorLogin extends Component {
     );
   }
 
+  // renders the input for either the email address or the temporary code
   render() {
     return (
       <div className="LoginPage-form">

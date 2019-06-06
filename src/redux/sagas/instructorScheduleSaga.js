@@ -3,7 +3,7 @@ import { takeLatest, put } from 'redux-saga/effects';
 
 function* instructorScheduleSaga() {
   try {
-    // Attempt to get instructors
+    // Attempt to get instructors scheduled classes
     const response = yield axios.get('/instructorSchedule');
     const newAction = { type: 'SET_INSTRUCTOR_SCHEDULE', payload: response.data };
     yield put(newAction);
