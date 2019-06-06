@@ -36,13 +36,14 @@ If you would like to name your database something else, you will need to change 
     ```
     SERVER_SESSION_SECRET=superDuperSecret
 
+    GMAIL=YOUR_GMAIL_ADDRESS_GOES_HERE
+    GMAIL_PASSWORD=YOUR_GMAIL_PASSWORD_GOES_HERE
+
     AUTH0_CLIENT_ID=
     AUTH0_CLIENT_SECRET=
     AUTH0_DOMAIN=
     AUTH0_CALLBACK_URL=
 
-    GMAIL=`YOUR_GMAIL_ADDRESS_GOES_HERE`
-    GMAIL_PASSWORD=`YOUR_GMAIL_PASSWORD_GOES_HERE`
     ```
     While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
 
@@ -99,15 +100,26 @@ This code is also heavily commented. If you're wondering where to start, conside
   * ProtectedRoute/ProtectedRoute
   * RegisterPage/RegisterPage
 
+### Completed Features
+
+- [x] Auth0 email authentication to login to application.
+- [x] Nodemailer email notifications.
+- [x] Export FutureSession table to csv file.
+
+### Next Steps
+
+- [ ]
+
 ## Deployment
 
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
+1. In terminal, navigate to your project folder and type `heroku create`.
+1. Login in if prompted.
+1. Type `git remote -v` to ensure it was added successfully.
+1. In terminal, type `git push heroku master`.
+1. Make sure you have already set up the designated local database and have postgres running.
+1. In terminal, type `heroku addons:create heroku-postgresql:hobby-dev` to set up Postgresql on your Heroku project.
+1. Next, type `heroku pg:push your_database DATABASE_URL` to copy your database contents up to Heroku. **your_database** is the actual name of your database (e.g. minneplan). DATABASE_URL is a heroku config variable created by the Add On. Do not replace it with something else, just type: DATABASE_URL. For example, if you were deploying the **minneplan** database, you should type `heroku pg:push minneplan DATABASE_URL`.
+1. Add an environment variable for the listed variables in your `.env` file.
 
 ## Authors
 

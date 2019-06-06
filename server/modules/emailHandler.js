@@ -43,7 +43,7 @@ function removeDuplicates(emails, res) {
   });
   const uniqueEmail = Object.keys(unique);
   // sends unique to every unique email in array
-  for (const email of uniqueEmail) {
+  uniqueEmail.forEach((email) => {
     sendEmail(email, res);
   });
 }

@@ -4,7 +4,7 @@ import { takeLatest } from 'redux-saga/effects';
 function* addInstructorSaga(action) {
   try {
     // Attempt to add instructor
-    const response = yield axios.post('/api/instructor', action.payload);
+    yield axios.post('/api/instructor', action.payload);
     // Attempt to get instructor
     yield axios.post('/api/instructor', action.payload);
   } catch (error) {
