@@ -7,7 +7,7 @@ import auth0 from 'auth0-js';
 const webAuth = new auth0.WebAuth({
   clientID: 'V54yGoqSS6zr4Gi38q4xh1Fw1kZhNQvQ',
   domain: 'dev-o06mn1qr.auth0.com',
-  redirectUri: 'http://localhost:5000/api/instructor/login/callback',
+  redirectUri: 'https://aqueous-garden-75760.herokuapp.com/api/instructor/login/callback',
   responseType: 'token id_token',
   scope: 'openid email',
 });
