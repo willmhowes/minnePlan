@@ -9,7 +9,7 @@ router.get('/callback',
   },
   passport.authenticate('auth0'),
   (req, res) => {
-    res.redirect('http://localhost:5000/instructor-schedule');
+    res.redirect('https://aqueous-garden-75760.herokuapp.com/instructor-schedule');
   });
 
 module.exports = router;
