@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:5000",
+  "engines": {
+    "node": "12.4.0"
+  },
   "dependencies": {
     "auth0-js": "^9.10.4",
     "axios": "^0.18.0",
