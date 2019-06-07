@@ -9,7 +9,7 @@ router.get('/callback',
   },
   passport.authenticate('auth0'),
   (req, res) => {
-    res.redirect('http://localhost:3000/instructor-schedule');
+    res.redirect('https://glacial-scrubland-22554.herokuapp.com/instructor-schedule');
   });
 
 module.exports = router;
