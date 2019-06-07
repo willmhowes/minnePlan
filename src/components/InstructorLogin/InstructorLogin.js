@@ -5,9 +5,9 @@ import { Segment, Header, Form } from 'semantic-ui-react';
 import auth0 from 'auth0-js';
 
 const webAuth = new auth0.WebAuth({
-  clientID: 'LQ8Ka0xEs1hPfpQD39bdkwxUv4q8jUUI',
-  domain: 'yellow-snowflake-0394.auth0.com',
-  redirectUri: 'https://aqueous-garden-75760.herokuapp.com/api/instructor/login/callback',
+  clientID: 's2NvVKx20rWtEyYapJFDaL4V7lg3U3UR',
+  domain: 'minneplan.auth0.com',
+  redirectUri: 'https://glacial-scrubland-22554.herokuapp.com/api/instructor/login/callback',
   responseType: 'token id_token',
   scope: 'openid email',
 });
