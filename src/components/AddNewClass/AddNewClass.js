@@ -11,6 +11,25 @@ import {
 } from 'semantic-ui-calendar-react';
 import swal from 'sweetalert';
 
+const emptyForm = {
+  session: '',
+  className: '',
+  day: '',
+  startDate: '',
+  endDate: '',
+  startTime: '',
+  endTime: '',
+  studentCost: '',
+  instructorPay: '',
+  description: '',
+  instructorRef: '',
+  instructorEmail: '',
+  numInstances: '',
+  classroom: '',
+  building: '',
+  materialsCost: '',
+};
+
 class AddNewClass extends Component {
   state = {
     session: '',
